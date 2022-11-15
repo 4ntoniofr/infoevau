@@ -13,6 +13,16 @@
   }
 }
 
+#header {
+  transition: all 0.5s;
+  padding: 10px 0;
+  background-color: aquamarine;
+  color:aliceblue;
+  position: sticky;
+  top: 0;
+  text-align: center;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -35,4 +45,53 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* -----------------------------------------------------------
+# NAVBAR
+----------------------------------------------------------- */
+
+.navbar {
+  padding: 0;
+  background-color: #282c34;
+}
+
+.navbar ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  align-items: center;
+}
+
+.navbar li {
+  position: relative;
+}
+
+.navbar a,
+.navbar a:focus {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0 10px 30px;
+  font-size: 17px;
+  font-weight: 400;
+  transition: 0.5s;
+}
+
+.navbar a:hover,
+.navbar .active,
+.navbar .active:focus,
+.navbar li:hover>a {
+  color: aquamarine;
+}
+
+/* -----------------------------------------------------------
+# IMAGENES
+----------------------------------------------------------- */
+
+.imgNavbar:hover {
+  filter: brightness(120%);
+  transition: 0.5s;
 }
