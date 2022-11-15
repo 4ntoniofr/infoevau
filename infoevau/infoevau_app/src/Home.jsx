@@ -2,7 +2,9 @@ import React from 'react'
 
 function Home() {
   return (
-	<div>Home Page</div>
+    <React.StrictMode>
+      <h1>Bienvenido al main page</h1>
+    </React.StrictMode>
   )
 }
 
