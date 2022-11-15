@@ -1,9 +1,9 @@
 import './assets/css/App.css';
-import Home from './Home';
-import Alumnos from './Alumnos';
-import Sedes from './Sedes';
+import Home from './components/Home';
+import Alumnos from './components/Alumnos';
+import Sedes from './components/Sedes';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Navbar from './Navbar';
+import Navbar from './components/Navbar';
 
 const router = createBrowserRouter([
 	{
@@ -13,13 +13,13 @@ const router = createBrowserRouter([
 	},
 	{
 	  	path: "/alumnos",
-			element: <Alumnos />,
-			errorElement: <div>Error Page</div>,
+		element: <Alumnos />,
+		errorElement: <div>Error Page</div>,
 	},
 	{
-			path: "/sedes",
-			element: <Sedes />,
-			errorElement: <div>Error Page</div>,
+		path: "/sedes",
+		element: <Sedes />,
+		errorElement: <div>Error page</div>
 	}
 ]);
 
