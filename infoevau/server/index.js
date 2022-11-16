@@ -15,6 +15,12 @@ var db = mysql.createConnection({
   database: process.env.DATABASE,
 });
 db.connect();
+
+/* app.get('/', function (req, res) {
+  res.send('Saludos desde express');
+});
+ */
+
 db.query("SHOW TABLES", (err, res, fields) => {
   if (err) throw err;
   console.log(res);
