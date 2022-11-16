@@ -72,3 +72,14 @@ app.post("/nuevoAlumno", (req,res) => {
 	});
 	res.send();
 });
+
+app.post("/nuevasSedes", (req, res) => {
+	let sedes = req.body.sedes;
+	sedes.forEach(s => {
+		if(s != ''){
+			db.query("INSERT INTO SEDE(Nombre) VALUES (?);", [s], (err,res,f) => {
+				if(err) console.log(err);
+			})
+		}
+	})
+});

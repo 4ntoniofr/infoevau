@@ -29,14 +29,12 @@ export default function Alumnos() {
       <h1>Sección de los alumnos</h1>
       <div className="alumnos">
 				<input type="file" accept=".csv" onChange={(e) => {
-						Papa.parse(e.target.files[0], 
-							{complete: (res, file) => {
-									setData(res)
-								}
-							}
-						)
-					}
-				} />
+					Papa.parse(e.target.files[0], {
+						complete: (res, file) => {
+							setData(res)
+						}
+					})
+				}} />
 				<button onClick={() => {insertarAlumnos(data.data)}}>Guardar informacion</button>
         <TablaAlumnos />
       </div>
