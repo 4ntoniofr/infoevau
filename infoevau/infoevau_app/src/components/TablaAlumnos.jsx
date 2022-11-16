@@ -47,6 +47,14 @@ function TablaAlumnos() {
 					<td>Ilegal</td>
 					<td>Todas las de amparo</td>
 				</tr>
+				<tr>
+					<td>Benalmadena</td>
+					<td>Valentin</td>
+					<td>Va</td>
+					<td>Lentin</td>
+					<td>09876544D</td>
+					<td>Filosofía XD</td>
+				</tr>
 			</tbody>
 		  </table>
         </>
