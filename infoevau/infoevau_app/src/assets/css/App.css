@@ -43,6 +43,15 @@
   background-color: aquamarine;
 }
 
+.navbar li:hover p {
+  color:black;
+  font-style: italic;
+}
+
+.navbar li:hover img {
+  filter: invert(1);
+}
+
 /* -----------------------------------------------------------
 # IMAGENES
 ----------------------------------------------------------- */
@@ -58,3 +67,13 @@
   filter: brightness(120%);
   transition: 0.5s;
 }
+
+.iconoNavbar {
+  width: 30px;
+  height: 30px;
+  margin-right: 7px;
+}
+
+
+
+

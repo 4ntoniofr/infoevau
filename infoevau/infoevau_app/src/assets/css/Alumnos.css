@@ -1,0 +1,29 @@
+.alumnos {
+    display: flex;
+}
+
+/* -----------------------------------------------------------
+# TABLAS
+----------------------------------------------------------- */
+
+.tablaAlumnos {
+    width: 70%;
+    position: absolute;
+    right: 3%;
+}
+
+.tablaAlumnos td, .tablaAlumnos th {
+    padding: 8px;
+}
+
+.tablaAlumnos tr:nth-child(even){background-color: #f2f2f2;}
+
+.tablaAlumnos tr:hover {background-color:#ddd;}
+
+.tablaAlumnos th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: aquamarine;
+    color: black;
+}
