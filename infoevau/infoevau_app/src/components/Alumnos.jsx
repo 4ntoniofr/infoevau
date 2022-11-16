@@ -1,13 +1,5 @@
-import React from 'react'
+import React from "react";
 
-function Alumnos() {
-	return (
-		<React.StrictMode>
-		<body>
-		  <h1>Seccion de los alumnos</h1>
-		</body>
-		</React.StrictMode>
-	)
+export default function Alumnos() {
+  return <h1>Seccion de los alumnos</h1>;
 }
-
-export default Alumnos

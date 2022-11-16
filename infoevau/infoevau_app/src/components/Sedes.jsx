@@ -1,11 +1,5 @@
-import React from 'react'
+import React from "react";
 
-function Sedes() {
-    return (
-        <React.StrictMode>
-            <h1>Sección de las sedes</h1>
-        </React.StrictMode>
-    )
+export default function Sedes() {
+  return <h1>Sección de las sedes</h1>;
 }
-
-export default Sedes
