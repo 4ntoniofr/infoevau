@@ -1,5 +1,7 @@
 import React from "react";
 import logo from "../assets/images/logoNuevo.png";
+import imgSedes from "../assets/images/sedepng.png"
+import imgAlumnos from "../assets/images/estudiantepng.png"
 
 export default function Navbar() {
   return (
@@ -11,12 +13,14 @@ export default function Navbar() {
           </a>
           <a href="/alumnos">
             <li>
+              <img src={imgAlumnos} alt="" className="iconoNavbar"/>
               <p>Alumnos</p>
             </li>
           </a>
           <a href="/sedes">
             <li>
-              <p>Sedes</p>
+              <img src={imgSedes} alt="" className="iconoNavbar"/>
+              <p>Sedes</p>  
             </li>
           </a>
         </ul>
