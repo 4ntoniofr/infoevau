@@ -9,7 +9,7 @@ function TablaAlumnos() {
     axios.get("http://localhost:3001/alumnos").then((alumnos) => {
       setData(alumnos.data);
     });
-  });
+  }, []);
 
   return (
     <div className="containerTabla">
