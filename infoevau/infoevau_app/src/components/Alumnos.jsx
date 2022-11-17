@@ -5,29 +5,58 @@ import "../assets/css/Alumnos.css";
 import { useState } from "react";
 
 export default function Alumnos() {
+	let logErrores = 'LOG DE ERRORES\n';
+
+	const formatoIncorrecto = (nif) => {
+		return false;
+	}
+
 	const insertarAlumnos = async (alumnos) => {
 		const MAX_ENVIO = 500;
 		let institutos = []
 		let institutosInclude = []
 		let matriculaciones = []
+		let alumnosIncluidos = []
+		let alumnosInsercion = []
+		let matriculacionesIncluidas = []
+		let materiasIncluidas = []
 
+		//recogemos la informacion almacenada en BD
+		await Axios.get("http://localhost:3001/materias").then((ms) => materiasIncluidas = ms.data)
+		await Axios.get("http://localhost:3001/alumnos").then((als) => alumnosIncluidos = als.data)
+		await Axios.get("http://localhost:3001/matriculas").then((mats) => matriculacionesIncluidas = mats.data)
 		await Axios.get("http://localhost:3001/institutos").then((ins) => institutos = ins.data)
 		institutos.push({Nombre: ''})
 		
 		alumnos.forEach(a => {
-			if(institutos.find(i => i.Nombre == a[0]) == undefined){
-				institutos.push({Nombre: a[0]})
-				institutosInclude.push([a[0]])
+			//comprobamos si el alumno ya esta incluido en la BD o si el formato del NIF es incorrecto
+			if(alumnosIncluidos.find(ai => ai.NIF === a[4]) !== undefined){
+				logErrores.concat('Ya se encontró un alumno con el mismo indentificador:', a[4], 'en el alumno', a, '\n');
+			}else if(formatoIncorrecto(a[4])){
+				logErrores.concat('El NIF:', a[4], 'tiene un formato incorrecto.', a, '\n');
+			}else{
+				//almacenamos en institutosInclude los institutos que no estan en la BD
+				if(institutos.find(i => i.Nombre === a[0]) === undefined){
+					institutos.push({Nombre: a[0]})
+					institutosInclude.push([a[0]])
+				}
+
+				//almacenamos en matriculaciones todos los pares (<asignatura>,<alumno>) si se da que no este ya matriculado
+				let asignaturas = a.pop()	//elimina el ultimo elemento y lo devuelve
+				asignaturas.split(', ').forEach((asig) => {
+					if(matriculacionesIncluidas.find(m => (m.NIF === a[4] && m.Materia === asig)) !== undefined){
+						logErrores.concat('El alumno identificado por el NIF', a[4], 'ya se encuentra matriculado en', asig, a, '\n');
+					}else if(materiasIncluidas.find(m => m.Nombre === asig) === undefined){
+						logErrores.concat('La materia', asig,'no se encuentra dentro de la lista de materias.',a,asignaturas)
+					}else{
+						matriculaciones.push([asig, a[4]]);
+					}
+				});
+
+				//incluimos el alumno a la lista de insercion
+				alumnosInsercion.push(a)
 			}
-
-			let asignaturas = a.pop()	//elimina el ultimo elemento y lo devuelve
-			asignaturas.split(', ').forEach((asig) => {
-				matriculaciones.push([asig, a[4]]);
-			});
 		});
-
-		console.log(alumnos)
-		console.log(matriculaciones)
 
 		if(institutosInclude.length > 0){
 			Axios.post("http://localhost:3001/nuevosInstitutos", {
@@ -35,15 +64,15 @@ export default function Alumnos() {
 			});
 		}
 
-    for (var i = 0; i * MAX_ENVIO < alumnos.length; i++) {
+    for (var i = 0; i * MAX_ENVIO < alumnosInsercion.length; i++) {
       await Axios.post("http://localhost:3001/nuevosAlumnos", {
-        alumnos: alumnos.slice(i * MAX_ENVIO, i * MAX_ENVIO + MAX_ENVIO),
+        alumnos: alumnosInsercion.slice(i * MAX_ENVIO, (i+1) * MAX_ENVIO),
       });
     }
 
-		for (var i = 0; i * MAX_ENVIO < matriculaciones.length; i++) {
+		for (var j = 0; j * MAX_ENVIO < matriculaciones.length; j++) {
       await Axios.post("http://localhost:3001/nuevasMatriculaciones", {
-        matriculaciones: matriculaciones.slice(i * MAX_ENVIO, i * MAX_ENVIO + MAX_ENVIO),
+        matriculaciones: matriculaciones.slice(j * MAX_ENVIO, (j+1) * MAX_ENVIO),
       });
     }
   };
@@ -74,6 +103,7 @@ export default function Alumnos() {
           >
             Guardar informacion
           </button>
+					<button onClick={() => {console.log(logErrores)}}>Mostrar log</button>
           <TablaAlumnos />
         </div>
       </div>
