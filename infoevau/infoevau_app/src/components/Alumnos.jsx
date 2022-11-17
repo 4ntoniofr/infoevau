@@ -19,7 +19,7 @@ export default function Alumnos() {
     }
   };
 
-  const Papa = require("papaparse");
+  const Papa = require('papaparse');
   const [data, setData] = useState({});
 
   return (

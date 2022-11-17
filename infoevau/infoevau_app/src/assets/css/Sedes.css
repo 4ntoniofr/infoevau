@@ -1,0 +1,163 @@
+/* -----------------------------------------------------------
+# CONTAINERS
+----------------------------------------------------------- */
+
+.containerHeader {
+    position: relative;
+    left: 15%;
+}
+
+.containerTablaSedes {
+    height: 430px;
+    width: 50%;
+    position: fixed;
+    left: 3%;
+    top: 25%;
+    overflow:auto;
+}
+
+    /* Scrollbar*/
+
+.containerTablaSedes::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.containerTablaSedes::-webkit-scrollbar:vertical {
+    width:10px;
+}
+
+.containerTablaSedes::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
+
+.containerBotonesSedes {
+    height: 215px;
+    width: 25%;
+    position: fixed;
+    top: 40%;
+    right: 10%;
+    border-radius: 20%;
+}
+
+/* -----------------------------------------------------------
+# TABLAS
+----------------------------------------------------------- */
+
+
+.tablaSedes {
+    width: 100%;
+}
+
+.tablaSedes td, .tablaSedes th {
+    padding: 8px;
+}
+
+.tablaSedes tr:nth-child(odd){background-color: white;}
+.tablaSedes tr:nth-child(even){background-color: #f2f2f2;}
+
+.tablaSedes tr:hover {
+    background-color:lightblue;
+    cursor: pointer;
+}
+
+.tablaSedes th {
+    position: sticky;
+    top: 0;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: aquamarine;
+    color: black;
+}
+
+
+
+.tablaBotones {
+    width: 100%;
+}
+
+.tablaBotones td, .tablaBotones th {
+    padding: 8px;
+}
+
+.tablaBotones th {
+    position: sticky;
+    top: 0;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: aquamarine;
+    color: black;
+}
+
+.tablaBotones tr {
+    background-color: white;
+    text-align: left;
+}
+
+.tablaBotones tr:hover {cursor:pointer}
+
+/* -----------------------------------------------------------
+# BOTONES
+----------------------------------------------------------- */
+
+
+/* CSS */
+.button-68 {
+  appearance: none;
+  backface-visibility: hidden;
+  background-color: #27ae60;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: rgba(39, 174, 96, .15) 0 4px 9px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height: 1.5;
+  outline: none;
+  overflow: hidden;
+  padding: 13px 20px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transform: translate3d(0, 0, 0);
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.button-68:hover {
+  background-color: #1e8449;
+  opacity: 1;
+  transform: translateY(0);
+  transition-duration: .35s;
+}
+
+.button-68:active {
+  transform: translateY(2px);
+  transition-duration: .35s;
+}
+
+.button-68:hover {
+  box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
+}
+
+/* -----------------------------------------------------------
+# IMAGENES E ICONOS
+----------------------------------------------------------- */
+
+.icono {
+    width: 15px;
+    height: 15px;
+    margin-right: 7px;
+}
