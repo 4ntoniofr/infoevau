@@ -66,7 +66,7 @@ app.post("/nuevoAlumno", (req,res) => {
 			if(err) console.log("ERROR.", a);
 		})
 		materias.forEach(m => {
-			db.query("INSERT INTO MATERIA VALUES (?);", [m], (err,res,f) => {})
+			//db.query("INSERT INTO MATERIA VALUES (?);", [m], (err,res,f) => {})
 			db.query("INSERT INTO MATRICULA VALUES (?,?);", [m,a[4]], (err,res,f) => {})
 		})
 	});

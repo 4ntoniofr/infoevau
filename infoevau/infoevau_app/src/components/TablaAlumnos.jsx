@@ -1,64 +1,42 @@
-import React from 'react'
+import React from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function TablaAlumnos() {
-    return (
-        <>
-            <table className='tablaAlumnos'>
-			<thead>
-				<tr>
-					<th scope="col">Instituto</th>
-					<th scope="col">Nombre</th>
-					<th scope="col">Apellido1</th>
-					<th scope="col">Apellido2</th>
-					<th scope="col">DNI/NIF</th>
-					<th scope="col">Materias</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Santa Bárbara</td>
-					<td>Nacho</td>
-					<td>Rizos</td>
-					<td>Aviles</td>
-					<td>1111111X</td>
-					<td>Matemáticas, Historia, Física</td>
-				</tr>
-				<tr>
-					<td>Fuenteolletas</td>
-					<td>Jorge</td>
-					<td>Camacho</td>
-					<td>Minimoy</td>
-					<td>12345678C</td>
-					<td>Lengua, Inglés</td>
-				</tr>
-				<tr>
-					<td>Estepa</td>
-					<td>Antonio</td>
-					<td>Cateto</td>
-					<td>Aceituna</td>
-					<td>No tiene</td>
-					<td>Sistemas inteligentes</td>
-				</tr>
-				<tr>
-					<td>Benalmadena</td>
-					<td>Pepe</td>
-					<td>Terrorista</td>
-					<td>Artacho</td>
-					<td>Ilegal</td>
-					<td>Todas las de amparo</td>
-				</tr>
-				<tr>
-					<td>Benalmadena</td>
-					<td>Valentin</td>
-					<td>Va</td>
-					<td>Lentin</td>
-					<td>09876544D</td>
-					<td>Filosofía XD</td>
-				</tr>
-			</tbody>
-		  </table>
-        </>
-    )
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3001/alumnos").then((alumnos) => {
+      setData(alumnos.data);
+    });
+  });
+
+  return (
+    <div className="containerTabla">
+      <table className="tablaAlumnos">
+        <thead>
+          <tr>
+            <th>Instituto</th>
+            <th>Nombre</th>
+            <th>Apellido1</th>
+            <th>Apellido2</th>
+            <th>DNI/NIF</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((alumno, key) => (
+            <tr key={key}>
+              <td>{alumno.Instituto}</td>
+              <td>{alumno.Nombre}</td>
+              <td>{alumno.Apellido1}</td>
+              <td>{alumno.Apellido2}</td>
+              <td>{alumno.NIF}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 export default TablaAlumnos;

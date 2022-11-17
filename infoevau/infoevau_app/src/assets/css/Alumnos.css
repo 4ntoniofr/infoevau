@@ -5,12 +5,14 @@
 /* -----------------------------------------------------------
 # TABLAS
 ----------------------------------------------------------- */
-
-.tablaAlumnos {
+.containerTabla {
+    height: 440px;
+    overflow-y: scroll;
     width: 70%;
     position: absolute;
     right: 3%;
 }
+
 
 .tablaAlumnos td, .tablaAlumnos th {
     padding: 8px;
@@ -21,6 +23,8 @@
 .tablaAlumnos tr:hover {background-color:#ddd;}
 
 .tablaAlumnos th {
+    position: sticky;
+    top: 0;
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
