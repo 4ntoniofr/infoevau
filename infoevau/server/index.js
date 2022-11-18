@@ -108,3 +108,14 @@ app.post("/sedes", (req, res) => {
 	res.send();
 })
 
+app.post("/sedes", (req, res) => {
+	let nuevoNombre = req.body.nuevoNombre;
+	let sede = req.body.sede;
+
+	db.query("UPDATE SEDE SET Nombre = '"+nuevoNombre+"' WHERE Nombre = '"+sede+"';", (err, res, f) => {
+		if(err) console.log(err)
+		else console.log('Update hecho')
+	})
+	res.send();
+
+})

@@ -5,7 +5,7 @@ import "../assets/css/Sedes.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-export default function Sedes() {
+export default function Sedes(sedeUrl) {
   const [sedeSeleccionada, setSedeSeleccionada] = useState(null);
   const [data, setData] = useState([]);
 
