@@ -1,17 +1,6 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import axios from "axios";
 
-export default function TablaSedes({ sedeSeleccionada, setSedeSeleccionada, modificar }) {
-  const [data, setData] = useState([]);
-
-
-  useEffect(() => {
-    axios.get("http://localhost:3001/sedes").then((sedes) => {
-      setData(sedes.data);
-    });
-  }, []);
-
+export default function TablaSedes({data, sedeSeleccionada, setSedeSeleccionada }) {
   return (
     <>
       <div className="containerTablaSedes">
@@ -23,7 +12,7 @@ export default function TablaSedes({ sedeSeleccionada, setSedeSeleccionada, modi
           </thead>
           <tbody>
             {data.map((sede, key) => {
-              if (sede.Nombre === sedeSeleccionada  && !modificar) {
+              if (sede.Nombre === sedeSeleccionada) {
                 console.log("Seleccionada " + sede.Nombre);
                 return (
                   <tr key={key} style={{ backgroundColor: "#80ff80" }}>
@@ -36,15 +25,7 @@ export default function TablaSedes({ sedeSeleccionada, setSedeSeleccionada, modi
                     </td>
                   </tr>
                 );
-              }else if(sede.Nombre === sedeSeleccionada  && modificar){
-								return (
-									<tr key={key} style={{ backgroundColor: "#80ff80" }}>
-                    <td>
-                      <input type="text" value={sede.Nombre}></input>
-                    </td>
-                  </tr>
-								)
-							}
+              }
 
               return (
                 <tr key={key}>
