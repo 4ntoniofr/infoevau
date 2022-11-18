@@ -41,7 +41,6 @@ function BotonesSedes({ data, setData, sedeSeleccionada }) {
           onClick={() => {
             window.open("/sedes/" + sedeSeleccionada + "/institutos");
           }}>
-        >
           Asignar institutos
         </button>
         <button className="button">Aulas</button>
