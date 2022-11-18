@@ -3,6 +3,7 @@ import sedesServices from "../services/sedesServices";
 import papelera from "../assets/images/papelera.png";
 import pizarra from "../assets/images/pizarra.png";
 
+
 function BotonesSedes({ data, setData, sedeSeleccionada }) {
   return (
     <>
@@ -13,7 +14,8 @@ function BotonesSedes({ data, setData, sedeSeleccionada }) {
           accept=".txt"
           onChange={(e) => {
             e.target.files[0].text().then((t) => {
-              setData(sedesServices.insertarSedes(t.split("\n")));
+              console.log(t.split("[\r\n]"));
+              setData(sedesServices.insertarSedes(t.split("\r\n")));
             });
           }}
         />
