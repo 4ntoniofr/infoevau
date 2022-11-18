@@ -4,9 +4,7 @@ import Alumnos from "./components/Alumnos";
 import Sedes from "./components/Sedes";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import InstitutosSedes from "./components/InstitutosSede";
-
-let sedeSel =""
+import InstitutosSede from "./components/InstitutosSede";
 
 const router = createBrowserRouter([
   {
@@ -21,17 +19,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/sedes",
-    element: <Sedes sedeSeleccionada={sedeSel}/>,
+    element: <Sedes />,
     errorElement: <div>Error page</div>,
   },
   {
-    path: "/sedes/" + sedeSel + "/institutos",
-    element: <InstitutosSedes />,
+    path: "/sedes/:idSede/institutos",
+    element: <InstitutosSede />,
     errorElement: <div>Error page</div>,
   },
 ]);
 
 function App() {
+
+
   return (
     <div className="App">
       <Navbar />
