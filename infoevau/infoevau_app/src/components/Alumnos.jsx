@@ -9,7 +9,7 @@ export default function Alumnos() {
 
 	const formatoCorrecto = (nif) => {
 		// eslint-disable-next-line no-useless-escape
-		const regExp = new RegExp("\d{8}[A-Z] | [A-Z]\d{7}[A-Z]");
+		const regExp = new RegExp("/\d{8}[A-Z] | [A-Z]\d{7}[A-Z]/");
 		return regExp.test(nif);
 	}
 

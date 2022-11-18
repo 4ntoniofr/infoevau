@@ -5,6 +5,7 @@
 .containerHeader {
     position: relative;
     left: 15%;
+    width: fit-content;
 }
 
 .containerTablaSedes {
@@ -33,10 +34,14 @@
 }
 
 .containerBotonesSedes {
-    height: 215px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: center;
+    height: 400px;
     width: 25%;
     position: fixed;
-    top: 40%;
+    top: 30%;
     right: 10%;
     border-radius: 20%;
 }
