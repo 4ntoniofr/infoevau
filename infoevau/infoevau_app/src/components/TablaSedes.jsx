@@ -1,8 +1,6 @@
 import React from "react";
 
 export default function TablaSedes({data, sedeSeleccionada, setSedeSeleccionada }) {
-  
-
   return (
     <>
       <div className="containerTablaSedes">

@@ -97,25 +97,25 @@ app.post("/nuevasMatriculaciones", (req,res) => {
 	res.send();
 });
 
-app.post("/sedes", (req, res) => {
+app.post("/borrarSede", (req, res) => {
 	let sede = req.body.sedeBorrar;
 	console.log(req.body)
 
-	db.query("DELETE FROM SEDE WHERE Nombre = '"+sede+"';", (err, res, f) => {
+	db.query("DELETE FROM SEDE WHERE Nombre = ?;", [sede], (err, res, f) => {
 		if(err) console.log(err)
 		else console.log('Eliminación satisfactoria de ', sede)
 	}) 
 	res.send();
 })
 
-app.post("/sedes", (req, res) => {
-	let nuevoNombre = req.body.nuevoNombre;
-	let sede = req.body.sede;
+app.post("/modificarSede", (req, res) => {
+	let prevSede = req.body.prevSede;
+	let postSede = req.body.postSede;
+	console.log(prevSede)
 
-	db.query("UPDATE SEDE SET Nombre = '"+nuevoNombre+"' WHERE Nombre = '"+sede+"';", (err, res, f) => {
+	db.query("UPDATE SEDE SET Nombre = ? WHERE Nombre = ?;", [postSede,prevSede], (err, res, f) => {
 		if(err) console.log(err)
-		else console.log('Update hecho')
-	})
+		else console.log('Modificacion satisfactoria de ', prevSede)
+	}) 
 	res.send();
-
 })
