@@ -24,7 +24,7 @@ const borrarSede = (sede, sedesMemoria) => {
 const modificarSede = (sede, sedesMemoria) => {
   if (sede) {
     let sedeModif = prompt("Introduzca un nuevo nombre de sede", sede);
-    if (sedeModif != null && sedeModif != "") {
+    if (sedeModif != null && sedeModif != "" && sedeModif.charAt(0) != " ") {
       axios.post("http://localhost:3001/modificarSede", {
         prevSede: sede,
         postSede: sedeModif,
