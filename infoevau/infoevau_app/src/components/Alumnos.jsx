@@ -7,8 +7,10 @@ import { useState } from "react";
 export default function Alumnos() {
 	let logErrores = 'LOG DE ERRORES\n';
 
-	const formatoIncorrecto = (nif) => {
-		return false;
+	const formatoCorrecto = (nif) => {
+		// eslint-disable-next-line no-useless-escape
+		const regExp = new RegExp("\d{8}[A-Z] | [A-Z]\d{7}[A-Z]");
+		return regExp.test(nif);
 	}
 
 	const insertarAlumnos = async (alumnos) => {
@@ -32,7 +34,7 @@ export default function Alumnos() {
 			//comprobamos si el alumno ya esta incluido en la BD o si el formato del NIF es incorrecto
 			if(alumnosIncluidos.find(ai => ai.NIF === a[4]) !== undefined){
 				logErrores.concat('Ya se encontró un alumno con el mismo indentificador:', a[4], 'en el alumno', a, '\n');
-			}else if(formatoIncorrecto(a[4])){
+			}else if(!formatoCorrecto(a[4])){
 				logErrores.concat('El NIF:', a[4], 'tiene un formato incorrecto.', a, '\n');
 			}else{
 				//almacenamos en institutosInclude los institutos que no estan en la BD
