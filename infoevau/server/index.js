@@ -57,20 +57,23 @@ const dbQuery = (query, req, res) => {
   });
 };
 
-app.post("/nuevoAlumno", (req,res) => {
+app.post("/nuevosAlumnos", (req,res) => {
 	let alumnos = req.body.alumnos;
-	alumnos.forEach(a => {
-		let materias = a[5].split(", ");
-		db.query("INSERT INTO INSTITUTO(Nombre) VALUES (?);", [a[0]], (err,res,f) => {})
-		db.query("INSERT INTO ALUMNO VALUES (?,?,?,?,?);", a, (err,res,fields) => {
-			if(err) console.log("ERROR.", a);
-		})
-		materias.forEach(m => {
-			//db.query("INSERT INTO MATERIA VALUES (?);", [m], (err,res,f) => {})
-			db.query("INSERT INTO MATRICULA VALUES (?,?);", [m,a[4]], (err,res,f) => {})
-		})
-	});
+
+	db.query('INSERT INTO ALUMNO VALUES ?;', [alumnos], (err,res,f) => {
+		if(err) console.log(err)	//'ERROR en la insercion de alumnos'
+		else console.log('Insercion satisfactoria de',alumnos.length,'alumnos')
+	})
 	res.send();
+});
+
+app.post("/nuevosInstitutos", (req, res) => {
+	let institutos = req.body.institutos;
+
+	db.query("INSERT INTO INSTITUTO(Nombre) VALUES ?;", [institutos], (err,res,f) => {
+		if(err) console.log(err)
+		else console.log('Insercion exitosa de institutos')
+	})
 });
 
 app.post("/nuevasSedes", (req, res) => {
@@ -82,4 +85,14 @@ app.post("/nuevasSedes", (req, res) => {
 			})
 		}
 	})
+});
+
+app.post("/nuevasMatriculaciones", (req,res) => {
+	let matriculaciones = req.body.matriculaciones;
+
+	db.query('INSERT INTO MATRICULA VALUES ?;', [matriculaciones], (err,res,f) => {
+		if(err) console.log(err)	//'ERROR en la insercion de matriculas'
+		else console.log('Insercion satisfactoria de',matriculaciones.length,'matriculas')
+	})
+	res.send();
 });
