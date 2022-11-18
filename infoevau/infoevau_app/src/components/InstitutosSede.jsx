@@ -3,16 +3,18 @@ import React from "react";
 import "../assets/css/Sedes.css";
 import TablaInstitutos from "./TablaInstitutos.jsx"
 import BotonesInstitutos from "./BotonesInstitutos"
-import { useState } from "react";
+import { useParams } from "react-router-dom";
 
-export default function InstitutosSedes() {
+export default function InstitutosSede() {
+    let params = useParams();
+    let idSede = params.idSede;
 
-	return <>
-		<div className="containerHeader">
-			<h1>Institutos de la sede "PONER SEDE QUE SEA"</h1>
-		</div>
-		<TablaInstitutos />
-		<BotonesInstitutos />
+    return (<>
+        <div className="containerHeader">
+            <h1>Institutos de la sede {idSede}</h1>
+        </div>
         <TablaInstitutos />
-	</>;
+        <BotonesInstitutos />
+        <TablaInstitutos />
+    </>)
 }
