@@ -2,7 +2,7 @@ import React from "react";
 import sedesServices from "../services/sedesServices";
 import papelera from "../assets/images/papelera.png";
 import pizarra from "../assets/images/pizarra.png";
-
+import swal from 'sweetalert';
 
 function BotonesSedes({ data, setData, sedeSeleccionada }) {
   return (
@@ -14,8 +14,14 @@ function BotonesSedes({ data, setData, sedeSeleccionada }) {
           accept=".txt"
           onChange={(e) => {
             e.target.files[0].text().then((t) => {
-              console.log(t.split("[\r\n]"));
-              setData(sedesServices.insertarSedes(t.split("\r\n")));
+              let sedes = t.split("\r\n");
+              setData(sedesServices.insertarSedes(sedes));
+              let numSedes = sedes.length - 1;
+              swal({
+                icon: "success",
+                title: "Fichero " + e.target.files[0].name + " procesado",
+                text: numSedes + " sedes insertadas correctamente"
+              });
             });
           }}
         />

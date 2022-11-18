@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from 'sweetalert';
 
 const insertarSedes = (sedes) => {
   axios.post("http://localhost:3001/nuevasSedes", {
@@ -14,9 +15,17 @@ const borrarSede = (sede, sedesMemoria) => {
     axios.post("http://localhost:3001/borrarSede", {
       sedeBorrar: sede,
     });
+    swal({
+      icon: "success",
+      title: "Sede eliminada",
+      text: "La sede " + sede + " se eliminó correctamente"
+    });
     return sedesMemoria.filter((sedeMemoria) => sedeMemoria.Nombre !== sede);
   } else {
-    window.alert("Debes seleccionar una sede a eliminar.");
+    swal({
+      icon: "error",
+      text: "Ninguna sede ha sido seleccionada"
+    });
   }
   return sedesMemoria;
 }
@@ -24,7 +33,7 @@ const borrarSede = (sede, sedesMemoria) => {
 const modificarSede = (sede, sedesMemoria) => {
   if (sede) {
     let sedeModif = prompt("Introduzca un nuevo nombre de sede", sede);
-    if (sedeModif != null && sedeModif != "" && sedeModif.charAt(0) != " ") {
+    if (sedeModif != null && sedeModif !== "" && sedeModif.charAt(0) !== " ") {
       axios.post("http://localhost:3001/modificarSede", {
         prevSede: sede,
         postSede: sedeModif,
@@ -38,32 +47,44 @@ const modificarSede = (sede, sedesMemoria) => {
       });  
     }
   } else {
-    window.alert("Debes seleccionar una sede.");
+    swal({
+      icon: "error",
+      text: "Ninguna sede ha sido seleccionada"
+    });
   }
   return sedesMemoria;
 };
 
 const abrirResponsablesSede = (sede) => {
   if(sede != null){
-    window.open("/sedes/" + sede.replace("/","-") + "/responsables");
+    window.location.href = "/sedes/" + sede.replace("/","-") + "/responsables";
   } else{
-    window.alert("Debes seleccionar una sede.")
+    swal({
+      icon: "error",
+      text: "Ninguna sede ha sido seleccionada"
+    });
   }
 }
 
 const abrirInstitutosSede = (sede) => {
   if (sede != null) {
-    window.open("/sedes/" + sede.replace("/","-") + "/institutos");
+    window.location.href = "/sedes/" + sede.replace("/","-") + "/institutos";
   } else {
-    window.alert("Debes seleccionar una sede.");
+    swal({
+      icon: "error",
+      text: "Ninguna sede ha sido seleccionada"
+    });
   }
 }
 
 const abrirAulasSede = (sede) => {
   if (sede != null) {
-    window.open("/sedes/" + sede.replace("/","-") + "/aulas");
+    window.location.href = "/sedes/" + sede.replace("/","-") + "/aulas";
   } else {
-    window.alert("Debes seleccionar una sede.");
+    swal({
+      icon: "error",
+      text: "Ninguna sede ha sido seleccionada"
+    });
   } 
 }
 
