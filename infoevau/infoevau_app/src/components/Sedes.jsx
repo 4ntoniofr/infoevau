@@ -4,7 +4,7 @@ import BotonesSedes from "./BotonesSedes"
 import "../assets/css/Sedes.css";
 import { useState } from "react";
 
-export default function Sedes() {
+export default function Sedes(sedeURL) {
 
 	const [sedeSeleccionada, setSedeSeleccionada] = useState(null);
 
