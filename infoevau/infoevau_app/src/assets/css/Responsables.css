@@ -9,8 +9,8 @@
 }
 
 .containerTablaResponsablesDisponibles {
-    height: 430px;
-    width: 50%;
+    height: 560px;
+    width: 30%;
     position: fixed;
     left: 3%;
     top: 25%;
@@ -31,6 +31,19 @@
     background-color: #797979;
     border-radius: 20px;
     border: 2px solid #f1f2f3;
+}
+
+.containerBotonesResponsables {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-between;
+    height: 120px;
+    width: 25%;
+    position: fixed;
+    top: 30%;
+    right: 40%;
+    border-radius: 20%;
 }
 
 /* -----------------------------------------------------------
@@ -119,14 +132,4 @@
 
 .button:hover {
   box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
-}
-
-/* -----------------------------------------------------------
-# IMAGENES E ICONOS
------------------------------------------------------------ */
-
-.icono {
-    width: 15px;
-    height: 15px;
-    margin-right: 7px;
 }
