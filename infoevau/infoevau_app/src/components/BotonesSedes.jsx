@@ -10,10 +10,22 @@ const insertarSedes = (sedes) => {
 };
 
 const borrarSede = (sede) => {
-  Axios.post("http://localhost:3001/sedes", {
-    sedeBorrar: sede
-  });
-  console.log("Borrando " + sede);
+  if(sede){
+		Axios.post("http://localhost:3001/borrarSede", {
+    	sedeBorrar: sede
+  	});
+  	console.log("Borrando " + sede);
+	}
+};
+
+const modificarSede = (sede) => {
+	if(sede){
+		let sedeModif = prompt('Introduzca un nuevo nombre de sede', sede);
+		Axios.post("http://localhost:3001/modificarSede", {
+			prevSede: sede,
+			postSede: sedeModif
+		});
+	}
 };
 
 function BotonesSedes({ sedeSeleccionada }) {
@@ -40,7 +52,12 @@ function BotonesSedes({ sedeSeleccionada }) {
           <img src={papelera} className="icono" alt="Basura" />
           Eliminar sede
         </button>
-        <button className="button">Modificar sede</button>
+        <button 
+					className="button"
+					onClick={() => {modificarSede(sedeSeleccionada)}}
+				>
+					Modificar sede
+				</button>
         <button className="button">Importar responsables</button>
         <button className="button">Responsables</button>
         <button className="button">Asignar institutos</button>
