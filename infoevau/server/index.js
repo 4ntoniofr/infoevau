@@ -96,3 +96,15 @@ app.post("/nuevasMatriculaciones", (req,res) => {
 	})
 	res.send();
 });
+
+app.post("/sedes", (req, res) => {
+	let sede = req.body.sedeBorrar;
+	console.log(req.body)
+
+	db.query("DELETE FROM SEDE WHERE Nombre = '"+sede+"';", (err, res, f) => {
+		if(err) console.log(err)
+		else console.log('Eliminación satisfactoria de ', sede)
+	}) 
+	res.send();
+})
+
