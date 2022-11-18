@@ -19,7 +19,7 @@ const borrarSede = (sede, sedesMemoria) => {
     window.alert("Debes seleccionar una sede a eliminar.");
   }
   return sedesMemoria;
-};
+}
 
 const modificarSede = (sede, sedesMemoria) => {
   if (sede) {
@@ -45,7 +45,7 @@ const modificarSede = (sede, sedesMemoria) => {
 
 const abrirResponsablesSede = (sede) => {
   if(sede != null){
-    window.open("/sedes/" + sede + "/responsables");
+    window.open("/sedes/" + sede.replace("/","-") + "/responsables");
   } else{
     window.alert("Debes seleccionar una sede.")
   }
@@ -53,13 +53,21 @@ const abrirResponsablesSede = (sede) => {
 
 const abrirInstitutosSede = (sede) => {
   if (sede != null) {
-    window.open("/sedes/" + sede + "/responsables");
+    window.open("/sedes/" + sede.replace("/","-") + "/institutos");
   } else {
     window.alert("Debes seleccionar una sede.");
   }
 }
 
+const abrirAulasSede = (sede) => {
+  if (sede != null) {
+    window.open("/sedes/" + sede.replace("/","-") + "/aulas");
+  } else {
+    window.alert("Debes seleccionar una sede.");
+  } 
+}
+
 const sedesServices = { insertarSedes, borrarSede, modificarSede, abrirResponsablesSede, 
-    abrirInstitutosSede };
+    abrirInstitutosSede, abrirAulasSede };
 
 export default sedesServices;

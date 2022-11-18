@@ -8,7 +8,7 @@ import BotonesResponsables from "./BotonesResponsables";
 
 export default function ResponsablesSede() {
     let params = useParams();
-    let idSede = params.idSede;
+    let idSede = params.idSede.replace("-","/");
 
     const [responsableSeleccionado, setResponsableSeleccionado] = useState(null);
     const [data, setData] = useState([]);

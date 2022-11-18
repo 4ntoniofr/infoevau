@@ -51,7 +51,14 @@ function BotonesSedes({ data, setData, sedeSeleccionada }) {
           }}
           >Asignar institutos
         </button>
-        <button className="button"><img src={pizarra} className="icono" alt="" />Aulas</button>
+        <button 
+          className="button"
+          onClick={ () => {
+            sedesServices.abrirAulasSede(sedeSeleccionada);
+          }}>
+          <img src={pizarra} className="icono" alt="" />
+          Aulas
+        </button>
       </div>
     </>
   );

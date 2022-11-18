@@ -5,34 +5,41 @@ import Sedes from "./components/Sedes";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import InstitutosSede from "./components/InstitutosSede";
-import ResponsablesSede from './components/ResponsablesSede'
+import ResponsablesSede from './components/ResponsablesSede';
+import AulasSede from "./components/AulasSede";
+import PaginaError from "./components/PaginaError"
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
-    errorElement: <div>Error Page</div>,
+    errorElement: <PaginaError />,
   },
   {
     path: "/alumnos",
     element: <Alumnos />,
-    errorElement: <div>Error Page</div>,
+    errorElement: <PaginaError />,
   },
   {
     path: "/sedes",
     element: <Sedes />,
-    errorElement: <div>Error page</div>,
+    errorElement: <PaginaError />,
   },
   {
     path: "/sedes/:idSede/institutos",
     element: <InstitutosSede />,
-    errorElement: <div>Error page</div>,
+    errorElement: <PaginaError />,
   },
   {
     path: "/sedes/:idSede/responsables",
     element: <ResponsablesSede />,
-    errorElement: <div>Error page</div>,
+    errorElement: <PaginaError />,
   },
+  {
+    path: "sedes/:idSede/aulas",
+    element: <AulasSede />,
+    errorElement: <PaginaError />,
+  }
 ]);
 
 function App() {
