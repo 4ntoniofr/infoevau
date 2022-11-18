@@ -10,6 +10,9 @@ const insertarSedes = (sedes) => {
 };
 
 const borrarSede = (sede) => {
+  Axios.post("http://localhost:3001/sedes", {
+    sedeBorrar: sede
+  });
   console.log("Borrando " + sede);
 };
 
