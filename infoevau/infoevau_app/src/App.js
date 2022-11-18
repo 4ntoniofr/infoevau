@@ -5,6 +5,7 @@ import Sedes from "./components/Sedes";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import InstitutosSede from "./components/InstitutosSede";
+import ResponsablesSede from './components/ResponsablesSede'
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
   {
     path: "/sedes/:idSede/institutos",
     element: <InstitutosSede />,
+    errorElement: <div>Error page</div>,
+  },
+  {
+    path: "/sedes/:idSede/responsables",
+    element: <ResponsablesSede />,
     errorElement: <div>Error page</div>,
   },
 ]);

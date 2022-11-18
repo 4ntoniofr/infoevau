@@ -37,6 +37,14 @@ const modificarSede = (sede, sedesMemoria) => {
   return sedesMemoria;
 };
 
-const sedesServices = { insertarSedes, borrarSede, modificarSede };
+const abrirResponsablesSede = (sede) => {
+  if(sede){
+    window.open("/sedes/" + sede + "/responsables");
+  }else{
+    window.alert("Debes seleciconar una sede")
+  }
+}
+
+const sedesServices = { insertarSedes, borrarSede, modificarSede, abrirResponsablesSede };
 
 export default sedesServices;

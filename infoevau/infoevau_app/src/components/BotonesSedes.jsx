@@ -35,7 +35,12 @@ function BotonesSedes({ data, setData, sedeSeleccionada }) {
 					Modificar sede
 				</button>
         <button className="button">Importar responsables</button>
-        <button className="button">Responsables</button>
+        <button 
+        className="button"
+        onClick={() => {
+          sedesServices.abrirResponsablesSede(sedeSeleccionada);
+        }}
+        >Responsables</button>
         <button
           className="button"
           onClick={() => {
