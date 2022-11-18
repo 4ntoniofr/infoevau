@@ -2,8 +2,8 @@ import React from "react";
 
 export default function TablaInstitutos() {
 	return <>
-		<a>
+		<p>
             Aqui iria la tabla con los Institutos
-        </a>
+        </p>
 	</>;
 }
