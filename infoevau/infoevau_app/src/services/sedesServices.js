@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const insertarSedes = (sedes, setSedesMemoria) => {
+const insertarSedes = (sedes) => {
   axios.post("http://localhost:3001/nuevasSedes", {
     sedes: sedes.slice(1, sedes.length),
   });
-  setSedesMemoria(sedes.slice(1, sedes.length));
+  return sedes.slice(1, sedes.length).map(sede => sede.Nombre);
 };
 
 const borrarSede = (sede, sedesMemoria) => {

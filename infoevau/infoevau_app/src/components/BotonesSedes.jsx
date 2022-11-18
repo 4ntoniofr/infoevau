@@ -12,7 +12,7 @@ function BotonesSedes({ data, setData, sedeSeleccionada }) {
           accept=".txt"
           onChange={(e) => {
             e.target.files[0].text().then((t) => {
-              sedesServices.insertarSedes(t.split("\n"), setData);
+              setData(sedesServices.insertarSedes(t.split("\n"), setData));
             });
           }}
         />
@@ -29,12 +29,14 @@ function BotonesSedes({ data, setData, sedeSeleccionada }) {
         <button className="button">Modificar sede</button>
         <button className="button">Importar responsables</button>
         <button className="button">Responsables</button>
-        <button className="button"
+        <button
+          className="button"
           onClick={() => {
             var cadena = sedeSeleccionada.replace(/ /g, "");
             var url = "/sedes/" + cadena + "/institutos";
             window.open(url);
-          }}>
+          }}
+        >
           Asignar institutos
         </button>
         <button className="button">Aulas</button>
