@@ -88,10 +88,11 @@ app.post("/nuevasSedes", (req, res) => {
 });
 
 app.post("/nuevosResponsables", (req, res) => {
+	console.log(req.body.responsables)
 	let responsables = req.body.responsables;
 	responsables.forEach(r => {
 		if(r != ''){
-			db.query("INSERT INTO RESPONSABLES(Nombre) VALUES (?);", [r], (err,res,f) => {
+			db.query("INSERT INTO RESPONSABLE(Nombre) VALUES (?);", [r], (err,res,f) => {
 				if(err) console.log(err);
 			})
 		}
