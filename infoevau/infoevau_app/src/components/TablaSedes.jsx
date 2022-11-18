@@ -2,17 +2,13 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function seleccionarSede(sede) {
-  console.log("Nombre: " + sede);
-}
-
-function TablaSedes({ setSedeSeleccionada }) {
+export default function TablaSedes({ sedeSeleccionada, setSedeSeleccionada }) {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios.get("http://localhost:3001/sedes").then((sedes) => {
       setData(sedes.data);
     });
-  });
+  }, []);
 
   return (
     <>
@@ -24,22 +20,37 @@ function TablaSedes({ setSedeSeleccionada }) {
             </tr>
           </thead>
           <tbody>
-            {data.map((sede, key) => (
-              <tr key={key}>
-                <td
-                  onClick={() => {
-                    setSedeSeleccionada(sede.Nombre);
-                  }}
-                >
-                  {sede.Nombre}
-                </td>
-              </tr>
-            ))}
+            {data.map((sede, key) => {
+              if (sede.Nombre === sedeSeleccionada) {
+                console.log("Seleccionada " + sede.Nombre);
+                return (
+                  <tr key={key} style={{ backgroundColor: "#80ff80" }}>
+                    <td
+                      onClick={() => {
+                        setSedeSeleccionada(null);
+                      }}
+                    >
+                      {sede.Nombre}
+                    </td>
+                  </tr>
+                );
+              }
+
+              return (
+                <tr key={key}>
+                  <td
+                    onClick={() => {
+                      setSedeSeleccionada(sede.Nombre);
+                    }}
+                  >
+                    {sede.Nombre}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
     </>
   );
 }
-
-export default TablaSedes;
