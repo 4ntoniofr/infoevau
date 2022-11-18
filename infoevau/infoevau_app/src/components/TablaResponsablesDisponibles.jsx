@@ -31,7 +31,7 @@ export default function TablaResponsablesDisponibles({data, responsableSeleccion
                 <tr key={key}>
                   <td
                     onClick={() => {
-                      setResponsableSeleccionado(responsableSeleccionado.Nombre);
+                      setResponsableSeleccionado(responsable.Nombre);
                     }}
                   >
                     {responsable.Nombre}
