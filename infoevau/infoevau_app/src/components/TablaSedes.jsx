@@ -1,14 +1,7 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import axios from "axios";
 
-export default function TablaSedes({ sedeSeleccionada, setSedeSeleccionada }) {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    axios.get("http://localhost:3001/sedes").then((sedes) => {
-      setData(sedes.data);
-    });
-  }, []);
+export default function TablaSedes({data, sedeSeleccionada, setSedeSeleccionada }) {
+  
 
   return (
     <>
