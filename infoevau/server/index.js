@@ -87,6 +87,17 @@ app.post("/nuevasSedes", (req, res) => {
 	})
 });
 
+app.post("/nuevosResponsables", (req, res) => {
+	let responsables = req.body.responsables;
+	responsables.forEach(r => {
+		if(r != ''){
+			db.query("INSERT INTO RESPONSABLES(Nombre) VALUES (?);", [r], (err,res,f) => {
+				if(err) console.log(err);
+			})
+		}
+	})
+});
+
 app.post("/nuevasMatriculaciones", (req,res) => {
 	let matriculaciones = req.body.matriculaciones;
 
