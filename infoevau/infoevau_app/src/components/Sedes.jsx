@@ -12,6 +12,7 @@ export default function Sedes() {
   useEffect(() => {
     axios.get("http://localhost:3001/sedes").then((sedes) => {
       setData(sedes.data);
+      console.log(sedes.data);
     });
   }, []);
 

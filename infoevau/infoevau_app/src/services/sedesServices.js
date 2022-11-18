@@ -38,13 +38,22 @@ const modificarSede = (sede, sedesMemoria) => {
 };
 
 const abrirResponsablesSede = (sede) => {
-  if(sede){
+  if(sede != null){
     window.open("/sedes/" + sede + "/responsables");
-  }else{
-    window.alert("Debes seleciconar una sede")
+  } else{
+    window.alert("Debes seleccionar una sede.")
   }
 }
 
-const sedesServices = { insertarSedes, borrarSede, modificarSede, abrirResponsablesSede };
+const abrirInstitutosSede = (sede) => {
+  if (sede != null) {
+    window.open("/sedes/" + sede + "/responsables");
+  } else {
+    window.alert("Debes seleccionar una sede.");
+  }
+}
+
+const sedesServices = { insertarSedes, borrarSede, modificarSede, abrirResponsablesSede, 
+    abrirInstitutosSede };
 
 export default sedesServices;

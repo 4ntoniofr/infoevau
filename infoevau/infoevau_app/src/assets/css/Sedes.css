@@ -43,7 +43,6 @@
     position: fixed;
     top: 30%;
     right: 10%;
-    border-radius: 20%;
 }
 
 /* -----------------------------------------------------------
@@ -143,6 +142,7 @@
   touch-action: manipulation;
   vertical-align: top;
   white-space: nowrap;
+  width: 100%;
 }
 
 .button:hover {

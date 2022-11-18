@@ -1,6 +1,7 @@
 import React from "react";
 import sedesServices from "../services/sedesServices";
 import papelera from "../assets/images/papelera.png";
+import pizarra from "../assets/images/pizarra.png";
 
 function BotonesSedes({ data, setData, sedeSeleccionada }) {
   return (
@@ -23,13 +24,15 @@ function BotonesSedes({ data, setData, sedeSeleccionada }) {
             setData(sedesServices.borrarSede(sedeSeleccionada, data));
           }}
         >
-          <img src={papelera} className="icono" alt="Basura" />
+          <img src={papelera} className="icono" alt="" />
           Eliminar sede
         </button>
         <button 
 					className="button"
 					onClick={() => {
 						setData(sedesServices.modificarSede(sedeSeleccionada, data));
+            sedeSeleccionada = null;
+            console.log(sedeSeleccionada);
 					}}	
 				>
 					Modificar sede
@@ -44,11 +47,11 @@ function BotonesSedes({ data, setData, sedeSeleccionada }) {
         <button
           className="button"
           onClick={() => {
-            window.open("/sedes/" + sedeSeleccionada + "/institutos");
-          }}>
-          Asignar institutos
+            sedesServices.abrirInstitutosSede(sedeSeleccionada);
+          }}
+          >Asignar institutos
         </button>
-        <button className="button">Aulas</button>
+        <button className="button"><img src={pizarra} className="icono" alt="" />Aulas</button>
       </div>
     </>
   );
