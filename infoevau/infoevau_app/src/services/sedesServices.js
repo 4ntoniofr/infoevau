@@ -15,6 +15,8 @@ const borrarSede = (sede, sedesMemoria) => {
       sedeBorrar: sede,
     });
     return sedesMemoria.filter((sedeMemoria) => sedeMemoria.Nombre !== sede);
+  } else {
+    window.alert("Debes seleccionar una sede a eliminar.");
   }
   return sedesMemoria;
 };
@@ -35,6 +37,8 @@ const modificarSede = (sede, sedesMemoria) => {
         return sedeMemoria;
       });  
     }
+  } else {
+    window.alert("Debes seleccionar una sede.");
   }
   return sedesMemoria;
 };

@@ -33,7 +33,6 @@ function BotonesSedes({ data, setData, sedeSeleccionada }) {
 					className="button"
 					onClick={() => {
 						setData(sedesServices.modificarSede(sedeSeleccionada, data));
-            sedeSeleccionada = null;
 					}}	
 				>
 					Modificar sede
