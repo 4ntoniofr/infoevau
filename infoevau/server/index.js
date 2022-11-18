@@ -131,3 +131,10 @@ app.post("/modificarSede", (req, res) => {
 	}) 
 	res.send();
 })
+
+app.get("/deleteSedes", (req, res) => {
+	db.query("DELETE FROM SEDE", (err, res, f) => {
+		if(err) console.log(err)
+		else console.log('Tabla SEDE borrada');
+	});
+})
