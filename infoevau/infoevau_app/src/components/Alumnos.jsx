@@ -1,113 +1,18 @@
 import React from "react";
-import Axios from "axios";
 import TablaAlumnos from "./TablaAlumnos";
+import BotonesAlumnos from "./BotonesAlumnos";
 import "../assets/css/Alumnos.css";
 import { useState } from "react";
 
 export default function Alumnos() {
-	let logErrores = 'LOG DE ERRORES\n';
-
-	const formatoCorrecto = (nif) => {
-		// eslint-disable-next-line no-useless-escape
-		const regExp = new RegExp("/\d{8}[A-Z] | [A-Z]\d{7}[A-Z]/");
-		return regExp.test(nif);
-	}
-
-	const insertarAlumnos = async (alumnos) => {
-		const MAX_ENVIO = 500;
-		let institutos = []
-		let institutosInclude = []
-		let matriculaciones = []
-		let alumnosIncluidos = []
-		let alumnosInsercion = []
-		let matriculacionesIncluidas = []
-		let materiasIncluidas = []
-
-		//recogemos la informacion almacenada en BD
-		await Axios.get("http://localhost:3001/materias").then((ms) => materiasIncluidas = ms.data)
-		await Axios.get("http://localhost:3001/alumnos").then((als) => alumnosIncluidos = als.data)
-		await Axios.get("http://localhost:3001/matriculas").then((mats) => matriculacionesIncluidas = mats.data)
-		await Axios.get("http://localhost:3001/institutos").then((ins) => institutos = ins.data)
-		institutos.push({Nombre: ''})
-		
-		alumnos.forEach(a => {
-			//comprobamos si el alumno ya esta incluido en la BD o si el formato del NIF es incorrecto
-			if(alumnosIncluidos.find(ai => ai.NIF === a[4]) !== undefined){
-				logErrores.concat('Ya se encontró un alumno con el mismo indentificador:', a[4], 'en el alumno', a, '\n');
-			}else if(!formatoCorrecto(a[4])){
-				logErrores.concat('El NIF:', a[4], 'tiene un formato incorrecto.', a, '\n');
-			}else{
-				//almacenamos en institutosInclude los institutos que no estan en la BD
-				if(institutos.find(i => i.Nombre === a[0]) === undefined){
-					institutos.push({Nombre: a[0]})
-					institutosInclude.push([a[0]])
-				}
-
-				//almacenamos en matriculaciones todos los pares (<asignatura>,<alumno>) si se da que no este ya matriculado
-				let asignaturas = a.pop()	//elimina el ultimo elemento y lo devuelve
-				asignaturas.split(', ').forEach((asig) => {
-					if(matriculacionesIncluidas.find(m => (m.NIF === a[4] && m.Materia === asig)) !== undefined){
-						logErrores.concat('El alumno identificado por el NIF', a[4], 'ya se encuentra matriculado en', asig, a, '\n');
-					}else if(materiasIncluidas.find(m => m.Nombre === asig) === undefined){
-						logErrores.concat('La materia', asig,'no se encuentra dentro de la lista de materias.',a,asignaturas)
-					}else{
-						matriculaciones.push([asig, a[4]]);
-					}
-				});
-
-				//incluimos el alumno a la lista de insercion
-				alumnosInsercion.push(a)
-			}
-		});
-
-		if(institutosInclude.length > 0){
-			Axios.post("http://localhost:3001/nuevosInstitutos", {
-				institutos: institutosInclude,
-			});
-		}
-
-    for (var i = 0; i * MAX_ENVIO < alumnosInsercion.length; i++) {
-      await Axios.post("http://localhost:3001/nuevosAlumnos", {
-        alumnos: alumnosInsercion.slice(i * MAX_ENVIO, (i+1) * MAX_ENVIO),
-      });
-    }
-
-		for (var j = 0; j * MAX_ENVIO < matriculaciones.length; j++) {
-      await Axios.post("http://localhost:3001/nuevasMatriculaciones", {
-        matriculaciones: matriculaciones.slice(j * MAX_ENVIO, (j+1) * MAX_ENVIO),
-      });
-    }
-  };
-
-  const Papa = require("papaparse");
-  const [data, setData] = useState({});
+	const [data, setData] = useState({});
 
   return (
     <>
       <h1>Sección de los alumnos</h1>
       <div className="alumnos">
-        <div className="buttons">
-          <input
-            type="file"
-            accept=".csv"
-            onChange={(e) => {
-              Papa.parse(e.target.files[0], {
-                complete: (res, file) => {
-                  setData(res);
-                },
-              });
-            }}
-          />
-          <button
-            onClick={() => {
-              insertarAlumnos(data.data.slice(1, data.data.length));
-            }}
-          >
-            Guardar informacion
-          </button>
-					<button onClick={() => {console.log(logErrores)}}>Mostrar log</button>
-          <TablaAlumnos />
-        </div>
+        <BotonesAlumnos data={data} setData={setData}/>
+				<TablaAlumnos />
       </div>
     </>
   );
