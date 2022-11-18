@@ -12,7 +12,7 @@ function BotonesSedes({ data, setData, sedeSeleccionada }) {
           accept=".txt"
           onChange={(e) => {
             e.target.files[0].text().then((t) => {
-              setData(sedesServices.insertarSedes(t.split("\n"), setData));
+              setData(sedesServices.insertarSedes(t.split("\n")));
             });
           }}
         />

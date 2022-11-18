@@ -4,12 +4,12 @@ const insertarSedes = (sedes) => {
   axios.post("http://localhost:3001/nuevasSedes", {
     sedes: sedes.slice(1, sedes.length),
   });
-  return sedes.slice(1, sedes.length).map(sede => sede.Nombre);
+  return sedes.slice(1, sedes.length).map((sede) => {return {Nombre: sede}});
 };
 
 const borrarSede = (sede, sedesMemoria) => {
   if(sede){
-		axios.post("http://localhost:3001/sedes", {
+		axios.post("http://localhost:3001/borrarSede", {
     	sedeBorrar: sede,
   	});
   	return sedesMemoria.filter((sedeMemoria) => sedeMemoria.Nombre !== sede);
