@@ -29,7 +29,14 @@ function BotonesSedes({ data, setData, sedeSeleccionada }) {
         <button className="button">Modificar sede</button>
         <button className="button">Importar responsables</button>
         <button className="button">Responsables</button>
-        <button className="button">Asignar institutos</button>
+        <button className="button"
+          onClick={() => {
+            var cadena = sedeSeleccionada.replace(/ /g, "");
+            var url = "/sedes/" + cadena + "/institutos";
+            window.open(url);
+          }}>
+          Asignar institutos
+        </button>
         <button className="button">Aulas</button>
       </div>
     </>
