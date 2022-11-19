@@ -76,43 +76,10 @@
     color: black;
 }
 
-
-
-.tablaBotones {
-    width: 100%;
-}
-
-.tablaBotones td, .tablaBotones th {
-    padding: 8px;
-}
-
-.tablaBotones th {
-    position: sticky;
-    top: 0;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    background-color: aquamarine;
-    color: black;
-}
-
-.tablaBotones tr {
-    background-color: white;
-    text-align: left;
-}
-
-.tablaBotones tr:hover {cursor:pointer}
-
-.selectedRow {
-    background-color: #1e8449;
-}
-
 /* -----------------------------------------------------------
 # BOTONES
 ----------------------------------------------------------- */
 
-
-/* CSS */
 .button {
   appearance: none;
   backface-visibility: hidden;
@@ -146,7 +113,7 @@
 }
 
 .button:hover {
-  background-color: #1e8449;
+  background-color: aquamarine;
   opacity: 1;
   transform: translateY(0);
   transition-duration: .35s;

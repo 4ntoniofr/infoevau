@@ -5,8 +5,9 @@ function BotonesAlumnos({data, setData}) {
 	const Papa = require("papaparse");
 
 	return (
-		<div className="buttons">
+		<div className="containerButtons">
       <input
+         className='button'
          type="file"
          accept=".csv"
          onChange={(e) => {
@@ -17,14 +18,16 @@ function BotonesAlumnos({data, setData}) {
             });
           }}
       />
-      <button
+      <br />
+      <button className='button'
       	onClick={() => {
         	insertarAlumnos(data.data.slice(1, data.data.length));
         }}
       >
       	Guardar informacion
       </button>
-			<button onClick={() => {console.log(logErrores)}}>Mostrar log</button>
+      <br />
+			<button className='button' onClick={() => {console.log(logErrores)}}>Mostrar log</button>
     </div>
 	)
 }

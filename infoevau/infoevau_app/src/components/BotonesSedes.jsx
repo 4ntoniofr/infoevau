@@ -3,6 +3,7 @@ import sedesServices from "../services/sedesServices";
 import papelera from "../assets/images/papelera.png";
 import pizarra from "../assets/images/pizarra.png";
 import swal from 'sweetalert';
+import "../assets/css/Sedes.css"
 
 function BotonesSedes({ data, setData, sedeSeleccionada }) {
   return (
