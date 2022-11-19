@@ -76,7 +76,7 @@ app.post("/asignarResponsable", (req, res) => {
 	let responsable = req.body.responsable;
 	let sede = req.body.sede; 
 
-	db.query("UPDATE SEDE SET Responsable = '"+responsable+"' where Nombre = '"+sede+"';", (err,res,f) => {
+	db.query("UPDATE SEDE SET Responsable = '"+responsable+"' where Nombre = '"+sede+"' ORDER BY Nombre;", (err,res,f) => {
 		if(err) console.log(err)
 	})
 	res.send();
