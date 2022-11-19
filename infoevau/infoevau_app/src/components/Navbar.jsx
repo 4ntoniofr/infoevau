@@ -8,7 +8,7 @@ export default function Navbar() {
     <header id="header">
       <nav className="navbar">
         <ul>
-          <a href=".">
+          <a href="http://localhost:3000">
             <img src={logo} className="imgNavbar" alt="logo" />
           </a>
           <a href="/alumnos">
