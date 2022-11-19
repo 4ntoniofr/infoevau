@@ -9,7 +9,9 @@ export default function Alumnos() {
 
   return (
     <>
-      <h1>Sección de los alumnos</h1>
+      <div className="containerHeaderAlumnos">
+        <h1>Sección de los alumnos</h1>
+      </div>
       <div className="alumnos">
         <BotonesAlumnos data={data} setData={setData}/>
 				<TablaAlumnos />

@@ -6,6 +6,12 @@
     display: flex;
 }
 
+.containerHeaderAlumnos {
+    position: relative;
+    left: 2%;
+    width: fit-content;
+}
+
 .containerButtons {
 	position: relative;
 	left: 3%;
@@ -70,7 +76,7 @@
 # BOTONES
 ----------------------------------------------------------- */
 
-.button {
+.buttonAlumnos {
     appearance: none;
     backface-visibility: hidden;
     background-color: #27ae60;
@@ -100,20 +106,20 @@
     vertical-align: top;
     white-space: nowrap;
     width: 100%;
-  }
+}
   
-  .button:hover {
-    background-color: #1e8449;
+.buttonAlumnos:hover {
+    background-color: aquamarine;
+    color: black;
     opacity: 1;
     transform: translateY(0);
     transition-duration: .35s;
-  }
+    box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
+}
   
-  .button:active {
+.buttonAlumnos:active {
     transform: translateY(2px);
     transition-duration: .35s;
-  }
+}
   
-  .button:hover {
-    box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
-  }
+

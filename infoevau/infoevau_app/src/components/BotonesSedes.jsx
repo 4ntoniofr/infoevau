@@ -3,14 +3,13 @@ import sedesServices from "../services/sedesServices";
 import papelera from "../assets/images/papelera.png";
 import pizarra from "../assets/images/pizarra.png";
 import swal from 'sweetalert';
-import "../assets/css/Sedes.css"
 
 function BotonesSedes({ data, setData, sedeSeleccionada }) {
   return (
     <>
       <div className="containerBotonesSedes">
         <input
-          className="button"
+          className="buttonSedes"
           type="file"
           accept=".txt"
           onChange={(e) => {
@@ -27,7 +26,7 @@ function BotonesSedes({ data, setData, sedeSeleccionada }) {
           }}
         />
         <button
-          className="button"
+          className="buttonSedes"
           key={"borrar"}
           onClick={() => {
             setData(sedesServices.borrarSede(sedeSeleccionada, data));
@@ -37,29 +36,29 @@ function BotonesSedes({ data, setData, sedeSeleccionada }) {
           Eliminar sede
         </button>
         <button 
-					className="button"
+					className="buttonSedes"
 					onClick={() => {
 						setData(sedesServices.modificarSede(sedeSeleccionada, data));
 					}}	
 				>
 					Modificar sede
 				</button>
-        <button className="button">Importar responsables</button>
+        <button className="buttonSedes">Importar responsables</button>
         <button 
-        className="button"
+        className="buttonSedes"
         onClick={() => {
           sedesServices.abrirResponsablesSede(sedeSeleccionada);
         }}
         >Responsables</button>
         <button
-          className="button"
+          className="buttonSedes"
           onClick={() => {
             sedesServices.abrirInstitutosSede(sedeSeleccionada);
           }}
           >Asignar institutos
         </button>
         <button 
-          className="button"
+          className="buttonSedes"
           onClick={ () => {
             sedesServices.abrirAulasSede(sedeSeleccionada);
           }}>

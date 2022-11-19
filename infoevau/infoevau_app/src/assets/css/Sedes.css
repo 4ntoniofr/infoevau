@@ -80,9 +80,7 @@
 # BOTONES
 ----------------------------------------------------------- */
 
-.button {
-  appearance: none;
-  backface-visibility: hidden;
+.buttonSedes {
   background-color: #27ae60;
   border-radius: 8px;
   border-style: none;
@@ -105,27 +103,24 @@
   transform: translate3d(0, 0, 0);
   transition: all .3s;
   user-select: none;
-  -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: top;
   white-space: nowrap;
   width: 100%;
 }
 
-.button:hover {
+.buttonSedes:hover {
   background-color: aquamarine;
+  color:black;
   opacity: 1;
   transform: translateY(0);
   transition-duration: .35s;
+  box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
 }
 
-.button:active {
+.buttonSedes:active {
   transform: translateY(2px);
   transition-duration: .35s;
-}
-
-.button:hover {
-  box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
 }
 
 /* -----------------------------------------------------------

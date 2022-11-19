@@ -7,7 +7,7 @@ function BotonesAlumnos({data, setData}) {
 	return (
 		<div className="containerButtons">
       <input
-         className='button'
+         className='buttonAlumnos'
          type="file"
          accept=".csv"
          onChange={(e) => {
@@ -19,7 +19,7 @@ function BotonesAlumnos({data, setData}) {
           }}
       />
       <br />
-      <button className='button'
+      <button className='buttonAlumnos'
       	onClick={() => {
         	insertarAlumnos(data.data.slice(1, data.data.length));
         }}
@@ -27,7 +27,7 @@ function BotonesAlumnos({data, setData}) {
       	Guardar informacion
       </button>
       <br />
-			<button className='button' onClick={() => {console.log(logErrores)}}>Mostrar log</button>
+			<button className='buttonAlumnos' onClick={() => {console.log(logErrores)}}>Mostrar log</button>
     </div>
 	)
 }
