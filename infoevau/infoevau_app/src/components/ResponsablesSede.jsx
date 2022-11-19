@@ -14,7 +14,7 @@ export default function ResponsablesSede() {
     const [responsableSeleccionado, setResponsableSeleccionado] = useState(null);
     const [responsableSedeSeleccionado, setResponsableSedeSeleccionado] = useState(null);
     const [data, setData] = useState([]);
-    const [dataResponsablesSede, setDataResponsablesSede] = useState([])
+    const [dataResponsablesSede, setDataResponsablesSede] = useState(null)
 
     useEffect(() => {
         axios.get("http://localhost:3001/responsablesDisponibles").then((responsables) => {
@@ -24,7 +24,7 @@ export default function ResponsablesSede() {
         axios.post("http://localhost:3001/responsablesSede", {
           sede: idSede
         }).then((responsablesSede) => {
-          setDataResponsablesSede([responsablesSede.data[0]]);
+          setDataResponsablesSede(responsablesSede.data[0].Responsable);
         },);
     
       }, [idSede]);
@@ -46,6 +46,7 @@ export default function ResponsablesSede() {
               setDataResponsablesSede = {setDataResponsablesSede}
               responsableSeleccionado = {responsableSeleccionado}
               responsableSedeSeleccionado = {responsableSedeSeleccionado}
+              setResponsableSedeSeleccionado = {setResponsableSedeSeleccionado}
               sede= {idSede}
             />
 

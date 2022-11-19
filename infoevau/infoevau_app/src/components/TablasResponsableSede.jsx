@@ -1,6 +1,35 @@
 import React from "react";
 
 export default function TablaResponsablesSede({data, responsableSedeSeleccionado, setResponsableSedeSeleccionado }) {
+
+  const showTable = () => {
+    if (data === responsableSedeSeleccionado) {
+      return (
+        <tr style={{ backgroundColor: "#80ff80" }}>
+          <td
+            onClick={() => {
+              setResponsableSedeSeleccionado(null);
+            }}
+          >
+            {data}
+          </td>
+        </tr>
+      );
+    }
+
+    return (
+      <tr>
+        <td
+          onClick={() => {
+            setResponsableSedeSeleccionado(data);
+          }}
+        >
+          {data}
+        </td>
+      </tr>
+    );
+  }
+
   return (
     <>
       <div className="containerTablaResponsablesSede">
@@ -11,34 +40,7 @@ export default function TablaResponsablesSede({data, responsableSedeSeleccionado
             </tr>
           </thead>
           <tbody>
-            {data.map((responsable, key) => {
-              if (responsable.Responsable === responsableSedeSeleccionado) {
-                console.log("Seleccionado " + responsable);
-                return (
-                  <tr key={key} style={{ backgroundColor: "#80ff80" }}>
-                    <td
-                      onClick={() => {
-                        setResponsableSedeSeleccionado(null);
-                      }}
-                    >
-                      {responsable.Responsable}
-                    </td>
-                  </tr>
-                );
-              }
-
-              return (
-                <tr key={key}>
-                  <td
-                    onClick={() => {
-                      setResponsableSedeSeleccionado(responsable.Responsable);
-                    }}
-                  >
-                    {responsable.Responsable}
-                  </td>
-                </tr>
-              );
-            })}
+            {showTable()}
           </tbody>
         </table>
       </div>

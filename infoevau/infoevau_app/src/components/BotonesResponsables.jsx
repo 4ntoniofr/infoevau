@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import swal from 'sweetalert';
 
-function BotonesResponsables({ data, setData, dataResponsablesSede, setDataResponsablesSede , responsableSeleccionado, responsableSedeSeleccionado , sede }) {
+function BotonesResponsables({ data, setData, dataResponsablesSede, setDataResponsablesSede , responsableSeleccionado, responsableSedeSeleccionado, setResponsableSedeSeleccionado , sede }) {
 
     const insertarResponsables = (responsables) => {
         axios.post("http://localhost:3001/nuevosResponsables", {
@@ -14,9 +14,8 @@ function BotonesResponsables({ data, setData, dataResponsablesSede, setDataRespo
       };
 
     const asignarResponsable = (responsable, sedeselected, responsablesMemoria, responsableSede) => {
-      console.log(dataResponsablesSede)
       if(responsable){
-        if(responsableSede.Responsable){
+        if(responsableSede){
           swal({
             icon: "error",
             title: "Error",
@@ -28,8 +27,7 @@ function BotonesResponsables({ data, setData, dataResponsablesSede, setDataRespo
             responsable: responsable,
             sede: sedeselected
           });
-          console.log([responsable])
-          setDataResponsablesSede([responsable])
+          setDataResponsablesSede(responsable)
           return responsablesMemoria.filter((responsableMemoria) => responsableMemoria.Nombre !== responsable);
         }
       }else{
@@ -43,10 +41,13 @@ function BotonesResponsables({ data, setData, dataResponsablesSede, setDataRespo
     }
 
     const desasignarResponsable = (sedeselected) => {
+      console.log(responsableSedeSeleccionado)
       if(responsableSedeSeleccionado){
         axios.post("http://localhost:3001/desasignarResponsable", {
           sede: sedeselected
         });
+        setDataResponsablesSede(null)
+        setResponsableSedeSeleccionado(null)
       }else{
         swal({
           icon: "error",
@@ -63,7 +64,7 @@ function BotonesResponsables({ data, setData, dataResponsablesSede, setDataRespo
           className="button"
           key={"asignar"}
           onClick={() => {
-            setData(asignarResponsable(responsableSeleccionado, sede, data, dataResponsablesSede[0]))
+            setData(asignarResponsable(responsableSeleccionado, sede, data, dataResponsablesSede))
           }}
         >
           Asignar Responsable
