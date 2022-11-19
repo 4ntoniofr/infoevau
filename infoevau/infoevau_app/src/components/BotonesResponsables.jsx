@@ -40,7 +40,7 @@ function BotonesResponsables({ data, setData, dataResponsablesSede, setDataRespo
       }
     }
 
-    const desasignarResponsable = (sedeselected) => {
+    const desasignarResponsable = (sedeselected, responsableMemoria) => {
       console.log(responsableSedeSeleccionado)
       if(responsableSedeSeleccionado){
         axios.post("http://localhost:3001/desasignarResponsable", {
@@ -48,12 +48,15 @@ function BotonesResponsables({ data, setData, dataResponsablesSede, setDataRespo
         });
         setDataResponsablesSede(null)
         setResponsableSedeSeleccionado(null)
+        responsableMemoria.push({Nombre: responsableSedeSeleccionado})
+        return(responsableMemoria)
       }else{
         swal({
           icon: "error",
           title: "Error",
           text: "No se ha seleccionado el responsable." 
         });
+        return responsableMemoria;
       }
     }
 
@@ -74,7 +77,7 @@ function BotonesResponsables({ data, setData, dataResponsablesSede, setDataRespo
           className="button"
           key={"desasignar"}
           onClick={() => {
-            desasignarResponsable(sede);
+            setData(desasignarResponsable(sede, data));
           }}
         >
           Desasignar Responsable
