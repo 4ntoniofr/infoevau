@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import swal from 'sweetalert';
 
 function BotonesResponsables({ data, setData, responsableSeleccionado, responsableSedeSeleccionado , sede }) {
 
@@ -13,10 +14,18 @@ function BotonesResponsables({ data, setData, responsableSeleccionado, responsab
       };
 
     const asignarResponsable = (responsable, sedeselected) => {
-      axios.post("http://localhost:3001/asignarResponsable", {
-        responsable: responsable,
-        sede: sedeselected
-      });
+      if(responsable){
+        axios.post("http://localhost:3001/asignarResponsable", {
+          responsable: responsable,
+          sede: sedeselected
+        });
+      }else{
+        swal({
+          icon: "error",
+          title: "Error",
+          text: "No se ha seleccionado el responsable." 
+        });
+      }
     }
 
     const desasignarResponsable = (sedeselected) => {
@@ -25,7 +34,11 @@ function BotonesResponsables({ data, setData, responsableSeleccionado, responsab
           sede: sedeselected
         });
       }else{
-        console.log("nadie seleccionado")
+        swal({
+          icon: "error",
+          title: "Error",
+          text: "No se ha seleccionado el responsable." 
+        });
       }
     }
 

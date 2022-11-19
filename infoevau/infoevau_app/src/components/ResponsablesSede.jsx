@@ -12,12 +12,12 @@ export default function ResponsablesSede() {
     let idSede = params.idSede.replace("-","/");
 
     const [responsableSeleccionado, setResponsableSeleccionado] = useState(null);
-    const [responsableSedeSeleccionado, setResponsableSedeSeleccionado] = useState([]);
+    const [responsableSedeSeleccionado, setResponsableSedeSeleccionado] = useState(null);
     const [data, setData] = useState([]);
     const [dataResponsablesSede, setDataResponsablesSede] = useState([])
 
     useEffect(() => {
-        axios.get("http://localhost:3001/responsables").then((responsables) => {
+        axios.get("http://localhost:3001/responsablesDisponibles").then((responsables) => {
           setData(responsables.data);
         },);
 

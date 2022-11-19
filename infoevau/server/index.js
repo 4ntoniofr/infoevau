@@ -42,9 +42,9 @@ app.get("/matriculas", (req, res) => {
   dbQuery("SELECT * FROM MATRICULA", req, res);
 });
 
-app.get("/responsables", (req, res) => {
-  dbQuery("SELECT * FROM RESPONSABLE", req, res);
-});
+app.get("/responsablesDisponibles", (req, res) => {
+	dbQuery("SELECT Nombre FROM RESPONSABLE WHERE Nombre NOT IN (SELECT Responsable FROM SEDE WHERE Responsable IS NOT NULL)", req, res)
+})
 
 app.get("/sedes", (req, res) => {
   dbQuery("SELECT * FROM SEDE", req, res);

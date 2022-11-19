@@ -31,8 +31,7 @@ export default function TablaResponsablesSede({data, responsableSedeSeleccionado
                 <tr key={key}>
                   <td
                     onClick={() => {
-                      console.log("estoy")
-                      setResponsableSedeSeleccionado(responsable);
+                      setResponsableSedeSeleccionado(responsable.Responsable);
                     }}
                   >
                     {responsable.Responsable}
