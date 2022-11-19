@@ -18,7 +18,9 @@ export default function ResponsablesSede() {
 
     useEffect(() => {
         axios.get("http://localhost:3001/responsablesDisponibles").then((responsables) => {
-          setData(responsables.data);
+          const array = []
+          responsables.data.map( responsable => array.push(responsable.Nombre))
+          setData(array);
         },);
 
         axios.post("http://localhost:3001/responsablesSede", {
@@ -47,6 +49,7 @@ export default function ResponsablesSede() {
               responsableSeleccionado = {responsableSeleccionado}
               responsableSedeSeleccionado = {responsableSedeSeleccionado}
               setResponsableSedeSeleccionado = {setResponsableSedeSeleccionado}
+              setResponsableSeleccionado = {setResponsableSeleccionado}
               sede= {idSede}
             />
 

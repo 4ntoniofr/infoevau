@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import swal from 'sweetalert';
 
-function BotonesResponsables({ data, setData, dataResponsablesSede, setDataResponsablesSede , responsableSeleccionado, responsableSedeSeleccionado, setResponsableSedeSeleccionado , sede }) {
+function BotonesResponsables({ data, setData, dataResponsablesSede, setDataResponsablesSede , responsableSeleccionado, responsableSedeSeleccionado, setResponsableSedeSeleccionado, setResponsableSeleccionado , sede }) {
 
     const insertarResponsables = (responsables) => {
         axios.post("http://localhost:3001/nuevosResponsables", {
@@ -28,7 +28,7 @@ function BotonesResponsables({ data, setData, dataResponsablesSede, setDataRespo
             sede: sedeselected
           });
           setDataResponsablesSede(responsable)
-          return responsablesMemoria.filter((responsableMemoria) => responsableMemoria.Nombre !== responsable);
+          return responsablesMemoria.filter((responsableMemoria) => responsableMemoria !== responsable);
         }
       }else{
         swal({
@@ -48,7 +48,9 @@ function BotonesResponsables({ data, setData, dataResponsablesSede, setDataRespo
         });
         setDataResponsablesSede(null)
         setResponsableSedeSeleccionado(null)
-        responsableMemoria.push({Nombre: responsableSedeSeleccionado})
+        setResponsableSeleccionado(null)
+        responsableMemoria.push(responsableSedeSeleccionado)
+        responsableMemoria.sort()
         return(responsableMemoria)
       }else{
         swal({
