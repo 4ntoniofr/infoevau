@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-function BotonesResponsables({ data, setData, responsableSeleccionado }) {
+function BotonesResponsables({ data, setData, responsableSeleccionado, responsableSedeSeleccionado , sede }) {
 
     const insertarResponsables = (responsables) => {
         axios.post("http://localhost:3001/nuevosResponsables", {
@@ -12,6 +12,23 @@ function BotonesResponsables({ data, setData, responsableSeleccionado }) {
         });
       };
 
+    const asignarResponsable = (responsable, sedeselected) => {
+      axios.post("http://localhost:3001/asignarResponsable", {
+        responsable: responsable,
+        sede: sedeselected
+      });
+    }
+
+    const desasignarResponsable = (sedeselected) => {
+      if(responsableSedeSeleccionado){
+        axios.post("http://localhost:3001/desasignarResponsable", {
+          sede: sedeselected
+        });
+      }else{
+        console.log("nadie seleccionado")
+      }
+    }
+
   return (
     <>
       <div className="containerBotonesResponsables">
@@ -19,7 +36,7 @@ function BotonesResponsables({ data, setData, responsableSeleccionado }) {
           className="button"
           key={"asignar"}
           onClick={() => {
-            console.log("asignar responsable "+responsableSeleccionado);
+            asignarResponsable(responsableSeleccionado, sede)
           }}
         >
           Asignar Responsable
@@ -29,7 +46,7 @@ function BotonesResponsables({ data, setData, responsableSeleccionado }) {
           className="button"
           key={"desasignar"}
           onClick={() => {
-            console.log("desasignar responsable "+responsableSeleccionado);
+            desasignarResponsable(sede);
           }}
         >
           Desasignar Responsable

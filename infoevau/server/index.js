@@ -50,6 +50,11 @@ app.get("/sedes", (req, res) => {
   dbQuery("SELECT * FROM SEDE", req, res);
 });
 
+app.post("/responsablesSede", (req, res) => {
+	let sede = req.body.sede;
+	dbQuery("SELECT Responsable FROM SEDE WHERE Nombre = '"+sede+"';", req, res);
+});
+
 const dbQuery = (query, req, res) => {
   db.query(query, (error, results) => {
     if (error) throw error;
@@ -66,6 +71,26 @@ app.post("/nuevosAlumnos", (req,res) => {
 	})
 	res.send();
 });
+
+app.post("/asignarResponsable", (req, res) => {
+	let responsable = req.body.responsable;
+	let sede = req.body.sede; 
+
+	db.query("UPDATE SEDE SET Responsable = '"+responsable+"' where Nombre = '"+sede+"';", (err,res,f) => {
+		if(err) console.log(err)
+	})
+	res.send();
+})
+
+app.post("/desasignarResponsable", (req, res) => {
+	let sede = req.body.sede;
+
+	db.query("UPDATE SEDE SET Responsable = NULL WHERE Nombre = '"+sede+"';", (err,res,f) => {
+		if(err) console.log(err)
+	})
+	res.send();
+
+})
 
 app.post("/nuevosInstitutos", (req, res) => {
 	let institutos = req.body.institutos;
