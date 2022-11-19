@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import swal from 'sweetalert';
 
-function BotonesResponsables({ data, setData, responsableSeleccionado, responsableSedeSeleccionado , sede }) {
+function BotonesResponsables({ data, setData, dataResponsablesSede, setDataResponsablesSede , responsableSeleccionado, responsableSedeSeleccionado , sede }) {
 
     const insertarResponsables = (responsables) => {
         axios.post("http://localhost:3001/nuevosResponsables", {
@@ -13,18 +13,32 @@ function BotonesResponsables({ data, setData, responsableSeleccionado, responsab
         });
       };
 
-    const asignarResponsable = (responsable, sedeselected) => {
+    const asignarResponsable = (responsable, sedeselected, responsablesMemoria, responsableSede) => {
+      console.log(dataResponsablesSede)
       if(responsable){
-        axios.post("http://localhost:3001/asignarResponsable", {
-          responsable: responsable,
-          sede: sedeselected
-        });
+        if(responsableSede.Responsable){
+          swal({
+            icon: "error",
+            title: "Error",
+            text: "Solo se puede tener un representante por sede, si quiere cambiar de representante, desasigne el actual primero." 
+          });
+          return responsablesMemoria;
+        }else{
+          axios.post("http://localhost:3001/asignarResponsable", {
+            responsable: responsable,
+            sede: sedeselected
+          });
+          console.log([responsable])
+          setDataResponsablesSede([responsable])
+          return responsablesMemoria.filter((responsableMemoria) => responsableMemoria.Nombre !== responsable);
+        }
       }else{
         swal({
           icon: "error",
           title: "Error",
           text: "No se ha seleccionado el responsable." 
         });
+        return responsablesMemoria;
       }
     }
 
@@ -49,7 +63,7 @@ function BotonesResponsables({ data, setData, responsableSeleccionado, responsab
           className="button"
           key={"asignar"}
           onClick={() => {
-            asignarResponsable(responsableSeleccionado, sede)
+            setData(asignarResponsable(responsableSeleccionado, sede, data, dataResponsablesSede[0]))
           }}
         >
           Asignar Responsable

@@ -27,7 +27,7 @@ export default function ResponsablesSede() {
           setDataResponsablesSede([responsablesSede.data[0]]);
         },);
     
-      }, []);
+      }, [idSede]);
 
     return (<>
         <div className="containerHeader">
@@ -42,6 +42,8 @@ export default function ResponsablesSede() {
             <BotonesResponsables 
               data = {data}
               setData = {setData}
+              dataResponsablesSede = {dataResponsablesSede}
+              setDataResponsablesSede = {setDataResponsablesSede}
               responsableSeleccionado = {responsableSeleccionado}
               responsableSedeSeleccionado = {responsableSedeSeleccionado}
               sede= {idSede}
