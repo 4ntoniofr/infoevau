@@ -1,5 +1,6 @@
 import React from "react";
 import sedesServices from "../services/sedesServices";
+import responsablesServices from "../services/responsablesServices";
 import papelera from "../assets/images/papelera.png";
 import pizarra from "../assets/images/pizarra.png";
 import swal from 'sweetalert';
@@ -43,7 +44,21 @@ function BotonesSedes({ data, setData, sedeSeleccionada }) {
 				>
 					Modificar sede
 				</button>
-        <button className="buttonSedes">Importar responsables</button>
+        <input
+                className="button"
+                type="file"
+                accept=".txt"
+                onChange={(e) => {
+                    e.target.files[0].text().then((t) => {
+                    	//setData(responsablesServices.insertarResponsables(t.split("\n")));
+											let n = responsablesServices.insertarResponsables(t.split("\n"));
+											swal({
+												icon: "success",
+												text: "Se han insertado correctamente " + n + " responsables"
+											})
+                });
+            }}
+        />
         <button 
         className="buttonSedes"
         onClick={() => {

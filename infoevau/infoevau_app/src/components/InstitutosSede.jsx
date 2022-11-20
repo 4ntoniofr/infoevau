@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 
 export default function InstitutosSede() {
     let params = useParams();
-    let idSede = params.idSede.replace("-","/");
+    let idSede = params.idSede.replace("$","/");
 
     return (<>
         <div className="containerHeader">

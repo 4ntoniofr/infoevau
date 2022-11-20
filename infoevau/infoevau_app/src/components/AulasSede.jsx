@@ -6,7 +6,7 @@ import BotonesAulas from "./BotonesAulas";
 
 export default function AulasSede () {
     let params = useParams();
-    let idSede = params.idSede.replace("-","/");
+    let idSede = params.idSede.replace("$","/");
 
     return (
         <>

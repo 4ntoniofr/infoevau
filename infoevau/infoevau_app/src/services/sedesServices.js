@@ -57,7 +57,7 @@ const modificarSede = (sede, sedesMemoria) => {
 
 const abrirResponsablesSede = (sede) => {
   if(sede != null){
-    window.location.href = "/sedes/" + sede.replace("/","-") + "/responsables";
+    window.location.href = "/sedes/" + sede.replace("/","$") + "/responsables";
   } else{
     swal({
       icon: "error",
@@ -68,7 +68,7 @@ const abrirResponsablesSede = (sede) => {
 
 const abrirInstitutosSede = (sede) => {
   if (sede != null) {
-    window.location.href = "/sedes/" + sede.replace("/","-") + "/institutos";
+    window.location.href = "/sedes/" + sede.replace("/","$") + "/institutos";
   } else {
     swal({
       icon: "error",
@@ -79,7 +79,7 @@ const abrirInstitutosSede = (sede) => {
 
 const abrirAulasSede = (sede) => {
   if (sede != null) {
-    window.location.href = "/sedes/" + sede.replace("/","-") + "/aulas";
+    window.location.href = "/sedes/" + sede.replace("/","$") + "/aulas";
   } else {
     swal({
       icon: "error",
