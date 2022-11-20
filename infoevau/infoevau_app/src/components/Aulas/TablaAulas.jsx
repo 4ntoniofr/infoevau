@@ -4,14 +4,6 @@ import axios from "axios";
 
 export default function TablaAulas({data, aulaSeleccionada, setAulaSeleccionada}) {
 
-    /*
-    useEffect(() => {
-        axios.get("http://localhost:3001/aulas",{sede: }).then((aulas) => {
-            setData(aulas.data);
-        });
-    }, []);
-    */
-
     return (
         <>
             <div className="containerTablaAulas">
