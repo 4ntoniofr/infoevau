@@ -18,7 +18,7 @@ export default function AulasSede() {
             setData(a.data);
             console.log(a.data);
         });
-    }, []);
+    }, [idSede]);
 
     return (
         <>

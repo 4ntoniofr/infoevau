@@ -42,7 +42,7 @@ export default function Home() {
           <div className="section">
 
             <a href="./alumnos">
-              <img className="imagenSection" src={estudiante} />
+              <img className="imagenSection" alt="alumnosimage" src={estudiante} />
             </a>
 
           </div>
@@ -50,7 +50,7 @@ export default function Home() {
           <div className="section">
 
             <a href="./sedes">
-              <img className="imagenSection" src={sede} />
+              <img className="imagenSection" alt="sedesimage" src={sede} />
             </a>
 
           </div>
