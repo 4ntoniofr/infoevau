@@ -18,7 +18,7 @@ export default function Sedes() {
 
   return (
     <>
-      <div className="containerHeader">
+      <div className="containerHeaderSedes">
         <h1>Sección de las sedes</h1>
       </div>
       <TablaSedes

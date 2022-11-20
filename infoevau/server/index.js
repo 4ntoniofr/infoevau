@@ -18,6 +18,17 @@ const db = mysql.createConnection({
 });
 db.connect();
 
+const dbQuery = (query, req, res) => {
+	db.query(query, (error, results) => {
+	  if (error) throw error;
+	  res.status(200).json(results);
+	});
+};
+
+/**
+ * Consultas de las tablas
+ */
+
 app.get("/", (req, res) => {
   dbQuery("SHOW COLUMNS FROM ALUMNO", req, res);
 });
@@ -55,12 +66,9 @@ app.post("/responsablesSede", (req, res) => {
 	dbQuery("SELECT Responsable FROM SEDE WHERE Nombre = '"+sede+"';", req, res);
 });
 
-const dbQuery = (query, req, res) => {
-  db.query(query, (error, results) => {
-    if (error) throw error;
-    res.status(200).json(results);
-  });
-};
+/**
+ * Alumnos
+ */
 
 app.post("/nuevosAlumnos", (req,res) => {
 	let alumnos = req.body.alumnos;
@@ -71,6 +79,20 @@ app.post("/nuevosAlumnos", (req,res) => {
 	})
 	res.send();
 });
+
+app.post("/nuevasMatriculaciones", (req,res) => {
+	let matriculaciones = req.body.matriculaciones;
+
+	db.query('INSERT INTO MATRICULA VALUES ?;', [matriculaciones], (err,res,f) => {
+		if(err) console.log(err)	//'ERROR en la insercion de matriculas'
+		else console.log('Insercion satisfactoria de',matriculaciones.length,'matriculas')
+	})
+	res.send();
+});
+
+/**
+ * Responsables
+ */
 
 app.post("/asignarResponsable", (req, res) => {
 	let responsable = req.body.responsable;
@@ -92,26 +114,6 @@ app.post("/desasignarResponsable", (req, res) => {
 
 })
 
-app.post("/nuevosInstitutos", (req, res) => {
-	let institutos = req.body.institutos;
-
-	db.query("INSERT INTO INSTITUTO(Nombre) VALUES ?;", [institutos], (err,res,f) => {
-		if(err) console.log(err)
-		else console.log('Insercion exitosa de institutos')
-	})
-});
-
-app.post("/nuevasSedes", (req, res) => {
-	let sedes = req.body.sedes;
-	sedes.forEach(s => {
-		if(s != ''){
-			db.query("INSERT INTO SEDE(Nombre) VALUES (?);", [s], (err,res,f) => {
-				if(err) console.log(err);
-			})
-		}
-	})
-});
-
 app.post("/nuevosResponsables", (req, res) => {
 	console.log(req.body.responsables)
 	let responsables = req.body.responsables;
@@ -124,14 +126,32 @@ app.post("/nuevosResponsables", (req, res) => {
 	})
 });
 
-app.post("/nuevasMatriculaciones", (req,res) => {
-	let matriculaciones = req.body.matriculaciones;
+/**
+ * Institutos
+ */
 
-	db.query('INSERT INTO MATRICULA VALUES ?;', [matriculaciones], (err,res,f) => {
-		if(err) console.log(err)	//'ERROR en la insercion de matriculas'
-		else console.log('Insercion satisfactoria de',matriculaciones.length,'matriculas')
+app.post("/nuevosInstitutos", (req, res) => {
+	let institutos = req.body.institutos;
+
+	db.query("INSERT INTO INSTITUTO(Nombre) VALUES ?;", [institutos], (err,res,f) => {
+		if(err) console.log(err)
+		else console.log('Insercion exitosa de institutos')
 	})
-	res.send();
+});
+
+/**
+ * Sedes
+ */
+
+app.post("/nuevasSedes", (req, res) => {
+	let sedes = req.body.sedes;
+	sedes.forEach(s => {
+		if(s != ''){
+			db.query("INSERT INTO SEDE(Nombre) VALUES (?);", [s], (err,res,f) => {
+				if(err) console.log(err);
+			})
+		}
+	})
 });
 
 app.post("/borrarSede", (req, res) => {
@@ -162,4 +182,19 @@ app.get("/deleteSedes", (req, res) => {
 		if(err) console.log(err)
 		else console.log('Tabla SEDE borrada');
 	});
+})
+
+/**
+ * Aulas
+ */
+
+app.post("/borrarAula", (req, res) => {
+	let aula = req.body.aulaBorrar;
+	console.log(req.body)
+
+	db.query("DELETE FROM AULA WHERE ID = ?;", [aula], (err, res, f) => {
+		if(err) console.log(err)
+		else console.log('Eliminación satisfactoria de ', aula)
+	}) 
+	res.send();
 })
