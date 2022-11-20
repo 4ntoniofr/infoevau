@@ -67,6 +67,18 @@ app.post("/responsablesSede", (req, res) => {
 	dbQuery("SELECT Responsable FROM SEDE WHERE Nombre = '" + sede + "';", req, res);
 });
 
+app.get("/institutosDisponibles", (req, res) => {
+	dbQuery("SELECT I.Nombre, COUNT(*) 'NumAlumnos' FROM INSTITUTO I JOIN ALUMNO A ON (A.Instituto = I.Nombre) "
+		+ "WHERE I.Sede IS NULL GROUP BY I.Nombre;", req, res);
+});
+
+app.get("/institutosAsignados", (req, res) => {
+	let sede = req.body.sede;
+	dbQuery("SELECT I.Nombre, COUNT(*) 'NumAlumnos' FROM INSTITUTO I JOIN ALUMNO A ON (A.Instituto = I.Nombre) "
+	+ "WHERE I.Sede = '" + sede + "' GROUP BY I.Nombre;", req, res);	
+})
+
+
 /**
  * Alumnos
  */

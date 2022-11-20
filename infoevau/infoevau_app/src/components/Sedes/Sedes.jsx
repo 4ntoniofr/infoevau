@@ -30,6 +30,7 @@ export default function Sedes() {
         data={data}
         setData={setData}
         sedeSeleccionada={sedeSeleccionada}
+        setSedeSeleccionada={setSedeSeleccionada}
       />
     </>
   );

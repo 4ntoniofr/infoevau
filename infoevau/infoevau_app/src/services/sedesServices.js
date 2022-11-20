@@ -23,8 +23,8 @@ const borrarSede = (sede, sedesMemoria) => {
     return sedesMemoria.filter((sedeMemoria) => sedeMemoria.Nombre !== sede);
   } else {
     swal({
-      icon: "error",
-      text: "Ninguna sede ha sido seleccionada"
+      icon: "info",
+      text: "Ninguna sede ha sido seleccionada para borrar"
     });
   }
   return sedesMemoria;
@@ -48,8 +48,8 @@ const modificarSede = (sede, sedesMemoria) => {
     }
   } else {
     swal({
-      icon: "error",
-      text: "Ninguna sede ha sido seleccionada"
+      icon: "info",
+      text: "Ninguna sede ha sido seleccionada para modificar"
     });
   }
   return sedesMemoria;
@@ -60,7 +60,7 @@ const abrirResponsablesSede = (sede) => {
     window.location.href = "/sedes/" + sede.replace("/","$") + "/responsables";
   } else{
     swal({
-      icon: "error",
+      icon: "info",
       text: "Ninguna sede ha sido seleccionada"
     });
   }
@@ -71,7 +71,7 @@ const abrirInstitutosSede = (sede) => {
     window.location.href = "/sedes/" + sede.replace("/","$") + "/institutos";
   } else {
     swal({
-      icon: "error",
+      icon: "info",
       text: "Ninguna sede ha sido seleccionada"
     });
   }
@@ -82,7 +82,7 @@ const abrirAulasSede = (sede) => {
     window.location.href = "/sedes/" + sede.replace("/","$") + "/aulas";
   } else {
     swal({
-      icon: "error",
+      icon: "info",
       text: "Ninguna sede ha sido seleccionada"
     });
   } 

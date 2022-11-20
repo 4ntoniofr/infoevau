@@ -2,28 +2,29 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-export default function TablaInstitutos() {
+export default function TablaInstitutosAsignados ({idSede}) {
     const [institutoSeleccionado, setInstitutoSeleccionado] = useState(null);
-    const [data, setData] = useState([]);
-  
+    const [dataAsig, setDataAsig] = useState([]);
     useEffect(() => {
-      axios.get("http://localhost:3001/institutosDisponibles").then((institutosDisp) => {
-        setData(institutosDisp.data);
+      axios.get("http://localhost:3001/institutosAsignados",{
+        sede: idSede
+      }).then((institutosAsig) => {
+        setDataAsig(institutosAsig.data);
       });
     }, []);
 
-	return (
-		<>
-		<div className="containerTablaInstitutos">
-			<table className="tablaInstitutos">
+    return (
+        <>
+        <div className="containerTablaInstitutosAsignados">
+        <table className="tablaInstitutos">
 				<thead>
 					<tr>
-						<th>Institutos no asignados</th>
+						<th>Institutos asignados</th>
 						<th>Num alumnos</th>
 					</tr>
 				</thead>
 				<tbody>
-				{data.map((instituto,key) => {
+				{dataAsig.map((instituto,key) => {
 					if (instituto.Nombre === institutoSeleccionado) {
 						console.log("Instituto seleccionado: " + instituto.Nombre);
 						return (
@@ -62,7 +63,7 @@ export default function TablaInstitutos() {
 				})}
 				</tbody>
 			</table>
-		</div>
-		</>
-	)
+        </div>
+        </>
+    )
 }

@@ -5,7 +5,7 @@ import papelera from "../../assets/images/papelera.png";
 import pizarra from "../../assets/images/pizarra.png";
 import swal from 'sweetalert';
 
-function BotonesSedes({ data, setData, sedeSeleccionada }) {
+function BotonesSedes({ data, setData, sedeSeleccionada, setSedeSeleccionada }) {
   return (
     <>
       <div className="containerBotonesSedes">
@@ -17,13 +17,20 @@ function BotonesSedes({ data, setData, sedeSeleccionada }) {
           onChange={(e) => {
             e.target.files[0].text().then((t) => {
               let sedes = t.split("\r\n");
-              setData(sedesServices.insertarSedes(sedes));
-              let numSedes = sedes.length - 1;
-              swal({
-                icon: "success",
-                title: "Fichero " + e.target.files[0].name + " procesado",
-                text: numSedes + " sedes insertadas correctamente"
-              });
+              if (sedes[0] === "SEDE") {
+                setData(sedesServices.insertarSedes(sedes));
+                swal({
+                  icon: "success",
+                  title: "Fichero " + e.target.files[0].name + " procesado.",
+                  text: "Sedes importadas con éxito."
+                })
+              } else {
+                swal({
+                  icon: "error",
+                  title: "No se puede procesar el fichero " +  e.target.files[0].name,
+                  text: "La primera línea del fichero debe ser 'SEDE'"
+                })
+              } 
             });
           }}
         />
@@ -32,6 +39,7 @@ function BotonesSedes({ data, setData, sedeSeleccionada }) {
           key={"borrar"}
           onClick={() => {
             setData(sedesServices.borrarSede(sedeSeleccionada, data));
+            setSedeSeleccionada(null);
           }}
         >
           <img src={papelera} className="icono" alt="" />
@@ -41,6 +49,7 @@ function BotonesSedes({ data, setData, sedeSeleccionada }) {
 					className="buttonSedes"
 					onClick={() => {
 						setData(sedesServices.modificarSede(sedeSeleccionada, data));
+            setSedeSeleccionada(null);
 					}}	
 				>
 					Modificar sede

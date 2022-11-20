@@ -1,0 +1,125 @@
+/* -----------------------------------------------------------
+# CONTAINERS
+----------------------------------------------------------- */
+
+.containerHeaderInstitutos {
+    position: relative;
+    left: 3%;
+    width: fit-content;
+}
+
+.containerTablaInstitutos {
+    height: 430px;
+    width: 30%;
+    position: fixed;
+    left: 3%;
+    top: 25%;
+    overflow:auto;
+}
+
+.containerTablaInstitutosAsignados {
+    height: 430px;
+    width: 30%;
+    position: fixed;
+    right: 3%;
+    top: 25%;
+    overflow:auto;
+}
+
+.containerBotonesInstitutos {
+    width: 20%;
+    position: fixed;
+    top:55%;
+    left:40%;
+    height: 24%;
+}
+
+    /* Scrollbar*/
+
+.containerTablaInstitutos::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.containerTablaInstitutos::-webkit-scrollbar:vertical {
+    width:10px;
+}
+
+.containerTablaInstitutos::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
+
+/* -----------------------------------------------------------
+# TABLAS
+----------------------------------------------------------- */
+
+.tablaInstitutos {
+    width: 100%;
+}
+
+.tablaInstitutos td, .tablaSedes th {
+    padding: 8px;
+}
+
+.tablaInstitutos tr:nth-child(odd){background-color: white;}
+.tablaInstitutos tr:nth-child(even){background-color: #f2f2f2;}
+
+.tablaInstitutos tr:hover {
+    background-color:lightblue;
+    cursor: pointer;
+}
+
+.tablaInstitutos th {
+    position: sticky;
+    top: 0;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: aquamarine;
+    color: black;
+}
+
+/* -----------------------------------------------------------
+# BOTONES
+----------------------------------------------------------- */
+
+.buttonInstitutos {
+    background-color: #27ae60;
+    border-radius: 8px;
+    border-style: none;
+    box-shadow: rgba(39, 174, 96, .15) 0 4px 9px;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: normal;
+    line-height: 1.5;
+    outline: none;
+    overflow: hidden;
+    padding: 13px 20px;
+    position: relative;
+    transform: translate3d(0, 0, 0);
+    transition: all .3s;
+    user-select: none;
+    touch-action: manipulation;
+    vertical-align: top;
+    white-space: nowrap;
+    width: 100%;
+  }
+  
+  .buttonInstitutos:hover {
+    background-color: aquamarine;
+    color:black;
+    opacity: 1;
+    transform: translateY(0);
+    transition-duration: .35s;
+    box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
+  }
+  
+  .buttonInstitutos:active {
+    transform: translateY(2px);
+    transition-duration: .35s;
+  }

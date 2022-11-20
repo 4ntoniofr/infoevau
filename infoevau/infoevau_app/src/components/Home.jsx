@@ -11,7 +11,7 @@ export default function Home() {
 
         <h1>Bienvenido a la plataforma infoEVAU</h1>
 
-        <br/> <br/>
+        <br/>
 
         <img className="imagenLogo" src={logo} alt="logo" />
 
