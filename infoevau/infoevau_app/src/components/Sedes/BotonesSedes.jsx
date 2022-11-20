@@ -1,8 +1,8 @@
 import React from "react";
-import sedesServices from "../services/sedesServices";
-import responsablesServices from "../services/responsablesServices";
-import papelera from "../assets/images/papelera.png";
-import pizarra from "../assets/images/pizarra.png";
+import sedesServices from "../../services/sedesServices";
+import responsablesServices from "../../services/responsablesServices";
+import papelera from "../../assets/images/papelera.png";
+import pizarra from "../../assets/images/pizarra.png";
 import swal from 'sweetalert';
 
 function BotonesSedes({ data, setData, sedeSeleccionada }) {

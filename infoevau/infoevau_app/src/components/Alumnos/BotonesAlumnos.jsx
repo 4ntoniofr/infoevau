@@ -1,5 +1,5 @@
 import React from 'react'
-import { logErrores, insertarAlumnos } from "../services/alumnoServices";
+import { logErrores, insertarAlumnos } from "../../services/alumnoServices";
 
 function BotonesAlumnos({data, setData}) {
 	const Papa = require("papaparse");

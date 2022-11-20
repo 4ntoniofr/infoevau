@@ -1,12 +1,12 @@
 import "./assets/css/App.css";
 import Home from "./components/Home";
-import Alumnos from "./components/Alumnos";
-import Sedes from "./components/Sedes";
+import Alumnos from "./components/Alumnos/Alumnos";
+import Sedes from "./components/Sedes/Sedes";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import InstitutosSede from "./components/InstitutosSede";
-import ResponsablesSede from './components/ResponsablesSede';
-import AulasSede from "./components/AulasSede";
+import InstitutosSede from "./components/Institutos/InstitutosSede";
+import ResponsablesSede from './components/Responsables/ResponsablesSede';
+import AulasSede from "./components/Aulas/AulasSede";
 import PaginaError from "./components/PaginaError"
 
 const router = createBrowserRouter([

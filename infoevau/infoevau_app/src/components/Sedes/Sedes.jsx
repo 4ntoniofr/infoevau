@@ -1,7 +1,7 @@
 import React from "react";
 import TablaSedes from "./TablaSedes";
 import BotonesSedes from "./BotonesSedes";
-import "../assets/css/Sedes.css";
+import "../../assets/css/Sedes.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
