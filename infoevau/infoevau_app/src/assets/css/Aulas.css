@@ -132,39 +132,3 @@
     height: 15px;
     margin-right: 7px;
 }
-
-/* -----------------------------------------------------------
-# INPUTS
------------------------------------------------------------ */
-
-
-input{
-    width: 100%;
-    padding: 11px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.containerFormulario{
-    background-color: #27ae60;
-    border-radius: 8px;
-    border-style: none;
-    box-shadow: rgba(39, 174, 96, .15) 0 4px 9px;
-    box-sizing: border-box;
-    color: #fff;
-    font-weight: 600;
-    font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
-    font-size: 16px;
-    width: 100%;
-}
-
-label{
-    display: inline-block;
-    width: 150px;
-}

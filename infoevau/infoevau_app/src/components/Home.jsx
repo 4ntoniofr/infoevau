@@ -4,25 +4,6 @@ import logo from '../assets/images/logoNuevo.png'
 import sede from '../assets/images/sedepng.png'
 import estudiante from '../assets/images/estudiantepng.png'
 
-/*
-<div class="w3-row-padding w3-auto">
-  <div class="w3-third">
-      <h2>London</h2>
-      <p>London is the most populous city in the United Kingdom,
-      with a metropolitan area of over 13 million inhabitants.</p>
-  </div>
-  <div class="w3-third">
-      <h2>Paris</h2>
-      <p>The Paris area is one of the largest population centers in Europe,
-      with more than 12 million inhabitants.</p>
-  </div>
-  <div class="w3-third">
-      <h2>Tokyo</h2>
-      <p>Tokyo is the center of the Greater Tokyo Area,
-      and the most populous metropolitan area in the world.</p>
-  </div>
-*/
-
 export default function Home() {
   return (
     <>

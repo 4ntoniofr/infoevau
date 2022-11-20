@@ -13,6 +13,7 @@ function BotonesSedes({ data, setData, sedeSeleccionada }) {
           className="buttonSedes"
           type="file"
           accept=".txt"
+          name="Importar sedes"
           onChange={(e) => {
             e.target.files[0].text().then((t) => {
               let sedes = t.split("\r\n");
@@ -45,12 +46,11 @@ function BotonesSedes({ data, setData, sedeSeleccionada }) {
 					Modificar sede
 				</button>
         <input
-                className="button"
+                className="buttonSedes"
                 type="file"
                 accept=".txt"
                 onChange={(e) => {
                     e.target.files[0].text().then((t) => {
-                    	//setData(responsablesServices.insertarResponsables(t.split("\n")));
 											let n = responsablesServices.insertarResponsables(t.split("\n"));
 											swal({
 												icon: "success",
@@ -58,7 +58,7 @@ function BotonesSedes({ data, setData, sedeSeleccionada }) {
 											})
                 });
             }}
-        />
+        /> 
         <button 
         className="buttonSedes"
         onClick={() => {
