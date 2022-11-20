@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import "../assets/css/Aulas.css"
+import "../../assets/css/Aulas.css"
 import TablaAulas from "./TablaAulas"
 import BotonesAulas from "./BotonesAulas";
 import axios from "axios"

@@ -1,7 +1,7 @@
 import React from "react";
 import TablaAlumnos from "./TablaAlumnos";
 import BotonesAlumnos from "./BotonesAlumnos";
-import "../assets/css/Alumnos.css";
+import "../../assets/css/Alumnos.css";
 import { useState } from "react";
 
 export default function Alumnos() {

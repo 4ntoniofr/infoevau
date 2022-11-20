@@ -1,6 +1,6 @@
 import React from "react";
 // CSS que todavia hay que crear
-import "../assets/css/Sedes.css";
+import "../../assets/css/Sedes.css";
 import TablaInstitutos from "./TablaInstitutos.jsx"
 import BotonesInstitutos from "./BotonesInstitutos"
 import { useParams } from "react-router-dom";

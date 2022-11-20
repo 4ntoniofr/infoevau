@@ -1,5 +1,5 @@
 import React from "react";
-import responsablesServices from "../services/responsablesServices";
+import responsablesServices from "../../services/responsablesServices";
 
 function BotonesResponsables({ data, setData, dataResponsablesSede, setDataResponsablesSede , responsableSeleccionado, responsableSedeSeleccionado, setResponsableSedeSeleccionado, setResponsableSeleccionado , sede }) {
 
