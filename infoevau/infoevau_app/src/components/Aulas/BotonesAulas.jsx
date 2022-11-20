@@ -37,7 +37,9 @@ export default function BotonesAulas({ data, setData, aulaSeleccionada, idSede }
                 </div>
 
 
-                <button className="buttonAulas">
+                <button className="buttonAulas" onClick={() => {
+                        setData(aulasServices.modificarAula(aulaSeleccionada, data));
+                    }}>
                     Modificar aula
                 </button>
 

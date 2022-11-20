@@ -33,6 +33,10 @@ const insertarAula = (aulasMemoria, id, capacidad, disponibilidad, sede) => {
   return aulasMemoria.push({Id: id, Capacidad: capacidad, Disponibilidad: disponibilidad, Sede: sede});
 };
 
-const aulasServices = { borrarAula, insertarAula }
+const modificarAula = (aula, aulasMemoria) => {
+    // hay que crear un cuadro de texto o alguna nueva pestaña para modificar las aulas
+};
+
+const aulasServices = { borrarAula, insertarAula, modificarAula }
 
 export default aulasServices;
