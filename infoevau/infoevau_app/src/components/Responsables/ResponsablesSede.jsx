@@ -66,6 +66,15 @@ export default function ResponsablesSede() {
               setData = {setDataResponsablesAsignados}
             />
 
+            {dataResponsablesSede ? 
+            <div>
+              El responsable de {idSede} es <label>{dataResponsablesSede}</label>
+            </div>
+             : 
+            <label>
+              La sede {idSede} no tiene Responsable
+            </label>}
+
         </div>
     </>)
 }
