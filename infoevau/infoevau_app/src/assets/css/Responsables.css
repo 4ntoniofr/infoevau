@@ -10,7 +10,7 @@
 
 .containerTablaResponsablesDisponibles {
     height: 450px;
-    width: 30%;
+    width: 25%;
     position: fixed;
     left: 3%;
     top: 25%;
@@ -36,10 +36,10 @@
 
 
 .containerTablaResponsablesSede {
-    height: 560px;
-    width: 30%;
+    height: 450px;
+    width: 47%;
     position: fixed;
-    left: 63%;
+    right: 2%;
     top: 25%;
     overflow:auto;
 }
@@ -68,8 +68,8 @@
     height: 120px;
     width: 25%;
     position: fixed;
-    top: 30%;
-    right: 40%;
+    top: 50%;
+    left: 27%;
     border-radius: 20%;
 }
 

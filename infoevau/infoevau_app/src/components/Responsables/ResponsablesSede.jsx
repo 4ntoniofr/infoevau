@@ -15,6 +15,8 @@ export default function ResponsablesSede() {
     const [responsableSedeSeleccionado, setResponsableSedeSeleccionado] = useState(null);
     const [data, setData] = useState([]);
     const [dataResponsablesSede, setDataResponsablesSede] = useState(null)
+    const [dataResponsablesAsignados, setDataResponsablesAsignados] = useState([])
+    
 
     useEffect(() => {
         axios.get("http://localhost:3001/responsablesDisponibles").then((responsables) => {
@@ -28,12 +30,18 @@ export default function ResponsablesSede() {
         }).then((responsablesSede) => {
           setDataResponsablesSede(responsablesSede.data[0].Responsable);
         },);
-    
+        
+        axios.get("http://localhost:3001/responsablesAsignados").then((responsablesAsignados) => {
+          const array = []
+          responsablesAsignados.data.map(r => array.push(r))
+          setDataResponsablesAsignados(array);
+        },);
+
       }, [idSede]);
 
     return (<>
         <div className="containerHeader">
-            <h1>Responsables de la sede {idSede}</h1>
+            <h2>Responsables de la sede {idSede}</h2>
 
             <TablaResponsablesDisponibles 
             data = {data}
@@ -54,9 +62,8 @@ export default function ResponsablesSede() {
             />
 
             <TablaResponsablesSede
-              data = {dataResponsablesSede}
-              responsableSedeSeleccionado = {responsableSedeSeleccionado}
-              setResponsableSedeSeleccionado = {setResponsableSedeSeleccionado}
+              data = {dataResponsablesAsignados}
+              setData = {setDataResponsablesAsignados}
             />
 
         </div>
