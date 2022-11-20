@@ -9,7 +9,7 @@ import TablaResponsablesSede from "./TablasResponsableSede";
 
 export default function ResponsablesSede() {
     let params = useParams();
-    let idSede = params.idSede.replace("-","/");
+    let idSede = params.idSede.replace("$","/");
 
     const [responsableSeleccionado, setResponsableSeleccionado] = useState(null);
     const [responsableSedeSeleccionado, setResponsableSedeSeleccionado] = useState(null);

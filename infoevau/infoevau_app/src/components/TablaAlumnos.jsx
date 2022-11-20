@@ -6,9 +6,9 @@ function TablaAlumnos() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3001/alumnos").then((alumnos) => {
-      setData(alumnos.data);
-    });
+      axios.get("http://localhost:3001/alumnos").then((alumnos) => {
+        setData(alumnos.data);
+      });
   }, []);
 
   return (
