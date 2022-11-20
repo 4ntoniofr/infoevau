@@ -2,6 +2,7 @@ import React from "react";
 import "../assets/css/Aulas.css"
 import papelera from "../assets/images/papelera.png";
 import aulasServices from "../services/aulasServices";
+import swal from 'sweetalert';
 
 export default function BotonesAulas ({data, setData, aulaSeleccionada, idSede}) {
 
@@ -12,7 +13,18 @@ export default function BotonesAulas ({data, setData, aulaSeleccionada, idSede})
     return (
         <>
         <div className="containerBotonesAulas">
-            <form onSubmit={() => {aulasServices.insertarAula(data,id,capacidad,disponibilidad,sede)}}>
+            <form onSubmit={() => {
+                try{
+                    aulasServices.insertarAula(data,id,capacidad,disponibilidad,sede);
+                }
+                catch (error){
+                    console.log("illoooooooo");
+                    swal({
+                        icon: "success",
+                        text: "Ha ocurrido un error con la inserccion del aula"
+                    })
+                }
+                }}>
                 <label>
                     Id:
                     <input type="text" onChange={(event) => id = event.target.value}/>
