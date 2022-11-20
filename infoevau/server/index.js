@@ -39,7 +39,6 @@ app.get("/alumnos", (req, res) => {
 
 app.post("/aulas", (req, res) => {
 	let sede = req.body.sede;
-	console.log(sede);
 	dbQuery("SELECT * FROM AULA WHERE Sede = '" + sede + "';", req, res);
 });
 
@@ -203,16 +202,11 @@ app.post("/borrarAula", (req, res) => {
 
 app.post("/modificarAula", (req, res) => {
 	let prevID = req.body.prevID;
-
-	// hay que poner Sede como PK en aula
 	let sedeAula = req.body.sedeAula;
 
 	let postID = req.body.postID;
 	let postCapacidad = req.body.postCapacidad;
 	let postDisponibilidad = req.body.postDisponibilidad;
-
-
-	console.log(prevID)
 
 	db.query("UPDATE AULA SET Id = ?, Capacidad = ?, Disponibilidad = ? WHERE Id = ? AND Sede = ?;", [postID, postCapacidad, postDisponibilidad, prevID, sedeAula], (err, res, f) => {
 		if (err) console.log(err)
