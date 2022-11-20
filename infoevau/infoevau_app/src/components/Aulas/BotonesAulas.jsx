@@ -1,7 +1,7 @@
 import React from "react";
-import "../assets/css/Aulas.css"
-import papelera from "../assets/images/papelera.png";
-import aulasServices from "../services/aulasServices";
+import "../../assets/css/Aulas.css"
+import papelera from "../../assets/images/papelera.png";
+import aulasServices from "../../services/aulasServices";
 import swal from 'sweetalert';
 
 export default function BotonesAulas ({data, setData, aulaSeleccionada, idSede}) {
