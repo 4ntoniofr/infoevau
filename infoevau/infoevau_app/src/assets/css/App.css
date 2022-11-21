@@ -124,6 +124,8 @@
 .section p{
   font-weight: bold;
   margin-right: 10px;
+  color: black;
+  text-decoration: none;
 }
 
 .imagenSection{
