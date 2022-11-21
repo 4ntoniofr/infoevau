@@ -68,11 +68,11 @@ export default function ResponsablesSede() {
 
             {dataResponsablesSede ? 
             <div>
-              El responsable de {idSede} es <label>{dataResponsablesSede}</label>
+              El responsable de {idSede} es <label><strong>{dataResponsablesSede}</strong></label>
             </div>
              : 
             <label>
-              La sede {idSede} no tiene Responsable
+              La sede {idSede} <strong>no tiene responsable</strong>.
             </label>}
 
         </div>
