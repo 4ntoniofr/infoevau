@@ -5,7 +5,7 @@ export default function TablaResponsablesSede({data, setData }) {
   return (
     <>
       <div className="containerTablaResponsablesSede">
-      <table className="tablaAlumnos">
+      <table className="tablaResponsablesSede">
         <thead>
           <tr>
             <th>Sede</th>

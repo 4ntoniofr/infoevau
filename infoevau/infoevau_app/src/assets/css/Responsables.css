@@ -125,6 +125,10 @@
     cursor: pointer;
 }
 
+.tablaResponsablesSede td{
+    width: fit-content;
+}
+
 .tablaResponsablesSede th {
     position: sticky;
     top: 0;
