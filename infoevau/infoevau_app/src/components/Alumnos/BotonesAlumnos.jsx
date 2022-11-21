@@ -7,8 +7,9 @@ function BotonesAlumnos({data, setData}) {
 
 	return (
 		<div className="containerButtons">
+		<div className='custom-input-file'>
       <input
-         className='buttonAlumnos'
+         className='input-file'
          type="file"
          accept=".csv"
          onChange={(e) => {
@@ -26,7 +27,9 @@ function BotonesAlumnos({data, setData}) {
 				})
 			}
           }}
-      />
+      />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	  &nbsp;&nbsp;&nbsp;&nbsp;Importar alumnos
+	  </div>
       <br />
       <button className='buttonAlumnos'
       	onClick={() => {
@@ -52,8 +55,9 @@ function BotonesAlumnos({data, setData}) {
       <br />
 			<button className='buttonAlumnos' onClick={() => {alumnoServices.generarFichero()}}>Mostrar log</button>
 			<br />
+			<div className='custom-input-file'>
 			<input
-                className="buttonAlumnos"
+                className="input-file"
                 type="file"
                 accept=".txt"
                 onChange={(e) => {
@@ -65,7 +69,9 @@ function BotonesAlumnos({data, setData}) {
 											})
                 });
             }}
-        />
+        	/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;Importar materias
+			</div>
     </div>
 	)
 }
