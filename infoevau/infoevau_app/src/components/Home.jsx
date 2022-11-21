@@ -22,6 +22,7 @@ export default function Home() {
 
           <div className="section">
 
+            <p>Alumnos</p>
             <a href="./alumnos">
               <img className="imagenSection" alt="alumnosimage" src={estudiante} />
             </a>
@@ -30,6 +31,7 @@ export default function Home() {
 
           <div className="section">
 
+            <p>Sedes</p>
             <a href="./sedes">
               <img className="imagenSection" alt="sedesimage" src={sede} />
             </a>
