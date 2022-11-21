@@ -102,22 +102,34 @@
 }
 
 .twoRows{
-  display: inline-block;
+  display: flex;
   margin: 1rem;
   padding: 2rem 2rem;
   text-align: center;
 }
 
 .section{
-  display: inline-block;
+  display: flex;
   padding: 1rem 1rem;
   margin-left: 30px;
   margin-right: 30px;
+  transition: 0.2s;
+  
+}
+
+.section:hover{
+  filter: invert(0.7);
+}
+
+.section p{
+  font-weight: bold;
+  margin-right: 10px;
 }
 
 .imagenSection{
   height: 8vh;
   filter: invert(1);
 }
+
 
 
