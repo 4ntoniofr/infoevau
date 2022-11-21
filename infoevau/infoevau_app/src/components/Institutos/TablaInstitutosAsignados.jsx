@@ -11,7 +11,7 @@ export default function TablaInstitutosAsignados ({idSede}) {
       }).then((institutosAsig) => {
         setDataAsig(institutosAsig.data);
       });
-    }, []);
+    }, [idSede]);
 
     return (
         <>

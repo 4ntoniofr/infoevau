@@ -58,6 +58,8 @@ export default function ResponsablesSede() {
               responsableSedeSeleccionado = {responsableSedeSeleccionado}
               setResponsableSedeSeleccionado = {setResponsableSedeSeleccionado}
               setResponsableSeleccionado = {setResponsableSeleccionado}
+              dataResponsablesAsignados = {dataResponsablesAsignados}
+              setDataResponsablesAsignados = {setDataResponsablesAsignados}
               sede= {idSede}
             />
 

@@ -1,7 +1,7 @@
 import React from "react";
 import responsablesServices from "../../services/responsablesServices";
 
-function BotonesResponsables({ data, setData, dataResponsablesSede, setDataResponsablesSede , responsableSeleccionado, responsableSedeSeleccionado, setResponsableSedeSeleccionado, setResponsableSeleccionado , sede }) {
+function BotonesResponsables({ data, setData, dataResponsablesSede, setDataResponsablesSede , responsableSeleccionado, responsableSedeSeleccionado, setResponsableSedeSeleccionado, setResponsableSeleccionado, dataResponsablesAsignados, setDataResponsablesAsignados , sede }) {
 
   return (
     <>
@@ -10,8 +10,7 @@ function BotonesResponsables({ data, setData, dataResponsablesSede, setDataRespo
           className="button"
           key={"asignar"}
           onClick={() => {
-            setData(responsablesServices.asignarResponsable(responsableSeleccionado, sede, data, dataResponsablesSede, setDataResponsablesSede))
-            window.location.reload();
+            setData(responsablesServices.asignarResponsable(responsableSeleccionado, sede, data, dataResponsablesSede, setDataResponsablesSede, dataResponsablesAsignados, setDataResponsablesAsignados, sede))
           }}
         >
           Asignar Responsable
@@ -21,7 +20,7 @@ function BotonesResponsables({ data, setData, dataResponsablesSede, setDataRespo
           className="button"
           key={"desasignar"}
           onClick={() => {
-            setData(responsablesServices.desasignarResponsable(sede, data, dataResponsablesSede, setDataResponsablesSede, responsableSeleccionado, setResponsableSedeSeleccionado, setResponsableSeleccionado));
+            setData(responsablesServices.desasignarResponsable(sede, data, dataResponsablesSede, setDataResponsablesSede, dataResponsablesAsignados, setDataResponsablesAsignados));
           }}
         >
           Desasignar Responsable

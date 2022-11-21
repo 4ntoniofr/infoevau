@@ -11,7 +11,7 @@ const insertarResponsables = (responsables) => {
 	return responsables.length;
 };
 
-const asignarResponsable = (responsable, sedeselected, responsablesMemoria, responsableSede, setResponsablesSede) => {
+const asignarResponsable = (responsable, sedeselected, responsablesMemoria, responsableSede, setResponsablesSede, dataResponsablesAsignados, setDataResponsablesAsignados, idSede) => {
 	if(responsable){
 		if(responsableSede){
 			swal({
@@ -25,6 +25,8 @@ const asignarResponsable = (responsable, sedeselected, responsablesMemoria, resp
 				responsable: responsable,
 				sede: sedeselected
 			});
+			dataResponsablesAsignados.push({Nombre: idSede, Responsable: responsable});
+			setDataResponsablesAsignados(dataResponsablesAsignados);
 			setResponsablesSede(responsable)
 			return responsablesMemoria.filter((responsableMemoria) => responsableMemoria !== responsable);
 		}
@@ -38,18 +40,15 @@ const asignarResponsable = (responsable, sedeselected, responsablesMemoria, resp
 	}
 };
 
-const desasignarResponsable = (sedeselected, responsableMemoria, dataResponsablesSede, setDataResponsablesSede, responsableSedeSeleccionado, setResponsableSedeSeleccionado, setResponsableSeleccionado) => {
+const desasignarResponsable = (sedeselected, responsableMemoria, dataResponsablesSede, setDataResponsablesSede, dataResponsablesAsignados, setDataResponsablesAsignados) => {
 	if(dataResponsablesSede){
 		axios.post("http://localhost:3001/desasignarResponsable", {
 			sede: sedeselected
 		});
 		setDataResponsablesSede(null)
-		setResponsableSedeSeleccionado(null)
-		setResponsableSeleccionado(null)
-		if(!responsableMemoria.includes(responsableSedeSeleccionado)){
-			responsableMemoria.push(responsableSedeSeleccionado)
-			responsableMemoria.sort()
-		}
+		setDataResponsablesAsignados(dataResponsablesAsignados.filter((responsable) => responsable.Nombre !== sedeselected));
+		responsableMemoria.push(dataResponsablesSede)
+		responsableMemoria.sort()
 		return(responsableMemoria)
 	}else{
 		swal({
