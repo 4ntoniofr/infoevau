@@ -11,7 +11,6 @@ function BotonesResponsables({ data, setData, dataResponsablesSede, setDataRespo
           key={"asignar"}
           onClick={() => {
             setData(responsablesServices.asignarResponsable(responsableSeleccionado, sede, data, dataResponsablesSede, setDataResponsablesSede))
-            window.location.reload();
           }}
         >
           Asignar Responsable

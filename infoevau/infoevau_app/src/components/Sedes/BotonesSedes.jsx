@@ -28,7 +28,7 @@ function BotonesSedes({ data, setData, sedeSeleccionada, setSedeSeleccionada }) 
                 swal({
                   icon: "error",
                   title: "No se puede procesar el fichero " +  e.target.files[0].name,
-                  text: "La primera línea del fichero debe ser 'SEDE'"
+                  text: "Debe ser un fichero de texto y la primera línea debe ser 'SEDE'"
                 })
               } 
             });
