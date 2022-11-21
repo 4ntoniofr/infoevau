@@ -1,8 +1,9 @@
 import React from 'react'
 import swal from "sweetalert";
+import axios from "axios";
 import alumnoServices from "../../services/alumnoServices";
 
-function BotonesAlumnos({data, setData}) {
+function BotonesAlumnos({data, setData, setDataBD}) {
 	const Papa = require("papaparse");
 
 	return (
@@ -30,14 +31,18 @@ function BotonesAlumnos({data, setData}) {
       <br />
       <button className='buttonAlumnos'
       	onClick={() => {
-			if (data.length > 0) {
+			if (data.data.length > 0) {
 					alumnoServices.insertarAlumnos(data.data.slice(1, data.data.length)).then((r) => {
+						axios.get("http://localhost:3001/alumnos").then((alumnos) => {
+      				setDataBD(alumnos.data);
+    				});
+
 						swal({
 							icon: "success",
 							title: "Inserción exitosa",
 							text: "Se han insertado correctamente " + r + " de " + (data.data.length-1) + " alumnos posibles"
 						})
-					})
+					});
 			} else {
 				swal({
 					icon: "info",

@@ -12,6 +12,10 @@ const insertarSedes = (sedes) => {
 
 const borrarSede = (sede, sedesMemoria) => {
   if (sede) {
+		axios.post("http://localhost:3001/borrarAulasSede", {
+			sedeBorrar: sede,
+		});
+
     axios.post("http://localhost:3001/borrarSede", {
       sedeBorrar: sede,
     });

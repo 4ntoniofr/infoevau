@@ -2,8 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function TablaAlumnos() {
-  const [data, setData] = useState([]);
+function TablaAlumnos({data, setData}) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

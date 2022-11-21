@@ -6,6 +6,7 @@ import { useState } from "react";
 
 export default function Alumnos() {
 	const [data, setData] = useState({});
+	const [dataBD, setDataBD] = useState([]);
 
   return (
     <>
@@ -13,8 +14,8 @@ export default function Alumnos() {
         <h1>Sección de los alumnos</h1>
       </div>
       <div className="alumnos">
-        <BotonesAlumnos data={data} setData={setData}/>
-				<TablaAlumnos />
+        <BotonesAlumnos data={data} setData={setData} setDataBD={setDataBD}/>
+				<TablaAlumnos data={dataBD} setData={setDataBD}/>
       </div>
     </>
   );
