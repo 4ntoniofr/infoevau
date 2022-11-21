@@ -43,7 +43,8 @@ function BotonesAlumnos({data, setData, setDataBD}) {
 						swal({
 							icon: "success",
 							title: "Inserción exitosa",
-							text: "Se han insertado correctamente " + r + " de " + (data.data.length-1) + " alumnos posibles"
+							text: "Se han insertado correctamente " + r + " de " + (data.data.length-1) + " alumnos posibles. "
+							 + "Registro de errores disponible para descargar."
 						})
 					});
 			} else {
