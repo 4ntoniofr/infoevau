@@ -3,73 +3,98 @@
 ----------------------------------------------------------- */
 
 .alumnos {
-    display: flex;
+  display: flex;
 }
 
 .containerHeaderAlumnos {
-    position: relative;
-    left: 2%;
-    width: fit-content;
+  position: relative;
+  left: 2%;
+  width: fit-content;
 }
 
 .containerButtons {
-	position: relative;
-	left: 3%;
-	top: 60px;
-	height: 300px;
-	width: 25%;
-	display: flex;
-	flex-direction: column;
-    align-content: space-between;
+  position: relative;
+  left: 3%;
+  top: 60px;
+  height: 300px;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
 }
 
 .containerTabla {
-    height: 440px;
-    overflow-y: auto;
-    width: 70%;
-    position: absolute;
-    right: 15px;
+  height: 440px;
+  overflow-y: auto;
+  width: 70%;
+  position: absolute;
+  right: 15px;
 }
 
-    /* Scrollbar*/
+/* Scrollbar*/
 
 .containerTabla::-webkit-scrollbar {
-    -webkit-appearance: none;
+  -webkit-appearance: none;
 }
-    
+
 .containerTabla::-webkit-scrollbar:vertical {
-    width:10px;
- }
-    
+  width: 10px;
+}
+
 .containerTabla::-webkit-scrollbar-thumb {
-    background-color: #797979;
-    border-radius: 20px;
-    border: 2px solid #f1f2f3;
- }
+  background-color: #797979;
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+@keyframes example {
+  0% {
+    color: black;
+  }
+  100% {
+    color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+.loadingText {
+  font-size: large;
+  text-align: center;
+  font-weight: bolder;
+  animation-name: example;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
 
 /* -----------------------------------------------------------
 # TABLAS
 ----------------------------------------------------------- */
 
-
-.tablaAlumnos td, .tablaAlumnos th {
-    padding: 8px;
-    width: 100%;
+.tablaAlumnos td,
+.tablaAlumnos th {
+  padding: 8px;
+  width: 100%;
 }
 
-.tablaAlumnos tr:nth-child(odd){background-color: white;}
-.tablaAlumnos tr:nth-child(even){background-color: #f2f2f2;}
+.tablaAlumnos tr:nth-child(odd) {
+  background-color: white;
+}
+.tablaAlumnos tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
-.tablaAlumnos tr:hover {background-color:#ddd;}
+.tablaAlumnos tr:hover {
+  background-color: #ddd;
+}
 
 .tablaAlumnos th {
-    position: sticky;
-    top: 0;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    background-color: aquamarine;
-    color: black;
+  position: sticky;
+  top: 0;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: aquamarine;
+  color: black;
 }
 
 /* -----------------------------------------------------------
@@ -77,49 +102,48 @@
 ----------------------------------------------------------- */
 
 .buttonAlumnos {
-    appearance: none;
-    backface-visibility: hidden;
-    background-color: #27ae60;
-    border-radius: 8px;
-    border-style: none;
-    box-shadow: rgba(39, 174, 96, .15) 0 4px 9px;
-    box-sizing: border-box;
-    color: #fff;
-    cursor: pointer;
-    display: inline-block;
-    font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: normal;
-    line-height: 1.5;
-    outline: none;
-    overflow: hidden;
-    padding: 13px 20px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    transform: translate3d(0, 0, 0);
-    transition: all .3s;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    vertical-align: top;
-    white-space: nowrap;
-    width: 100%;
+  appearance: none;
+  backface-visibility: hidden;
+  background-color: #27ae60;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: rgba(39, 174, 96, 0.15) 0 4px 9px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter, -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
+    sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height: 1.5;
+  outline: none;
+  overflow: hidden;
+  padding: 13px 20px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transform: translate3d(0, 0, 0);
+  transition: all 0.3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  white-space: nowrap;
+  width: 100%;
 }
-  
-.buttonAlumnos:hover {
-    background-color: aquamarine;
-    color: black;
-    opacity: 1;
-    transform: translateY(0);
-    transition-duration: .35s;
-    box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
-}
-  
-.buttonAlumnos:active {
-    transform: translateY(2px);
-    transition-duration: .35s;
-}
-  
 
+.buttonAlumnos:hover {
+  background-color: aquamarine;
+  color: black;
+  opacity: 1;
+  transform: translateY(0);
+  transition-duration: 0.35s;
+  box-shadow: rgba(39, 174, 96, 0.2) 0 6px 12px;
+}
+
+.buttonAlumnos:active {
+  transform: translateY(2px);
+  transition-duration: 0.35s;
+}
