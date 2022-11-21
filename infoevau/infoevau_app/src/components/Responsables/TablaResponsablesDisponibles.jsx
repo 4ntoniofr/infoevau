@@ -13,7 +13,6 @@ export default function TablaResponsablesDisponibles({data, responsableSeleccion
           <tbody>
             {data.map((responsable, key) => {
               if (responsable === responsableSeleccionado) {
-                console.log("Seleccionado " + responsable);
                 return (
                   <tr key={key} style={{ backgroundColor: "#80ff80" }}>
                     <td

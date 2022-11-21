@@ -39,7 +39,6 @@ const asignarResponsable = (responsable, sedeselected, responsablesMemoria, resp
 };
 
 const desasignarResponsable = (sedeselected, responsableMemoria, dataResponsablesSede, setDataResponsablesSede, responsableSedeSeleccionado, setResponsableSedeSeleccionado, setResponsableSeleccionado) => {
-	console.log(responsableSedeSeleccionado)
 	if(dataResponsablesSede){
 		axios.post("http://localhost:3001/desasignarResponsable", {
 			sede: sedeselected
@@ -47,8 +46,10 @@ const desasignarResponsable = (sedeselected, responsableMemoria, dataResponsable
 		setDataResponsablesSede(null)
 		setResponsableSedeSeleccionado(null)
 		setResponsableSeleccionado(null)
-		responsableMemoria.push(responsableSedeSeleccionado)
-		responsableMemoria.sort()
+		if(!responsableMemoria.includes(responsableSedeSeleccionado)){
+			responsableMemoria.push(responsableSedeSeleccionado)
+			responsableMemoria.sort()
+		}
 		return(responsableMemoria)
 	}else{
 		swal({
