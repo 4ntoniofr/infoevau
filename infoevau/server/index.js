@@ -216,6 +216,14 @@ app.post("/borrarAula", (req, res) => {
 	res.send();
 })
 
+app.post("/borrarAulasSede", (req, res) => {
+	let sede = req.body.sedeBorrar;
+
+	db.query("DELETE FROM AULA WHERE Sede = ?;", [sede], (err, res, f) => {
+		if(err) console.log(err)
+	})
+});
+
 app.post("/modificarAula", (req, res) => {
 	let prevID = req.body.prevID;
 	let sedeAula = req.body.sedeAula;
