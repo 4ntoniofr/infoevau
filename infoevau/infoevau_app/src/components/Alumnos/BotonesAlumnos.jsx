@@ -1,4 +1,5 @@
 import React from 'react'
+import swal from "sweetalert";
 import alumnoServices from "../../services/alumnoServices";
 
 function BotonesAlumnos({data, setData}) {
@@ -21,7 +22,13 @@ function BotonesAlumnos({data, setData}) {
       <br />
       <button className='buttonAlumnos'
       	onClick={() => {
-        	alumnoServices.insertarAlumnos(data.data.slice(1, data.data.length));
+					alumnoServices.insertarAlumnos(data.data.slice(1, data.data.length)).then((r) => {
+						swal({
+							icon: "success",
+							title: "Inserción exitosa",
+							text: "Se han insertado correctamente " + r + " de " + (data.data.length-1) + " alumnos posibles"
+						})
+					})
         }}
       >
       	Guardar informacion

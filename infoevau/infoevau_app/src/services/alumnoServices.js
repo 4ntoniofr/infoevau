@@ -66,6 +66,8 @@ const insertarAlumnos = async (alumnos) => {
 			matriculaciones: matriculaciones.slice(j * MAX_ENVIO, (j+1) * MAX_ENVIO),
 		});
 	}
+
+	return alumnosInsercion.length;
 };
 
 const formatoCorrecto = (nif) => {
