@@ -41,7 +41,15 @@ export default function ResponsablesSede() {
 
     return (<>
         <div className="containerHeader">
-            <h2>Responsables de la sede {idSede}</h2>
+
+            {dataResponsablesSede ? 
+            <h2 className="labelResponasble">
+              El responsable de {idSede} es <label>{dataResponsablesSede}</label>
+            </h2>
+             : 
+            <h2 className="labelResponasble">
+              La sede {idSede} no tiene Responsable
+            </h2>}
 
             <TablaResponsablesDisponibles 
             data = {data}
@@ -67,15 +75,6 @@ export default function ResponsablesSede() {
               data = {dataResponsablesAsignados}
               setData = {setDataResponsablesAsignados}
             />
-
-            {dataResponsablesSede ? 
-            <label className="labelResponasble">
-              El responsable de {idSede} es <label>{dataResponsablesSede}</label>
-            </label>
-             : 
-            <label className="labelResponasble">
-              La sede {idSede} no tiene Responsable
-            </label>}
 
         </div>
     </>)

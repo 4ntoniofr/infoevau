@@ -189,12 +189,3 @@
 .button:hover {
   box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
 }
-
-
-.labelResponasble {
-    position: fixed;
-    top: 80%;
-    overflow:auto;
-    font-size: 25px;
-    font-weight: bold;
-}
