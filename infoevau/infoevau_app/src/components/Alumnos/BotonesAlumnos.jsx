@@ -33,7 +33,7 @@ function BotonesAlumnos({data, setData}) {
       <br />
       <button className='buttonAlumnos'
       	onClick={() => {
-			if (data.length > 0) {
+			if (data.data.length > 0) {
 					alumnoServices.insertarAlumnos(data.data.slice(1, data.data.length)).then((r) => {
 						swal({
 							icon: "success",
