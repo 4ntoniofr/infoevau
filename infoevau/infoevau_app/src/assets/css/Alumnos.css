@@ -147,3 +147,52 @@
   transform: translateY(2px);
   transition-duration: 0.35s;
 }
+
+.custom-input-file {
+  background-color: #27ae60;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: rgba(39, 174, 96, .15) 0 4px 9px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height: 1.5;
+  outline: none;
+  overflow: hidden;
+  padding: 13px 20px;
+  position: relative;
+  transform: translate3d(0, 0, 0);
+  transition: all .3s;
+  user-select: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.custom-input-file:hover {
+  background-color: aquamarine;
+  color:black;
+  opacity: 1;
+  transform: translateY(0);
+  transition-duration: .35s;
+  box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
+}
+
+.custom-input-file .input-file{
+  border: 10000px solid transparent;
+  cursor: pointer;
+  font-size: 10000px;
+  margin: 0;
+  opacity: 0;
+  outline: 0 none;
+  padding: 0;
+  position: absolute;
+  right: -1000px;
+  top: -1000px;
+  text-align: center;
+}
