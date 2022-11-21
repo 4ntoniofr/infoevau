@@ -6,7 +6,7 @@ export default function TablaInstitutosAsignados ({idSede}) {
     const [institutoSeleccionado, setInstitutoSeleccionado] = useState(null);
     const [dataAsig, setDataAsig] = useState([]);
     useEffect(() => {
-      axios.get("http://localhost:3001/institutosAsignados",{
+      axios.post("http://localhost:3001/institutosAsignados",{
         sede: idSede
       }).then((institutosAsig) => {
         setDataAsig(institutosAsig.data);

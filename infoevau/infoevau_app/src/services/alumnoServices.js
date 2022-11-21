@@ -24,7 +24,7 @@ const insertarAlumnos = async (alumnos) => {
 		if(alumnosIncluidos.find(ai => ai.NIF === a[4]) !== undefined){
 			logErrores = logErrores + 'Ya se encontró un alumno con el mismo indentificador: ' + a[4] + ' en el alumno ' + a + '\n';
 		}else if(!formatoCorrecto(a[4])){
-			logErrores += 'El NIF: ' + a[4] + ' tiene un formato incorrecto. ' + a +'\n';
+			logErrores += 'El NIF: ' + a[4] + ' tiene un formato incorrecto. ' + a + '\n';
 		}else{
 			//almacenamos en institutosInclude los institutos que no estan en la BD
 			if(institutos.find(i => i.Nombre === a[0]) === undefined){
@@ -38,7 +38,7 @@ const insertarAlumnos = async (alumnos) => {
 				if(matriculacionesIncluidas.find(m => (m.NIF === a[4] && m.Materia === asig)) !== undefined){
 					logErrores += 'El alumno identificado por el NIF ' + a[4] + ' ya se encuentra matriculado en ' + asig + a + '\n';
 				}else if(materiasIncluidas.find(m => m.Nombre === asig) === undefined){
-					logErrores += 'La materia ' + asig + ' no se encuentra dentro de la lista de materias. ' + a + asignaturas;
+					logErrores += 'La materia ' + asig + ' no se encuentra dentro de la lista de materias. ' + a + asignaturas + '\n';
 				}else{
 					matriculaciones.push([asig, a[4]]);
 				}
@@ -70,9 +70,8 @@ const insertarAlumnos = async (alumnos) => {
 
 const formatoCorrecto = (nif) => {
 	// eslint-disable-next-line no-useless-escape
-	//const regExp = new RegExp("\d{8}[A-Z] | [A-Z]\d{7}[A-Z]");
-	//return regExp.test(nif);
-	return true;
+	const regExp = /\d{8}[A-Z]|[A-Z]\d{7}[A-Z]/
+	return regExp.test(nif);
 }
 
 const generarFichero = () => {
