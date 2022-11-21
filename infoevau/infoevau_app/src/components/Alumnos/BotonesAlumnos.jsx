@@ -35,6 +35,21 @@ function BotonesAlumnos({data, setData}) {
       </button>
       <br />
 			<button className='buttonAlumnos' onClick={() => {alumnoServices.generarFichero()}}>Mostrar log</button>
+			<button className='buttonAlumnos' onClick={() => {alumnoServices.generarFichero()}}></button>
+			<input
+                className="buttonAlumnos"
+                type="file"
+                accept=".txt"
+                onChange={(e) => {
+                    e.target.files[0].text().then((t) => {
+											alumnoServices.insertarMaterias(t.split("\n"));
+											swal({
+												icon: "success",
+												text: "Se han insertado correctamente " + t.split("\n").length + " materias"
+											})
+                });
+            }}
+        />
     </div>
 	)
 }

@@ -1,3 +1,4 @@
+import axios from "axios";
 import Axios from "axios";
 
 let logErrores = 'LOG DE ERRORES\n';
@@ -85,6 +86,12 @@ const generarFichero = () => {
 	link.click();
 }
 
-const alumnoServices = { logErrores, insertarAlumnos, generarFichero }
+const insertarMaterias = (materias) => {
+	axios.post("http://localhost:3001/nuevasMaterias", {
+		materias: materias
+	});
+}
+
+const alumnoServices = { logErrores, insertarAlumnos, generarFichero, insertarMaterias }
 
 export default alumnoServices;

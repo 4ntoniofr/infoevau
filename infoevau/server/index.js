@@ -242,3 +242,17 @@ app.post("/nuevaAula", (req, res) => {
 			if (err) console.log(err);
 		})
 });
+
+/*
+*	Materias
+*/
+app.post("/nuevasMaterias", (req, res) => {
+	let materias = req.body.materias;
+	materias.forEach(m => {
+		if(m != ''){
+			db.query("INSERT INTO MATERIA VALUES (?);", [m], (err,res,f) => {
+				if(err) console.log(err)
+			});
+		}
+	})
+});
