@@ -67,11 +67,11 @@ export default function ResponsablesSede() {
             />
 
             {dataResponsablesSede ? 
-            <div>
+            <label className="labelResponasble">
               El responsable de {idSede} es <label>{dataResponsablesSede}</label>
-            </div>
+            </label>
              : 
-            <label>
+            <label className="labelResponasble">
               La sede {idSede} no tiene Responsable
             </label>}
 
