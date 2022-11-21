@@ -1,8 +1,8 @@
 import Axios from "axios";
 
-export let logErrores = 'LOG DE ERRORES\n';
+let logErrores = 'LOG DE ERRORES\n';
 
-export const insertarAlumnos = async (alumnos) => {
+const insertarAlumnos = async (alumnos) => {
 	const MAX_ENVIO = 500;
 	let institutos = []
 	let institutosInclude = []
@@ -22,9 +22,9 @@ export const insertarAlumnos = async (alumnos) => {
 	alumnos.forEach(a => {
 		//comprobamos si el alumno ya esta incluido en la BD o si el formato del NIF es incorrecto
 		if(alumnosIncluidos.find(ai => ai.NIF === a[4]) !== undefined){
-			logErrores.concat('Ya se encontró un alumno con el mismo indentificador:', a[4], 'en el alumno', a, '\n');
+			logErrores = logErrores + 'Ya se encontró un alumno con el mismo indentificador: ' + a[4] + ' en el alumno ' + a + '\n';
 		}else if(!formatoCorrecto(a[4])){
-			logErrores.concat('El NIF:', a[4], 'tiene un formato incorrecto.', a, '\n');
+			logErrores += 'El NIF: ' + a[4] + ' tiene un formato incorrecto. ' + a +'\n';
 		}else{
 			//almacenamos en institutosInclude los institutos que no estan en la BD
 			if(institutos.find(i => i.Nombre === a[0]) === undefined){
@@ -36,9 +36,9 @@ export const insertarAlumnos = async (alumnos) => {
 			let asignaturas = a.pop()	//elimina el ultimo elemento y lo devuelve
 			asignaturas.split(', ').forEach((asig) => {
 				if(matriculacionesIncluidas.find(m => (m.NIF === a[4] && m.Materia === asig)) !== undefined){
-					logErrores.concat('El alumno identificado por el NIF', a[4], 'ya se encuentra matriculado en', asig, a, '\n');
+					logErrores += 'El alumno identificado por el NIF ' + a[4] + ' ya se encuentra matriculado en ' + asig + a + '\n';
 				}else if(materiasIncluidas.find(m => m.Nombre === asig) === undefined){
-					logErrores.concat('La materia', asig,'no se encuentra dentro de la lista de materias.',a,asignaturas)
+					logErrores += 'La materia ' + asig + ' no se encuentra dentro de la lista de materias. ' + a + asignaturas;
 				}else{
 					matriculaciones.push([asig, a[4]]);
 				}
@@ -74,3 +74,16 @@ const formatoCorrecto = (nif) => {
 	//return regExp.test(nif);
 	return true;
 }
+
+const generarFichero = () => {
+	const blob = new Blob([logErrores], { type: "text/plain" });
+	const url = URL.createObjectURL(blob);
+	const link = document.createElement("a");
+	link.download = "log.txt";
+	link.href = url;
+	link.click();
+}
+
+const alumnoServices = { logErrores, insertarAlumnos, generarFichero }
+
+export default alumnoServices;

@@ -1,5 +1,5 @@
 import React from 'react'
-import { logErrores, insertarAlumnos } from "../../services/alumnoServices";
+import alumnoServices from "../../services/alumnoServices";
 
 function BotonesAlumnos({data, setData}) {
 	const Papa = require("papaparse");
@@ -21,13 +21,13 @@ function BotonesAlumnos({data, setData}) {
       <br />
       <button className='buttonAlumnos'
       	onClick={() => {
-        	insertarAlumnos(data.data.slice(1, data.data.length));
+        	alumnoServices.insertarAlumnos(data.data.slice(1, data.data.length));
         }}
       >
       	Guardar informacion
       </button>
       <br />
-			<button className='buttonAlumnos' onClick={() => {console.log(logErrores)}}>Mostrar log</button>
+			<button className='buttonAlumnos' onClick={() => {alumnoServices.generarFichero()}}>Mostrar log</button>
     </div>
 	)
 }
