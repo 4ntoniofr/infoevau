@@ -51,7 +51,6 @@ function BotonesAlumnos({data, setData}) {
       </button>
       <br />
 			<button className='buttonAlumnos' onClick={() => {alumnoServices.generarFichero()}}>Mostrar log</button>
-			<button className='buttonAlumnos' onClick={() => {alumnoServices.generarFichero()}}></button>
 			<input
                 className="buttonAlumnos"
                 type="file"
