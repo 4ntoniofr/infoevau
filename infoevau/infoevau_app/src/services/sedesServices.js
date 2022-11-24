@@ -59,17 +59,6 @@ const modificarSede = (sede, sedesMemoria) => {
   return sedesMemoria;
 };
 
-const abrirResponsablesSede = (sede) => {
-  if(sede != null){
-    window.location.href = "/sedes/" + sede.replace("/","$") + "/responsables";
-  } else{
-    swal({
-      icon: "info",
-      text: "Ninguna sede ha sido seleccionada"
-    });
-  }
-}
-
 const abrirInstitutosSede = (sede) => {
   if (sede != null) {
     window.location.href = "/sedes/" + sede.replace("/","$") + "/institutos";
@@ -92,7 +81,6 @@ const abrirAulasSede = (sede) => {
   } 
 }
 
-const sedesServices = { insertarSedes, borrarSede, modificarSede, abrirResponsablesSede, 
-    abrirInstitutosSede, abrirAulasSede };
+const sedesServices = { insertarSedes, borrarSede, modificarSede, abrirInstitutosSede, abrirAulasSede };
 
 export default sedesServices;

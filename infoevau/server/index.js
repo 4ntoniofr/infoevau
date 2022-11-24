@@ -25,8 +25,9 @@ const dbQuery = (query, req, res) => {
 	});
 };
 
-/**
- * Consultas de las tablas
+/** =========================================================================
+ *  Consultas de las tablas
+ *  =========================================================================
  */
 
 app.get("/", (req, res) => {
@@ -54,13 +55,13 @@ app.get("/matriculas", (req, res) => {
 	dbQuery("SELECT * FROM MATRICULA", req, res);
 });
 
-app.get("/responsablesDisponibles", (req, res) => {
-	dbQuery("SELECT Nombre FROM RESPONSABLE WHERE Nombre NOT IN (SELECT Responsable FROM SEDE WHERE Responsable IS NOT NULL)", req, res)
-})
-
 app.get("/sedes", (req, res) => {
 	dbQuery("SELECT * FROM SEDE ORDER BY 1", req, res);
 });
+
+app.get("/responsablesDisponibles", (req, res) => {
+	dbQuery("SELECT Nombre FROM RESPONSABLE WHERE Nombre NOT IN (SELECT Responsable FROM SEDE WHERE Responsable IS NOT NULL)", req, res)
+})
 
 app.post("/responsablesSede", (req, res) => {
 	let sede = req.body.sede;
@@ -83,8 +84,9 @@ app.post("/institutosAsignados", (req, res) => {
 })
 
 
-/**
- * Alumnos
+/** =========================================================================
+ *  Alumnos
+ *  =========================================================================
  */
 
 app.post("/nuevosAlumnos", (req, res) => {
@@ -107,16 +109,24 @@ app.post("/nuevasMatriculaciones", (req, res) => {
 	res.send();
 });
 
-/**
- * Responsables
+app.get("/deleteAlumnos", (req, res) => {
+	db.query("DELETE FROM ALUMNO", (err, res, f) => {
+		if (err) console.log(err)
+		else console.log('Tabla ALUMNO borrada');
+	});
+})
+
+/** =========================================================================
+ *  Responsables
+ *  =========================================================================
  */
 
 app.post("/asignarResponsable", (req, res) => {
-	let responsable = req.body.responsable;
-	let sede = req.body.sede;
-
-	db.query("UPDATE SEDE SET Responsable = '" + responsable + "' where Nombre = '" + sede + "' ORDER BY Nombre;", (err, res, f) => {
+	let responsable = req.body.responsable.Nombre;
+	let sede = req.body.sede.Nombre;
+	db.query("UPDATE SEDE SET Responsable = '" + responsable + "' where Nombre = '" + sede + "';", (err, res, f) => {
 		if (err) console.log(err)
+		
 	})
 	res.send();
 })
@@ -143,8 +153,9 @@ app.post("/nuevosResponsables", (req, res) => {
 	})
 });
 
-/**
- * Institutos
+/** =========================================================================
+ *  Institutos
+ *  =========================================================================
  */
 
 app.post("/nuevosInstitutos", (req, res) => {
@@ -156,8 +167,9 @@ app.post("/nuevosInstitutos", (req, res) => {
 	})
 });
 
-/**
- * Sedes
+/** =========================================================================
+ *  Sedes
+ *  =========================================================================
  */
 
 app.post("/nuevasSedes", (req, res) => {
@@ -195,14 +207,21 @@ app.post("/modificarSede", (req, res) => {
 })
 
 app.get("/deleteSedes", (req, res) => {
+
+	db.query("DELETE FROM AULA", (err, res, f) => {
+		if (err) console.log(err)
+		else console.log('Tabla AULA borrada');
+	});
+
 	db.query("DELETE FROM SEDE", (err, res, f) => {
 		if (err) console.log(err)
 		else console.log('Tabla SEDE borrada');
 	});
 })
 
-/**
- * Aulas
+/** =========================================================================
+ *  Aulas
+ *  =========================================================================
  */
 
 app.post("/borrarAula", (req, res) => {
@@ -251,9 +270,11 @@ app.post("/nuevaAula", (req, res) => {
 		})
 });
 
-/*
-*	Materias
-*/
+/** =========================================================================
+ *  Materias
+ *  =========================================================================
+ */
+
 app.post("/nuevasMaterias", (req, res) => {
 	let materias = req.body.materias;
 	materias.forEach(m => {

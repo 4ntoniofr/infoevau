@@ -2,80 +2,55 @@ import React from "react";
 import "../../assets/css/Responsables.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import TablaResponsablesDisponibles from "./TablaResponsablesDisponibles";
+import TablaResponsablesSede from "./TablaResponsableSede";
 import BotonesResponsables from "./BotonesResponsables";
-import TablaResponsablesSede from "./TablasResponsableSede";
 
 export default function ResponsablesSede() {
-    let params = useParams();
-    let idSede = params.idSede.replace("$","/");
 
-    const [responsableSeleccionado, setResponsableSeleccionado] = useState(null);
-    const [responsableSedeSeleccionado, setResponsableSedeSeleccionado] = useState(null);
-    const [data, setData] = useState([]);
-    const [dataResponsablesSede, setDataResponsablesSede] = useState(null)
-    const [dataResponsablesAsignados, setDataResponsablesAsignados] = useState([])
-    
+    const [respDispSeleccionado, setRespDispSeleccionado] = useState(null);
+    const [sedeSeleccionada, setSedeSeleccionada] = useState(null);
+    const [dataRespDisp, setDataRespDisp] = useState([]);
+    const [dataSedes, setDataSedes] = useState([]);
 
     useEffect(() => {
         axios.get("http://localhost:3001/responsablesDisponibles").then((responsables) => {
-          const array = []
-          responsables.data.map( responsable => array.push(responsable.Nombre))
-          setData(array);
+            setDataRespDisp(responsables.data);
         },);
 
-        axios.post("http://localhost:3001/responsablesSede", {
-          sede: idSede
-        }).then((responsablesSede) => {
-          setDataResponsablesSede(responsablesSede.data[0].Responsable);
-        },);
-        
-        axios.get("http://localhost:3001/responsablesAsignados").then((responsablesAsignados) => {
-          const array = []
-          responsablesAsignados.data.map(r => array.push(r))
-          setDataResponsablesAsignados(array);
-        },);
+        axios.get("http://localhost:3001/sedes").then((sedes) => {
+            setDataSedes(sedes.data);
+        });
 
-      }, [idSede]);
+    }, []);
 
-    return (<>
+    return (
+        <>
         <div className="containerHeader">
-
-            {dataResponsablesSede ? 
-            <h2 className="labelResponasble">
-              El responsable de {idSede} es <label>{dataResponsablesSede}</label>
-            </h2>
-             : 
-            <h2 className="labelResponasble">
-              La sede {idSede} no tiene Responsable
-            </h2>}
-
-            <TablaResponsablesDisponibles 
-            data = {data}
-            responsableSeleccionado = {responsableSeleccionado}
-            setResponsableSeleccionado = {setResponsableSeleccionado}
-            />
-
-            <BotonesResponsables 
-              data = {data}
-              setData = {setData}
-              dataResponsablesSede = {dataResponsablesSede}
-              setDataResponsablesSede = {setDataResponsablesSede}
-              responsableSeleccionado = {responsableSeleccionado}
-              responsableSedeSeleccionado = {responsableSedeSeleccionado}
-              setResponsableSedeSeleccionado = {setResponsableSedeSeleccionado}
-              setResponsableSeleccionado = {setResponsableSeleccionado}
-              dataResponsablesAsignados = {dataResponsablesAsignados}
-              setDataResponsablesAsignados = {setDataResponsablesAsignados}
-              sede= {idSede}
-            />
-
-            <TablaResponsablesSede
-              data = {dataResponsablesAsignados}
-              setData = {setDataResponsablesAsignados}
-            />
-
+            <h1>Sección de los responsables de sede</h1>
         </div>
-    </>)
+
+        <TablaResponsablesDisponibles 
+            data = {dataRespDisp}
+            responsableSeleccionado = {respDispSeleccionado}
+            setResponsableSeleccionado = {setRespDispSeleccionado}
+        />
+
+        <BotonesResponsables 
+            respDispSeleccionado = {respDispSeleccionado}
+            sedeSeleccionada = {sedeSeleccionada}
+            dataRespDisp = {dataRespDisp}
+            setDataRespDisp = {setDataRespDisp}
+            dataSedes = {dataSedes}
+            setDataSedes = {setDataSedes}
+        />
+
+        <TablaResponsablesSede 
+            data = {dataSedes}
+            sedeSeleccionada = {sedeSeleccionada}
+            setSedeSeleccionada = {setSedeSeleccionada}
+        />
+
+        </>
+    )
 }

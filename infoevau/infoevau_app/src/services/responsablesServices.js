@@ -11,33 +11,15 @@ const insertarResponsables = (responsables) => {
 	return responsables.length;
 };
 
-const asignarResponsable = (responsable, sedeselected, responsablesMemoria, responsableSede, setResponsablesSede, dataResponsablesAsignados, setDataResponsablesAsignados, idSede) => {
-	if(responsable){
-		if(responsableSede){
-			swal({
-				icon: "error",
-				title: "Error",
-				text: "Solo se puede tener un representante por sede, si quiere cambiar de representante, desasigne el actual primero." 
-			});
-			return responsablesMemoria;
-		}else{
-			axios.post("http://localhost:3001/asignarResponsable", {
-				responsable: responsable,
-				sede: sedeselected
-			});
-			dataResponsablesAsignados.push({Nombre: idSede, Responsable: responsable});
-			setDataResponsablesAsignados(dataResponsablesAsignados);
-			setResponsablesSede(responsable)
-			return responsablesMemoria.filter((responsableMemoria) => responsableMemoria !== responsable);
-		}
-	}else{
-		swal({
-			icon: "error",
-			title: "Error",
-			text: "No se ha seleccionado el responsable." 
-		});
-		return responsablesMemoria;
-	}
+const asignarResponsable = (responsable, sedeselected) => {
+
+	axios.post("http://localhost:3001/asignarResponsable", {
+		responsable: responsable,
+		sede: sedeselected
+	});
+	/*dataSedes.push({Nombre: sedeselected.Nombre, Responsable: responsable.Nombre});
+	setDataSedes(dataSedes);
+	return dataRespDisp.filter((r) => r !== responsable);*/
 };
 
 const desasignarResponsable = (sedeselected, responsableMemoria, dataResponsablesSede, setDataResponsablesSede, dataResponsablesAsignados, setDataResponsablesAsignados) => {

@@ -39,9 +39,19 @@ export default function TablaSedes({data, sedeSeleccionada, setSedeSeleccionada 
                 </tr>
               );
             })}
+
           </tbody>
         </table>
       </div>
+      {data === null || data.length === 0?
+        <div className="containerNoSedes">
+            <br />
+            <h3>No hay sedes.</h3>
+            <p>Pulse en "Importar sedes" para cargar sedes</p>
+          </div>
+          :
+          <></>
+      }
     </>
   );
 }

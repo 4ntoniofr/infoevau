@@ -35,7 +35,7 @@ function BotonesSedes({ data, setData, sedeSeleccionada, setSedeSeleccionada }) 
               });
             }}
           />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Importar sede
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Importar sedes
         </div>
         <button
           className="buttonSedes"
@@ -77,7 +77,7 @@ function BotonesSedes({ data, setData, sedeSeleccionada, setSedeSeleccionada }) 
         <button 
         className="buttonSedes"
         onClick={() => {
-          sedesServices.abrirResponsablesSede(sedeSeleccionada);
+          window.location.href = "/sedes/responsablesSede";
         }}
         >Responsables</button>
         <button

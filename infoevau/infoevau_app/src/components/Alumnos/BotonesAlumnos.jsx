@@ -32,32 +32,47 @@ function BotonesAlumnos({data, setData, setDataBD}) {
 	  &nbsp;&nbsp;&nbsp;&nbsp;Importar alumnos
 	  </div>
       <br />
-      <button className='buttonAlumnos'
-      	onClick={() => {
-			if (data.data.length > 0) {
-					alumnoServices.insertarAlumnos(data.data.slice(1, data.data.length)).then((r) => {
-						axios.get("http://localhost:3001/alumnos").then((alumnos) => {
-      				setDataBD(alumnos.data);
-    				});
+	  {data.data === null || data.data === undefined ?
+	    <button className='pseudoDisabledButton'
+			onClick={() => {
+			  swal({
+				icon: "info",
+				title: "Sin información para guardar",
+				text: "Seleccione primero un fichero csv a cargar y posteriormente guarde la información."
+			  })
+		  	}}
+		>
+			Guardar informacion
+		</button>
+		:
+		<button className='buttonAlumnos'
+		onClick={() => {
+		  if (data.data.length > 0) {
+				  alumnoServices.insertarAlumnos(data.data.slice(1, data.data.length)).then((r) => {
+					  axios.get("http://localhost:3001/alumnos").then((alumnos) => {
+					setDataBD(alumnos.data);
+				  });
 
-						swal({
-							icon: "success",
-							title: "Inserción exitosa",
-							text: "Se han insertado correctamente " + r + " de " + (data.data.length-1) + " alumnos posibles. "
-							 + "Registro de errores disponible para descargar."
-						})
-					});
-			} else {
-				swal({
-					icon: "info",
-					title: "No hay datos a importar",
-					text: "Seleccione primero un archivo .csv para cargar los datos"
-				})
-			}
-        }}
-      >
-      	Guardar informacion
-      </button>
+					  swal({
+						  icon: "success",
+						  title: "Inserción exitosa",
+						  text: "Se han insertado correctamente " + r + " de " + (data.data.length-1) + " alumnos posibles. "
+						   + "Registro de errores disponible para descargar."
+					  })
+				  });
+			  } else {
+			  swal({
+				  icon: "info",
+				  title: "No hay datos a importar",
+				  text: "Seleccione primero un archivo .csv para cargar los datos"
+			  })
+		  }
+		  }}
+	>
+		Guardar informacion
+		</button>
+	   }
+
       <br />
 			<button className='buttonAlumnos' onClick={() => {alumnoServices.generarFichero()}}>Mostrar log</button>
 			<br />

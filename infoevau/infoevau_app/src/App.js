@@ -31,7 +31,7 @@ const router = createBrowserRouter([
     errorElement: <PaginaError />,
   },
   {
-    path: "/sedes/:idSede/responsables",
+    path: "/sedes/responsablesSede",
     element: <ResponsablesSede />,
     errorElement: <PaginaError />,
   },

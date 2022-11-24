@@ -31,6 +31,17 @@
   right: 15px;
 }
 
+.containerNoAlumnos {
+  position: absolute;
+  text-align: center;
+  background-color: white;
+  border-radius: 20px;
+  width: 70%;
+  right: 15px;
+  top:38%;
+  height: 26%;
+}
+
 /* Scrollbar*/
 
 .containerTabla::-webkit-scrollbar {
@@ -195,4 +206,35 @@
   right: -1000px;
   top: -1000px;
   text-align: center;
+}
+
+.pseudoDisabledButton {
+  appearance: none;
+  backface-visibility: hidden;
+  background-color: #6e6e6e;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: #fff;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height: 1.5;
+  outline: none;
+  overflow: hidden;
+  padding: 13px 20px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transform: translate3d(0, 0, 0);
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  white-space: nowrap;
+  width: 100%;
 }
