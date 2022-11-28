@@ -8,7 +8,7 @@
 
 .containerHeaderAlumnos {
   position: relative;
-  left: 2%;
+  left: 1%;
   width: fit-content;
 }
 
@@ -29,6 +29,7 @@
   width: 70%;
   position: absolute;
   right: 15px;
+  top:22%;
 }
 
 .containerNoAlumnos {
