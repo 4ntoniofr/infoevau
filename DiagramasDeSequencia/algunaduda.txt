@@ -1,0 +1,8 @@
+Genera - El explorador de archivo sería interfaz en vez de repuesta al usuario?
+
+rf4 - cuando se inserta línea se necesita respuesta?
+rf4 - Si un error lleva a un interface, los mensajes de ok también?
+
+rf5alt1 - La Asignación tendría que ser un loop porque hay varias aulas?
+
+rf6 - Controler personal o controler sedes?
