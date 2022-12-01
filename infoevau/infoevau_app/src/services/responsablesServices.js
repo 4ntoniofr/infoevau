@@ -10,25 +10,21 @@ const insertarResponsables = (responsables) => {
 	return responsables.length;
 };
 
-const asignarResponsable = (responsable, sedeselected, setDataRespDisp, setDataSedes) => {
+const asignarResponsable = (responsable, sedeselected, setDataRespDisp, setDataSedes, dataSedes, dataRespDisp) => {
 
 	axios.post("http://localhost:3001/asignarResponsable", {
 		responsable: responsable,
 		sede: sedeselected
 	});
 
-	
-	axios.get("http://localhost:3001/responsablesDisponibles").then((responsable) => {
-      setDataRespDisp(responsable.data);
-  	});
+	setDataRespDisp(dataRespDisp.filter((r) => r !== responsable))
 
 	axios.get("http://localhost:3001/sedes").then((sede) => {
 		setDataSedes(sede.data);
-	});
-
+  	});
+	
 	/*dataSedes.push({Nombre: sedeselected.Nombre, Responsable: responsable.Nombre});
-	setDataSedes(dataSedes);
-	return dataRespDisp.filter((r) => r !== responsable);*/
+	setDataSedes(dataSedes);*/
 };
 
 const desasignarResponsable = (sedeselected, setDataSedes, setDataRespDisp) => {

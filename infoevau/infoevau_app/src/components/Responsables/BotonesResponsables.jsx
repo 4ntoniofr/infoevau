@@ -27,7 +27,7 @@ function BotonesResponsables({ dataRespDisp, setResponsableSeleccionado, sedeSel
             className="button"
             key={"asignar"}
             onClick={() => {
-                  responsablesServices.asignarResponsable(respDispSeleccionado, sedeSeleccionada, setDataRespDisp, setDataSedes);
+                  responsablesServices.asignarResponsable(respDispSeleccionado, sedeSeleccionada, setDataRespDisp, setDataSedes, dataSedes, dataRespDisp);
                   setResponsableSeleccionado(null);
                   setSedeSeleccionada(null);
               }}
@@ -58,6 +58,7 @@ function BotonesResponsables({ dataRespDisp, setResponsableSeleccionado, sedeSel
             onClick={() => {
               responsablesServices.desasignarResponsable(sedeSeleccionada, setDataSedes, setDataRespDisp);
               setSedeSeleccionada(null);
+              setResponsableSeleccionado(null);
             }}
           >
             Desasignar Responsable

@@ -91,7 +91,7 @@ function BotonesAlumnos({data, setData, setDataBD}) {
                 });
             }}
         	/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;Importar materias
+			&nbsp;&nbsp;&nbsp;&nbsp;Importar exámenes
 			</div>
     </div>
 	)
