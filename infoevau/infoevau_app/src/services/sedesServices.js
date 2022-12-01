@@ -1,13 +1,17 @@
 import axios from "axios";
 import swal from 'sweetalert';
 
-const insertarSedes = (sedes) => {
+const insertarSedes = (sedes, data, setData) => {
   axios.post("http://localhost:3001/nuevasSedes", {
     sedes: sedes.slice(1, sedes.length),
   });
-  return sedes.slice(1, sedes.length).map((sede) => {
-    return { Nombre: sede };
+
+  axios.get("http://localhost:3001/sedes").then((sedes) => {
+      setData(sedes.data);
   });
+  /*return sedes.slice(1, sedes.length).map((sede) => {
+    return { Nombre: sede };
+  });*/
 };
 
 const borrarSede = (sede, sedesMemoria) => {

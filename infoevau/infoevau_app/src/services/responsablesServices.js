@@ -1,5 +1,4 @@
 import axios from "axios";
-import swal from 'sweetalert';
 
 const insertarResponsables = (responsables) => {
 	axios.post("http://localhost:3001/nuevosResponsables", {
@@ -11,35 +10,39 @@ const insertarResponsables = (responsables) => {
 	return responsables.length;
 };
 
-const asignarResponsable = (responsable, sedeselected) => {
+const asignarResponsable = (responsable, sedeselected, setDataRespDisp, setDataSedes) => {
 
 	axios.post("http://localhost:3001/asignarResponsable", {
 		responsable: responsable,
 		sede: sedeselected
 	});
+
+	
+	axios.get("http://localhost:3001/responsablesDisponibles").then((responsable) => {
+      setDataRespDisp(responsable.data);
+  	});
+
+	axios.get("http://localhost:3001/sedes").then((sede) => {
+		setDataSedes(sede.data);
+	});
+
 	/*dataSedes.push({Nombre: sedeselected.Nombre, Responsable: responsable.Nombre});
 	setDataSedes(dataSedes);
 	return dataRespDisp.filter((r) => r !== responsable);*/
 };
 
-const desasignarResponsable = (sedeselected, responsableMemoria, dataResponsablesSede, setDataResponsablesSede, dataResponsablesAsignados, setDataResponsablesAsignados) => {
-	if(dataResponsablesSede){
-		axios.post("http://localhost:3001/desasignarResponsable", {
-			sede: sedeselected
-		});
-		setDataResponsablesSede(null)
-		setDataResponsablesAsignados(dataResponsablesAsignados.filter((responsable) => responsable.Nombre !== sedeselected));
-		responsableMemoria.push(dataResponsablesSede)
-		responsableMemoria.sort()
-		return(responsableMemoria)
-	}else{
-		swal({
-			icon: "error",
-			title: "Error",
-			text: "La sede seleccionada no tiene responsable asignado." 
-		});
-		return responsableMemoria;
-	}
+const desasignarResponsable = (sedeselected, setDataSedes, setDataRespDisp) => {
+	axios.post("http://localhost:3001/desasignarResponsable", {
+		sede: sedeselected.Nombre
+	});
+
+	axios.get("http://localhost:3001/responsablesDisponibles").then((responsable) => {
+      setDataRespDisp(responsable.data);
+  	});
+
+	axios.get("http://localhost:3001/sedes").then((sede) => {
+		setDataSedes(sede.data);
+	});
 }
 
 const responsablesServices = {insertarResponsables, asignarResponsable, desasignarResponsable}

@@ -138,7 +138,6 @@ app.post("/desasignarResponsable", (req, res) => {
 		if (err) console.log(err)
 	})
 	res.send();
-
 })
 
 app.post("/nuevosResponsables", (req, res) => {

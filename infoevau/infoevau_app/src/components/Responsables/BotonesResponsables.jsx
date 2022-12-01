@@ -2,7 +2,7 @@ import React from "react";
 import swal from "sweetalert";
 import responsablesServices from "../../services/responsablesServices";
 
-function BotonesResponsables({ dataRespDisp, setDataRespDisp, respDispSeleccionado, sedeSeleccionada, dataSedes, setDataSedes }) {
+function BotonesResponsables({ dataRespDisp, setResponsableSeleccionado, sedeSeleccionada, setSedeSeleccionada, setDataRespDisp, respDispSeleccionado, dataSedes, setDataSedes }) {
 
   return (
     <>
@@ -27,7 +27,9 @@ function BotonesResponsables({ dataRespDisp, setDataRespDisp, respDispSelecciona
             className="button"
             key={"asignar"}
             onClick={() => {
-                  responsablesServices.asignarResponsable(respDispSeleccionado, sedeSeleccionada, dataSedes, setDataSedes, dataRespDisp);
+                  responsablesServices.asignarResponsable(respDispSeleccionado, sedeSeleccionada, setDataRespDisp, setDataSedes);
+                  setResponsableSeleccionado(null);
+                  setSedeSeleccionada(null);
               }}
             >
             Asignar Responsable
@@ -54,7 +56,8 @@ function BotonesResponsables({ dataRespDisp, setDataRespDisp, respDispSelecciona
             className="button"
             key={"desasignar"}
             onClick={() => {
-              //setData(responsablesServices.desasignarResponsable(sede, data, dataResponsablesSede, setDataResponsablesSede, dataResponsablesAsignados, setDataResponsablesAsignados));
+              responsablesServices.desasignarResponsable(sedeSeleccionada, setDataSedes, setDataRespDisp);
+              setSedeSeleccionada(null);
             }}
           >
             Desasignar Responsable

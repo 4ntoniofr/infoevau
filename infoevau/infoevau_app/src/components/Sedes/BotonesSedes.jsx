@@ -19,7 +19,7 @@ function BotonesSedes({ data, setData, sedeSeleccionada, setSedeSeleccionada }) 
               e.target.files[0].text().then((t) => {
                 let sedes = t.split("\r\n");
                 if (sedes[0] === "SEDE") {
-                  setData(sedesServices.insertarSedes(sedes));
+                  sedesServices.insertarSedes(sedes, data, setData);
                   swal({
                     icon: "success",
                     title: "Fichero " + e.target.files[0].name + " procesado.",

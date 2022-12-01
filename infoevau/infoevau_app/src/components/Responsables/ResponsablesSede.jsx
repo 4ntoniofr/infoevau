@@ -38,7 +38,9 @@ export default function ResponsablesSede() {
 
         <BotonesResponsables 
             respDispSeleccionado = {respDispSeleccionado}
+            setResponsableSeleccionado = {setRespDispSeleccionado}
             sedeSeleccionada = {sedeSeleccionada}
+            setSedeSeleccionada = {setSedeSeleccionada}
             dataRespDisp = {dataRespDisp}
             setDataRespDisp = {setDataRespDisp}
             dataSedes = {dataSedes}
