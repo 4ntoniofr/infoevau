@@ -5,6 +5,7 @@ import alumnoServices from "../../services/alumnoServices";
 
 function BotonesAlumnos({data, setData, setDataBD}) {
 	const Papa = require("papaparse");
+	const [insercion, setInsercion] = React.useState(false);
 
 	return (
 		<div className="containerButtons">
@@ -48,19 +49,21 @@ function BotonesAlumnos({data, setData, setDataBD}) {
 		<button className='buttonAlumnos'
 		onClick={() => {
 		  if (data.data.length > 0) {
-				  alumnoServices.insertarAlumnos(data.data.slice(1, data.data.length)).then((r) => {
-					  axios.get("http://localhost:3001/alumnos").then((alumnos) => {
-					setDataBD(alumnos.data);
+				alumnoServices.insertarAlumnos(data.data.slice(1, data.data.length)).then((r) => {
+				  axios.get("http://localhost:3001/alumnos").then((alumnos) => {
+						setDataBD(alumnos.data);
 				  });
 
-					  swal({
-						  icon: "success",
-						  title: "Inserción exitosa",
-						  text: "Se han insertado correctamente " + r + " de " + (data.data.length-1) + " alumnos posibles. "
+					swal({
+					  icon: "success",
+					  title: "Inserción exitosa",
+					  text: "Se han insertado correctamente " + r + " de " + (data.data.length-1) + " alumnos posibles. "
 						   + "Registro de errores disponible para descargar."
-					  })
-				  });
-			  } else {
+				  })
+				});
+
+				setInsercion(true);
+			} else {
 			  swal({
 				  icon: "info",
 				  title: "No hay datos a importar",
@@ -74,7 +77,21 @@ function BotonesAlumnos({data, setData, setDataBD}) {
 	   }
 
       <br />
+			{!insercion ?
+			<button className='pseudoDisabledButton'
+			onClick={() => {
+			  swal({
+				icon: "info",
+				title: "No se realizó ninguna inserción",
+				text: "Seleccione primero un fichero csv a cargar y guarde la información, posteriormente podŕa descargar el log."
+			  })
+		  	}}
+			>
+			Mostrar log
+			</button>
+			:
 			<button className='buttonAlumnos' onClick={() => {alumnoServices.generarFichero()}}>Mostrar log</button>
+			}
 			<br />
 			<div className='custom-input-file'>
 			<input
@@ -85,8 +102,13 @@ function BotonesAlumnos({data, setData, setDataBD}) {
 			if (e.target.files[0].name.endsWith(".csv")) {
 				Papa.parse(e.target.files[0], {
 					complete: (res, file) => {
-						console.log(res.data);
-						alumnoServices.insertarExamenes(res.data);
+						alumnoServices.insertarExamenes(res.data).then(c => {
+							swal({
+								icon: "success",
+								title: "Inserción de exámenes correcta",
+								text: "Se insertaron " + c + " de " + res.data.filter(e => e[0] !== "").length + " exámenes correctamente."
+							});
+						});
 				   },
 			   });
 			} else {

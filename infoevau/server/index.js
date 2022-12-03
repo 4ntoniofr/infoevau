@@ -274,13 +274,10 @@ app.post("/nuevaAula", (req, res) => {
  *  =========================================================================
  */
 
-app.post("/nuevosExamenes", (req, res) => {
+app.post("/nuevosExamenes", async (req, res) => {
 	let examenes = req.body.examenes;
-	examenes.forEach(e => {
-		if(e != ''){
-			db.query("INSERT INTO MATERIA VALUES (?,?);", [e[0], e[1].substring(1)], (err,res,f) => {
-				if(err) console.log(err)
-			});
-		}
-	})
+	
+	db.query("INSERT INTO MATERIA VALUES ?;", [examenes], (err,res,f) => {
+		if(err) console.log(err);
+	});
 });
