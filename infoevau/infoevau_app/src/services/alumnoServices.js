@@ -86,12 +86,12 @@ const generarFichero = () => {
 	link.click();
 }
 
-const insertarMaterias = (materias) => {
-	axios.post("http://localhost:3001/nuevasMaterias", {
-		materias: materias
+const insertarExamenes = (examenes) => {
+	axios.post("http://localhost:3001/nuevosExamenes", {
+		examenes: examenes
 	});
 }
 
-const alumnoServices = { logErrores, insertarAlumnos, generarFichero, insertarMaterias }
+const alumnoServices = { logErrores, insertarAlumnos, generarFichero, insertarExamenes }
 
 export default alumnoServices;

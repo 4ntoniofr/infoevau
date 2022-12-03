@@ -78,19 +78,26 @@ function BotonesAlumnos({data, setData, setDataBD}) {
 			<br />
 			<div className='custom-input-file'>
 			<input
-                className="input-file"
-                type="file"
-                accept=".txt"
-                onChange={(e) => {
-                    e.target.files[0].text().then((t) => {
-											alumnoServices.insertarMaterias(t.split("\n"));
-											swal({
-												icon: "success",
-												text: "Se han insertado correctamente " + t.split("\n").length + " materias"
-											})
-                });
-            }}
-        	/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         className='input-file'
+         type="file"
+         accept=".csv"
+         onChange={(e) => {
+			if (e.target.files[0].name.endsWith(".csv")) {
+				Papa.parse(e.target.files[0], {
+					complete: (res, file) => {
+						console.log(res.data);
+						alumnoServices.insertarExamenes(res.data);
+				   },
+			   });
+			} else {
+				swal({
+					icon: "error",
+					title: "Formato inválido",
+					text: "El formato del archivo '" + e.target.files[0].name + "' no es válido y no puede importarse."
+				})
+			}
+          }}
+      />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;Importar exámenes
 			</div>
     </div>

@@ -270,15 +270,15 @@ app.post("/nuevaAula", (req, res) => {
 });
 
 /** =========================================================================
- *  Materias
+ *  Examenes
  *  =========================================================================
  */
 
-app.post("/nuevasMaterias", (req, res) => {
-	let materias = req.body.materias;
-	materias.forEach(m => {
-		if(m != ''){
-			db.query("INSERT INTO MATERIA VALUES (?);", [m], (err,res,f) => {
+app.post("/nuevosExamenes", (req, res) => {
+	let examenes = req.body.examenes;
+	examenes.forEach(e => {
+		if(e != ''){
+			db.query("INSERT INTO MATERIA VALUES (?,?);", [e[0], e[1].substring(1)], (err,res,f) => {
 				if(err) console.log(err)
 			});
 		}
