@@ -36,9 +36,17 @@ export default function BotonesAulas({ data, setData, aulaSeleccionada, idSede }
                         }>
                         <h2>Crear Aula</h2>
                         <label><input placeholder="ID" type="text" onChange={(event) => id = event.target.value} /></label>
+                        <br />
+                        <br />
                         <label><input placeholder="Capacidad" type="number" onChange={(event) => capacidad = event.target.value} /></label>
+                        <br />
+                        <br />
                         <label><input placeholder="Disponibilidad" type="text" onChange={(event) => disponibilidad = event.target.value} /></label>
+                        <br />
                         <button className="buttonForm2" type="submit">Aceptar</button>
+                        <br />
+                        <br />
+                        <br />
                         <button className="buttonForm2" onClick={()=>{formCrearAula.close()}}>Cerrar</button>
                     </form>
                 </dialog>
