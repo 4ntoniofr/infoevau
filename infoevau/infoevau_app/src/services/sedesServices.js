@@ -6,12 +6,9 @@ const insertarSedes = (sedes, data, setData) => {
     sedes: sedes.slice(1, sedes.length),
   });
 
-  axios.get("http://localhost:3001/sedes").then((sedes) => {
-      setData(sedes.data);
+  axios.get("http://localhost:3001/sedes").then((s) => {
+    setData(s.data);    
   });
-  /*return sedes.slice(1, sedes.length).map((sede) => {
-    return { Nombre: sede };
-  });*/
 };
 
 const borrarSede = (sede, sedesMemoria) => {
@@ -63,6 +60,17 @@ const modificarSede = (sede, sedesMemoria) => {
   return sedesMemoria;
 };
 
+const abrirSede = (sede) => {
+  if (sede != null) {
+    window.location.href = "/sedes/" + sede.replace("/","$");
+  } else {
+    swal({
+      icon: "info",
+      text: "Ninguna sede ha sido seleccionada"
+    });
+  }
+}
+
 const abrirInstitutosSede = (sede) => {
   if (sede != null) {
     window.location.href = "/sedes/" + sede.replace("/","$") + "/institutos";
@@ -85,6 +93,6 @@ const abrirAulasSede = (sede) => {
   } 
 }
 
-const sedesServices = { insertarSedes, borrarSede, modificarSede, abrirInstitutosSede, abrirAulasSede };
+const sedesServices = { insertarSedes, borrarSede, modificarSede, abrirSede, abrirInstitutosSede, abrirAulasSede };
 
 export default sedesServices;

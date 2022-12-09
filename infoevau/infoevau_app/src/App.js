@@ -2,6 +2,7 @@ import "./assets/css/App.css";
 import Home from "./components/Home";
 import Alumnos from "./components/Alumnos/Alumnos";
 import Sedes from "./components/Sedes/Sedes";
+import GestionSede from "./components/Sedes/GestionSede";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import InstitutosSede from "./components/Institutos/InstitutosSede";
