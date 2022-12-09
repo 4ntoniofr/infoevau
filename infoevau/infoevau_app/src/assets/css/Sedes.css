@@ -8,6 +8,12 @@
     width: fit-content;
 }
 
+.containerHeaderGestionSedes {
+    position: relative;
+    left: 3%;
+    width: fit-content;
+}
+
 .containerTablaSedes {
     height: 430px;
     width: 50%;
@@ -39,6 +45,18 @@
     align-content: space-between;
     justify-content: center;
     height: 400px;
+    width: 25%;
+    position: fixed;
+    top: 25%;
+    right: 10%;
+}
+
+.containerBotonesGestionSedes {
+    display: flex;
+    flex-wrap: wrap;
+    align-content:space-between;
+    justify-content: center;
+    height: 200px;
     width: 25%;
     position: fixed;
     top: 25%;
@@ -128,6 +146,10 @@
 .buttonSedes:active {
   transform: translateY(2px);
   transition-duration: .35s;
+}
+
+.buttonSedes:hover {
+    box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
 }
 
 .custom-input-file {

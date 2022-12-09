@@ -83,7 +83,7 @@ function BotonesAlumnos({data, setData, setDataBD}) {
 			  swal({
 				icon: "info",
 				title: "No se realizó ninguna inserción",
-				text: "Seleccione primero un fichero csv a cargar y guarde la información, posteriormente podŕa descargar el log."
+				text: "Seleccione primero un fichero csv a cargar y guarde la información. Posteriormente podrá descargar el log."
 			  })
 		  	}}
 			>
