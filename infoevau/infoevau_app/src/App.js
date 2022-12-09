@@ -39,6 +39,11 @@ const router = createBrowserRouter([
     path: "sedes/:idSede/aulas",
     element: <AulasSede />,
     errorElement: <PaginaError />,
+  },
+  {
+    path:"sedes/:idSede",
+    element: <GestionSede />,
+    errorElement: <PaginaError />,
   }
 ]);
 

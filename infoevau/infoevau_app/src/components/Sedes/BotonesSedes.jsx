@@ -2,7 +2,6 @@ import React from "react";
 import sedesServices from "../../services/sedesServices";
 import responsablesServices from "../../services/responsablesServices";
 import papelera from "../../assets/images/papelera.png";
-import pizarra from "../../assets/images/pizarra.png";
 import swal from 'sweetalert';
 
 function BotonesSedes({ data, setData, sedeSeleccionada, setSedeSeleccionada }) {
@@ -23,7 +22,7 @@ function BotonesSedes({ data, setData, sedeSeleccionada, setSedeSeleccionada }) 
                   swal({
                     icon: "success",
                     title: "Fichero " + e.target.files[0].name + " procesado.",
-                    text: "Sedes importadas con éxito."
+                    //text: "Se han insertado " + sedesInsertadas + " nuevas sedes."
                   })
                 } else {
                   swal({
@@ -90,10 +89,9 @@ function BotonesSedes({ data, setData, sedeSeleccionada, setSedeSeleccionada }) 
         <button 
           className="buttonSedes"
           onClick={ () => {
-            sedesServices.abrirAulasSede(sedeSeleccionada);
+            sedesServices.abrirSede(sedeSeleccionada);
           }}>
-          <img src={pizarra} className="icono" alt="" />
-          Aulas
+          Gestionar sede
         </button>
       </div>
     </>
