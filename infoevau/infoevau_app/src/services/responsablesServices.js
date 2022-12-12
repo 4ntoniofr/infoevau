@@ -17,28 +17,29 @@ const asignarResponsable = (responsable, sedeselected, setDataRespDisp, setDataS
 		sede: sedeselected
 	});
 
-	setDataRespDisp(dataRespDisp.filter((r) => r !== responsable))
+	setDataRespDisp(dataRespDisp.filter((r) => r !== responsable));
 
-	axios.get("http://localhost:3001/sedes").then((sede) => {
-		setDataSedes(sede.data);
-  	});
-	
-	/*dataSedes.push({Nombre: sedeselected.Nombre, Responsable: responsable.Nombre});
-	setDataSedes(dataSedes);*/
+	dataSedes.find(s => s.Nombre === sedeselected.Nombre).Responsable = responsable.Nombre;
+	setDataSedes(dataSedes);
 };
 
-const desasignarResponsable = (sedeselected, setDataSedes, setDataRespDisp) => {
+const desasignarResponsable = (sedeselected, dataSedes, setDataSedes, dataRespDisp, setDataRespDisp) => {
 	axios.post("http://localhost:3001/desasignarResponsable", {
 		sede: sedeselected.Nombre
 	});
 
-	axios.get("http://localhost:3001/responsablesDisponibles").then((responsable) => {
-      setDataRespDisp(responsable.data);
-  	});
-
-	axios.get("http://localhost:3001/sedes").then((sede) => {
-		setDataSedes(sede.data);
+	dataRespDisp.push({Nombre: sedeselected.Responsable});
+	dataRespDisp.sort(function (a, b) {
+		if (a.Nombre > b.Nombre) {
+			return 1;
+		}else if (a.Nombre < b.Nombre) {
+			return -1;
+		}else return 0;
 	});
+	setDataRespDisp(dataRespDisp);
+
+	dataSedes.find(s => s.Nombre === sedeselected.Nombre).Responsable = null;
+	setDataSedes(dataSedes);
 }
 
 const responsablesServices = {insertarResponsables, asignarResponsable, desasignarResponsable}
