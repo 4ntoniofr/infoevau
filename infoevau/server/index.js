@@ -59,6 +59,11 @@ app.get("/sedes", (req, res) => {
 	dbQuery("SELECT * FROM SEDE ORDER BY 1", req, res);
 });
 
+app.get("/aforoSede", (req, res) => {
+	let sede = req.body.sede;
+	dbQuery("SELECT SUM(Capacidad) FROM AULA WHERE Sede = '" + sede + "';",req,res);
+})
+
 app.get("/responsablesDisponibles", (req, res) => {
 	dbQuery("SELECT Nombre FROM RESPONSABLE WHERE Nombre NOT IN (SELECT Responsable FROM SEDE WHERE Responsable IS NOT NULL)", req, res)
 })

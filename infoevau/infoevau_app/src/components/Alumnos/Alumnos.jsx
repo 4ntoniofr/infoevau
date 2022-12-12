@@ -11,7 +11,7 @@ export default function Alumnos() {
   return (
     <>
       <div className="containerHeaderAlumnos">
-        <h1>Sección de los alumnos</h1>
+        <h2>Sección de los alumnos</h2>
       </div>
       <div className="alumnos">
         <BotonesAlumnos data={data} setData={setData} setDataBD={setDataBD}/>

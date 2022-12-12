@@ -8,15 +8,20 @@ import TablaInstitutosAsignados from "./TablaInstitutosAsignados";
 export default function InstitutosSede() {
     let params = useParams();
     let idSede = params.idSede.replace("$","/");
-
+    
     return (
     <>
         <div className="containerHeaderInstitutos">
             <h2>Institutos asignados a la sede {idSede}</h2>
         </div>
-        <TablaInstitutos />
-        <BotonesInstitutos />
+        <TablaInstitutos 
+            idSede = {idSede}
+        />
+        <BotonesInstitutos 
+            idSede = {idSede}
+        />
         <TablaInstitutosAsignados 
-          idSede={idSede}/>
+            idSede={idSede}
+        />
     </>)
 }
