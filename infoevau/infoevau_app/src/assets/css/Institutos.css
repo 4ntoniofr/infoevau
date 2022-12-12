@@ -8,6 +8,16 @@
     width: fit-content;
 }
 
+.containerAforoInstitutos {
+    background-color: white;
+    border-radius: 15px;
+    width: 30%;
+    height: 18%;
+    position: absolute;
+    top:30%;
+    left:35%;
+}
+
 .containerTablaInstitutos {
     height: 430px;
     width: 30%;

@@ -7,15 +7,16 @@
 }
 
 .containerHeaderAlumnos {
-  position: relative;
-  left: 1%;
+  position:absolute;
+  left: 4.5%;
+  top: 14%;
   width: fit-content;
 }
 
 .containerButtons {
-  position: relative;
+  position: absolute;
   left: 2%;
-  top: 60px;
+  top: 35%;
   height: 300px;
   width: 25%;
   display: flex;

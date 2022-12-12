@@ -24,7 +24,7 @@ export default function TablaInstitutos() {
 				</thead>
 				<tbody>
 				{data.map((instituto,key) => {
-					if (instituto.Nombre === institutoSeleccionado) {
+					if (instituto === institutoSeleccionado) {
 						console.log("Instituto seleccionado: " + instituto.Nombre);
 						return (
 							<tr key={key} style={{ backgroundColor: "#80ff80" }}>
@@ -47,13 +47,13 @@ export default function TablaInstitutos() {
 						<tr key={key}>
 							<td
 								onClick={() => {
-									setInstitutoSeleccionado(instituto.Nombre);
+									setInstitutoSeleccionado(instituto);
 								}}
 							>
 							{instituto.Nombre}</td>
 							<td
 								onClick={() => {
-									setInstitutoSeleccionado(instituto.Nombre);
+									setInstitutoSeleccionado(instituto);
 								}}
 							>
 							{instituto.NumAlumnos}</td>
@@ -62,6 +62,10 @@ export default function TablaInstitutos() {
 				})}
 				</tbody>
 			</table>
+		</div>
+		<div className="containerAforoInstitutos">
+				<h4>&nbsp;&nbsp;&nbsp;&nbsp;Aforo total de la sede: </h4>
+				<h4>&nbsp;&nbsp;&nbsp;&nbsp;Total de alumnos seleccionados: {institutoSeleccionado === null? 0 : institutoSeleccionado.NumAlumnos}</h4>
 		</div>
 		</>
 	)
