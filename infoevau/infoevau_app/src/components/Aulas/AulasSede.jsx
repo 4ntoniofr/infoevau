@@ -16,7 +16,6 @@ export default function AulasSede() {
     useEffect(() => {
         axios.post("http://localhost:3001/aulas", { sede: idSede }).then((a) => {
             setData(a.data);
-            console.log(a.data);
         });
     }, [idSede]);
 

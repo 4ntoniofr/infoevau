@@ -224,10 +224,11 @@ app.get("/deleteSedes", (req, res) => {
  */
 
 app.post("/borrarAula", (req, res) => {
-	let aula = req.body.aulaBorrar;
+	let aula = req.body.aulaBorrar.Id;
+	let sede = req.body.aulaBorrar.Sede;
 	console.log(req.body)
 
-	db.query("DELETE FROM AULA WHERE ID = ?;", [aula], (err, res, f) => {
+	db.query("DELETE FROM AULA WHERE ID = ? AND Sede = ?;", [aula, sede], (err, res, f) => {
 		if (err) console.log(err)
 		else console.log('Eliminación satisfactoria de ', aula)
 	})
@@ -266,6 +267,7 @@ app.post("/nuevaAula", (req, res) => {
 	if (Id != null && Capacidad != null && Disponibilidad != null)
 		db.query("INSERT INTO AULA(Id,Capacidad,Disponibilidad,Sede) VALUES (?,?,?,?);", [Id, Capacidad, Disponibilidad, Sede], (err, res, f) => {
 			if (err) console.log(err);
+			else console.log('Insercion exitosa del aula')
 		})
 });
 
