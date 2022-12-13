@@ -7,14 +7,13 @@ import { useState } from "react";
 
 export default function BotonesAulas({ data, setData, aulaSeleccionada, idSede }) {
 
-    //let id, capacidad, disponibilidad;
 		const [id,setId] = useState("")
 		const [capacidad, setCapacidad] = useState(0)
 		const [disponibilidad, setDisponibilidad] = useState("")
+		const [modificar, setModificar] = useState(false)
     let sede = idSede;
 
     const formCrearAula = document.getElementById("formularioCrearAula");
-		const formModifAula = document.getElementById("formularioModificarAula");
 
     return (
         <>
@@ -30,7 +29,8 @@ export default function BotonesAulas({ data, setData, aulaSeleccionada, idSede }
 													setId(aulaSeleccionada.Id);
 													setCapacidad(aulaSeleccionada.Capacidad);
 													setDisponibilidad(aulaSeleccionada.Disponibilidad);
-													formModifAula.showModal();
+													setModificar(true);
+													formCrearAula.showModal();
 												}else{
 													swal({
 														icon: "error",
@@ -51,34 +51,15 @@ export default function BotonesAulas({ data, setData, aulaSeleccionada, idSede }
                 
                 <dialog id = "formularioCrearAula" className="customDialog">
                     <form className="form2" onSubmit={() => {
-                            aulasServices.insertarAula(data, setData, id, capacidad, disponibilidad, sede);
+                            if(modificar)
+															aulasServices.modificarAula(id, capacidad, disponibilidad, aulaSeleccionada, data, setData);
+														else
+															aulasServices.insertarAula(data, setData, id, capacidad, disponibilidad, sede);
+														
 														formCrearAula.close();
 													}
                         }>
-                        <h2>Crear Aula</h2>
-                        <label><input placeholder="ID" type="text" onChange={(event) => setId(event.target.value)} /></label>
-                        <br />
-                        <br />
-                        <label><input placeholder="Capacidad" type="number" onChange={(event) => setCapacidad(event.target.value)} /></label>
-                        <br />
-                        <br />
-                        <label><input placeholder="Disponibilidad" type="text" onChange={(event) => setDisponibilidad(event.target.value)} /></label>
-                        <br />
-                        <button className="buttonForm2" type="submit">Aceptar</button>
-                        <br />
-                        <br />
-                        <br />
-                        <button className="buttonForm2" onClick={()=>{formCrearAula.close()}}>Cerrar</button>
-                    </form>
-                </dialog>
-
-								<dialog id = "formularioModificarAula" className="customDialog">
-                    <form className="form2" onSubmit={() => {
-														aulasServices.modificarAula(id, capacidad, disponibilidad, aulaSeleccionada, data, setData);
-														formModifAula.close();
-													}
-                        }>
-                        <h2>Modificar Aula</h2>
+                        <h2>{modificar ? "Modificar" : "Crear"} Aula</h2>
                         <label><input placeholder="ID" type="text" value={id} onChange={(event) => setId(event.target.value)} /></label>
                         <br />
                         <br />
@@ -87,14 +68,13 @@ export default function BotonesAulas({ data, setData, aulaSeleccionada, idSede }
                         <br />
                         <label><input placeholder="Disponibilidad" type="text" value={disponibilidad} onChange={(event) => setDisponibilidad(event.target.value)} /></label>
                         <br />
-                        <button className="buttonForm2" type="submit" id="submit">Aceptar</button>
+                        <button className="buttonForm2" type="submit">Aceptar</button>
                         <br />
                         <br />
                         <br />
-                        <button className="buttonForm2" onClick={()=>{formModifAula.close()}}>Cerrar</button>
+                        <button className="buttonForm2" onClick={()=>{setId("");formCrearAula.close()}}>Cerrar</button>
                     </form>
                 </dialog>
-
             </div>
         </>
     )
