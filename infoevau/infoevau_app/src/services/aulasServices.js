@@ -24,15 +24,16 @@ const borrarAula = (aula, aulasMemoria, setAulasMemoria) => {
 
 const insertarAula = (aulasMemoria, setAulasMemoria, id, capacidad, disponibilidad, sede) => {
   if(id !== "" && id !== undefined){
+		alert(capacidad)
 		axios.post("http://localhost:3001/nuevaAula", {
     	Id: id,
     	Capacidad: capacidad,
     	Disponibilidad: disponibilidad,
     	Sede: sede,
-  	});
-
-  	aulasMemoria.push({Id: id, Capacidad: capacidad, Disponibilidad: disponibilidad, Sede: sede});
-		setAulasMemoria(aulasMemoria)
+  	}).then(() => {
+			aulasMemoria.push({Id: id, Capacidad: capacidad, Disponibilidad: disponibilidad, Sede: sede});
+			setAulasMemoria(aulasMemoria);
+		});
 	}
 };
 

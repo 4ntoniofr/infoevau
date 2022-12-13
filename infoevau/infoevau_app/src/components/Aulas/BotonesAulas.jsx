@@ -9,11 +9,19 @@ export default function BotonesAulas({ data, setData, aulaSeleccionada, idSede }
 
 		const [id,setId] = useState("")
 		const [capacidad, setCapacidad] = useState(0)
-		const [disponibilidad, setDisponibilidad] = useState("")
+		const [disponibilidad, setDisponibilidad] = useState([])
 		const [modificar, setModificar] = useState(false)
     let sede = idSede;
 
     const formCrearAula = document.getElementById("formularioCrearAula");
+
+		const selection = (franja) => {
+			if(disponibilidad.find(f => f.replaceAll(" ", "")===franja.replaceAll(" ", "")) !== undefined){
+				setDisponibilidad(disponibilidad.filter(f => f !== franja));
+			}else{
+				setDisponibilidad([...disponibilidad, franja]);
+			}
+		}
 
     return (
         <>
@@ -52,9 +60,9 @@ export default function BotonesAulas({ data, setData, aulaSeleccionada, idSede }
                 <dialog id = "formularioCrearAula" className="customDialog">
                     <form className="form2" onSubmit={() => {
                             if(modificar)
-															aulasServices.modificarAula(id, capacidad, disponibilidad, aulaSeleccionada, data, setData);
+															aulasServices.modificarAula(id, capacidad, disponibilidad.toString(), aulaSeleccionada, data, setData);
 														else
-															aulasServices.insertarAula(data, setData, id, capacidad, disponibilidad, sede);
+															aulasServices.insertarAula(data, setData, id, capacidad, disponibilidad.toString(), sede);
 														
 														formCrearAula.close();
 													}
@@ -66,7 +74,18 @@ export default function BotonesAulas({ data, setData, aulaSeleccionada, idSede }
                         <label><input placeholder="Capacidad" type="number" value={capacidad} onChange={(event) => setCapacidad(event.target.value)} /></label>
                         <br />
                         <br />
-                        <label><input placeholder="Disponibilidad" type="text" value={disponibilidad} onChange={(event) => setDisponibilidad(event.target.value)} /></label>
+                        {/*<label><input placeholder="Disponibilidad" type="text" value={disponibilidad} onChange={(event) => setDisponibilidad(event.target.value)} /></label>*/}
+												<select multiple={true}>
+													<option value={"Primera franja de Primer día"} onClick={(e) => {selection(e.target.value)}}>Primera franja de Primer día</option>
+													<option value={"Segunda franja de Primer día"} onClick={(e) => {selection(e.target.value)}}>Segunda franja de Primer día</option>
+													<option value={"Tercera franja de Primer día"} onClick={(e) => {selection(e.target.value)}}>Tercera franja de Primer día</option>
+													<option value={"Primera franja de Segundo día"} onClick={(e) => {selection(e.target.value)}}>Primera franja de Segundo día</option>
+													<option value={"Segunda franja de Segundo día"} onClick={(e) => {selection(e.target.value)}}>Segunda franja de Segundo día</option>
+													<option value={"Tercera franja de Segundo día"} onClick={(e) => {selection(e.target.value)}}>Tercera franja de Segundo día</option>
+													<option value={"Primera franja de Tercer día"} onClick={(e) => {selection(e.target.value)}}>Primera franja de Tercer día</option>
+													<option value={"Segunda franja de Tercer día"} onClick={(e) => {selection(e.target.value)}}>Segunda franja de Tercer día</option>
+													<option value={"Tercera franja de Tercer día"} onClick={(e) => {selection(e.target.value)}}>Tercera franja de Tercer día</option>
+												</select>
                         <br />
                         <button className="buttonForm2" type="submit">Aceptar</button>
                         <br />

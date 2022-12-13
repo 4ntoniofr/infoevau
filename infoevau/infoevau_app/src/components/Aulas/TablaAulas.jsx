@@ -27,7 +27,9 @@ export default function TablaAulas({data, aulaSeleccionada, setAulaSeleccionada}
 																>
                                     <td>{aula.Id}</td>
                                     <td>{aula.Capacidad}</td>
-                                    <td>{aula.Disponibilidad}</td>
+                                    <td>{aula.Disponibilidad.split(",").map((d) => {
+																			return <>{d}<br/></>
+																		})}</td>
                                 </tr>
                             ))}
                         </tbody>
