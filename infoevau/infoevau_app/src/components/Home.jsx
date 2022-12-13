@@ -3,6 +3,7 @@ import "../assets/css/App.css";
 import logo from "../assets/images/logoNuevo.png";
 import sede from "../assets/images/sedepng.png";
 import estudiante from "../assets/images/estudiantepng.png";
+import usuarios from "../assets/images/usuarios.png";
 
 export default function Home() {
   return (
@@ -32,6 +33,13 @@ export default function Home() {
             <div className="section">
               <p>Sedes</p>
               <img className="imagenSection" alt="sedesimage" src={sede} />
+            </div>
+          </a>
+
+          <a href="./sedes/responsablesSede">
+            <div className="section">
+              <p>Responsables</p>
+              <img className="imagenSection" alt="sedesimage" src={usuarios} />
             </div>
           </a>
         </div>

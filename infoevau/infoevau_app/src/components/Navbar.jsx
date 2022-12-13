@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../assets/images/logoNuevo.png";
 import imgSedes from "../assets/images/sedepng.png"
 import imgAlumnos from "../assets/images/estudiantepng.png"
+import imgUsuarios from "../assets/images/usuarios.png"
 
 export default function Navbar() {
   return (
@@ -13,7 +14,7 @@ export default function Navbar() {
           </a>
           <a href="/alumnos">
             <li>
-              <img src={imgAlumnos} alt="" className="iconoNavbar"/>
+              <img src={imgAlumnos} alt="" className="iconoNavbar2"/>
               <p>Alumnos</p>
             </li>
           </a>
@@ -21,6 +22,12 @@ export default function Navbar() {
             <li>
               <img src={imgSedes} alt="" className="iconoNavbar"/>
               <p>Sedes</p>  
+            </li>
+          </a>
+          <a href="/sedes/responsablesSede">
+            <li>
+              <img src={imgUsuarios} alt="" className="iconoNavbar"/>
+              <p>Responsables</p>  
             </li>
           </a>
         </ul>

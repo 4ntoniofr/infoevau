@@ -85,6 +85,13 @@ export default function GestionSede() {
         >
           Gestionar Aulas
         </button>
+        <button
+          className="buttonSedes"
+          onClick={() => {
+            sedesServices.abrirInstitutosSede(idSede);
+          }}
+          >Asignar institutos
+        </button>
       </div>
     </>
   );

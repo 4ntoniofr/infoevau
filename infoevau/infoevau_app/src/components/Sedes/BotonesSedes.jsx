@@ -37,7 +37,7 @@ function BotonesSedes({ data, setData, sedeSeleccionada, setSedeSeleccionada }) 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Importar sedes
         </div>
         <button
-          className="buttonSedes"
+          className="buttonSedesBorrar"
           key={"borrar"}
           onClick={() => {
             setData(sedesServices.borrarSede(sedeSeleccionada, data));
@@ -79,13 +79,6 @@ function BotonesSedes({ data, setData, sedeSeleccionada, setSedeSeleccionada }) 
           window.location.href = "/sedes/responsablesSede";
         }}
         >Responsables</button>
-        <button
-          className="buttonSedes"
-          onClick={() => {
-            sedesServices.abrirInstitutosSede(sedeSeleccionada);
-          }}
-          >Asignar institutos
-        </button>
         <button 
           className="buttonSedes"
           onClick={ () => {
