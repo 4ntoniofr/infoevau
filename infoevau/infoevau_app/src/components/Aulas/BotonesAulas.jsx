@@ -36,7 +36,7 @@ export default function BotonesAulas({ data, setData, aulaSeleccionada, idSede }
                         if(aulaSeleccionada !== null){
 													setId(aulaSeleccionada.Id);
 													setCapacidad(aulaSeleccionada.Capacidad);
-													setDisponibilidad(aulaSeleccionada.Disponibilidad);
+													setDisponibilidad([]);
 													setModificar(true);
 													formCrearAula.showModal();
 												}else{
@@ -74,7 +74,6 @@ export default function BotonesAulas({ data, setData, aulaSeleccionada, idSede }
                         <label><input placeholder="Capacidad" type="number" value={capacidad} onChange={(event) => setCapacidad(event.target.value)} /></label>
                         <br />
                         <br />
-                        {/*<label><input placeholder="Disponibilidad" type="text" value={disponibilidad} onChange={(event) => setDisponibilidad(event.target.value)} /></label>*/}
 												<select multiple={true}>
 													<option value={"Primera franja de Primer día"} onClick={(e) => {selection(e.target.value)}}>Primera franja de Primer día</option>
 													<option value={"Segunda franja de Primer día"} onClick={(e) => {selection(e.target.value)}}>Segunda franja de Primer día</option>
