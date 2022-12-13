@@ -28,7 +28,7 @@ export default function GestionSede() {
       <div className="containerHeaderGestionSedes">
         <h2>Sede '{idSede}'</h2>
       </div>
-      <div className="pito">
+      <div>
         {data.map((nombre, key) => (
           <p key={key}>{nombre}</p>
         ))}
