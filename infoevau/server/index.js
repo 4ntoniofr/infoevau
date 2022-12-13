@@ -59,9 +59,9 @@ app.get("/sedes", (req, res) => {
 	dbQuery("SELECT * FROM SEDE ORDER BY 1", req, res);
 });
 
-app.get("/aforoSede", (req, res) => {
+app.post("/aforoSede", (req, res) => {
 	let sede = req.body.sede;
-	dbQuery("SELECT SUM(Capacidad) FROM AULA WHERE Sede = '" + sede + "';",req,res);
+	dbQuery("SELECT SUM(Capacidad) 'Capacidad' FROM AULA WHERE Sede = '" + sede + "';",req,res);
 })
 
 app.get("/responsablesDisponibles", (req, res) => {

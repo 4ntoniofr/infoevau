@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import "../../assets/css/Institutos.css";
 import TablaInstitutos from "./TablaInstitutos.jsx"
 import BotonesInstitutos from "./BotonesInstitutos"
@@ -8,7 +8,9 @@ import TablaInstitutosAsignados from "./TablaInstitutosAsignados";
 export default function InstitutosSede() {
     let params = useParams();
     let idSede = params.idSede.replace("$","/");
-    
+    const [institutoSeleccionadoDisp, setInstitutoSeleccionadoDisp] = useState(null);
+		const [institutoSeleccionadoAsig, setInstitutoSeleccionadoAsig] = useState(null);
+
     return (
     <>
         <div className="containerHeaderInstitutos">
@@ -16,12 +18,16 @@ export default function InstitutosSede() {
         </div>
         <TablaInstitutos 
             idSede = {idSede}
+						institutoSeleccionado={institutoSeleccionadoDisp}
+						setInstitutoSeleccionado={setInstitutoSeleccionadoDisp}
         />
         <BotonesInstitutos 
             idSede = {idSede}
         />
         <TablaInstitutosAsignados 
             idSede={idSede}
+						institutoSeleccionado={institutoSeleccionadoAsig}
+						setInstitutoSeleccionado={setInstitutoSeleccionadoAsig}
         />
     </>)
 }

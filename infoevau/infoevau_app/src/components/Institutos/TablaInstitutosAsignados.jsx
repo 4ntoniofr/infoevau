@@ -1,9 +1,8 @@
-import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-export default function TablaInstitutosAsignados ({idSede}) {
-    const [institutoSeleccionado, setInstitutoSeleccionado] = useState(null);
+export default function TablaInstitutosAsignados ({idSede, institutoSeleccionado, setInstitutoSeleccionado}) {
+
     const [dataAsig, setDataAsig] = useState([]);
     useEffect(() => {
       axios.post("http://localhost:3001/institutosAsignados",{

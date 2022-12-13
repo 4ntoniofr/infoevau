@@ -1,15 +1,18 @@
-import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-export default function TablaInstitutos() {
-    const [institutoSeleccionado, setInstitutoSeleccionado] = useState(null);
+export default function TablaInstitutos({idSede, institutoSeleccionado, setInstitutoSeleccionado}) {
     const [data, setData] = useState([]);
+		const [capacidadSede, setCapacidadSede] = useState(0);
   
     useEffect(() => {
       axios.get("http://localhost:3001/institutosDisponibles").then((institutosDisp) => {
         setData(institutosDisp.data);
       });
+
+			axios.post("http://localhost:3001/aforoSede", {
+			sede: idSede
+			}).then(c => setCapacidadSede(c.data[0].Capacidad));
     }, []);
 
 	return (
@@ -64,8 +67,8 @@ export default function TablaInstitutos() {
 			</table>
 		</div>
 		<div className="containerAforoInstitutos">
-				<h4>&nbsp;&nbsp;&nbsp;&nbsp;Aforo total de la sede: </h4>
-				<h4>&nbsp;&nbsp;&nbsp;&nbsp;Total de alumnos seleccionados: {institutoSeleccionado === null? 0 : institutoSeleccionado.NumAlumnos}</h4>
+				<h4>&nbsp;&nbsp;&nbsp;&nbsp;Aforo total de la sede: {capacidadSede}</h4>
+				<h4>&nbsp;&nbsp;&nbsp;&nbsp;Total de alumnos en sede: {institutoSeleccionado === null? 0 : institutoSeleccionado.NumAlumnos}</h4>
 		</div>
 		</>
 	)
