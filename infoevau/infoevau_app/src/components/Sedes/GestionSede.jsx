@@ -28,10 +28,21 @@ export default function GestionSede() {
       <div className="containerHeaderGestionSedes">
         <h2>Sede '{idSede}'</h2>
       </div>
-      <div>
-        {data.map((nombre, key) => (
-          <p key={key}>{nombre}</p>
-        ))}
+      <div className="containerTablaAulas">
+        <table className="tablaAulas">
+          <thead>
+            <tr>
+              <th>Persona</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((persona, key) => (
+              <tr key={key}>
+                <td>{persona}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
       <div className="containerBotonesGestionSedes">
         <div className="custom-input-file">
