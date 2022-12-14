@@ -43,6 +43,11 @@ app.post("/aulas", (req, res) => {
 	dbQuery("SELECT * FROM AULA WHERE Sede = '" + sede + "';", req, res);
 });
 
+app.post("/personal", (req, res) => {
+	let sede = req.body.sede;
+	dbQuery("SELECT * FROM RESPONSABLE_AULA WHERE Sede = '" + sede + "';", req, res);
+})
+
 app.get("/institutos", (req, res) => {
 	dbQuery("SELECT * FROM INSTITUTO", req, res);
 });

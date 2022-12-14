@@ -72,7 +72,7 @@ export default function GestionSede() {
         <button
           className="buttonSedes"
           onClick={() => {
-            sedesServices.abrirAulasSede(idSede);
+            sedesServices.abrirPersonalSede(idSede);
           }}
         >
           Asignar Personal

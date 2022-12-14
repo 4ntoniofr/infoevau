@@ -59,6 +59,10 @@ const abrirAulasSede = (sede) => {
   window.location.href = "/sedes/" + sede.replace("/","$") + "/aulas";
 }
 
-const sedesServices = { insertarSedes, borrarSede, modificarSede, abrirSede, abrirInstitutosSede, abrirAulasSede };
+const abrirPersonalSede = (sede) => {
+  window.location.href = "/sedes/" + sede.replace("/", "$") + "/personal"
+}
+
+const sedesServices = { insertarSedes, borrarSede, modificarSede, abrirSede, abrirInstitutosSede, abrirAulasSede , abrirPersonalSede};
 
 export default sedesServices;

@@ -9,6 +9,7 @@ import InstitutosSede from "./components/Institutos/InstitutosSede";
 import ResponsablesSede from './components/Responsables/ResponsablesSede';
 import AulasSede from "./components/Aulas/AulasSede";
 import PaginaError from "./components/PaginaError"
+import PersonalSede from "./components/Personal/PersonalSede";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,11 @@ const router = createBrowserRouter([
   {
     path:"sedes/:idSede",
     element: <GestionSede />,
+    errorElement: <PaginaError />,
+  },
+  {
+    path:"sedes/:idSede/personal",
+    element: <PersonalSede />,
     errorElement: <PaginaError />,
   }
 ]);
