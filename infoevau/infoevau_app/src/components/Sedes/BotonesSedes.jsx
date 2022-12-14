@@ -36,6 +36,17 @@ function BotonesSedes({ data, setData, sedeSeleccionada, setSedeSeleccionada }) 
           />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Importar sedes
         </div>
+        {sedeSeleccionada === null ?
+        <button className="pseudoDisabledButton"
+        onClick={() => {
+          swal({
+            icon: "info",
+            title: "No hay ninguna sede seleccionada",
+            text: "Seleccione una sede para poder eliminarla"
+          })
+        }}>Eliminar sede 
+        </button>
+        :
         <button
           className="buttonSedesBorrar"
           key={"borrar"}
@@ -46,7 +57,18 @@ function BotonesSedes({ data, setData, sedeSeleccionada, setSedeSeleccionada }) 
         >
           <img src={papelera} className="icono" alt="" />
           Eliminar sede
+        </button>}
+        { sedeSeleccionada === null ?
+        <button className="pseudoDisabledButton"
+        onClick={() => {
+          swal({
+            icon: "info",
+            title: "No hay ninguna sede seleccionada",
+            text: "Seleccione una sede para poder modificarla"
+          })
+        }}>Modificar sede 
         </button>
+        :
         <button 
 					className="buttonSedes"
 					onClick={() => {
@@ -55,7 +77,7 @@ function BotonesSedes({ data, setData, sedeSeleccionada, setSedeSeleccionada }) 
 					}}	
 				>
 					Modificar sede
-				</button>
+				</button>}
         <div className="custom-input-file">
           <input
                   className="input-file"
@@ -79,13 +101,24 @@ function BotonesSedes({ data, setData, sedeSeleccionada, setSedeSeleccionada }) 
           window.location.href = "/sedes/responsablesSede";
         }}
         >Responsables</button>
+        { sedeSeleccionada === null ?
+        <button className="pseudoDisabledButton"
+        onClick={() => {
+          swal({
+            icon: "info",
+            title: "No hay ninguna sede seleccionada",
+            text: "Seleccione una sede para poder gestionarla"
+          })
+        }}>Gestionar sede 
+        </button>
+        :
         <button 
           className="buttonSedes"
           onClick={ () => {
             sedesServices.abrirSede(sedeSeleccionada);
           }}>
           Gestionar sede
-        </button>
+        </button>}
       </div>
     </>
   );

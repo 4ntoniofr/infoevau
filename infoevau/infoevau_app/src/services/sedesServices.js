@@ -12,7 +12,6 @@ const insertarSedes = (sedes, data, setData) => {
 };
 
 const borrarSede = (sede, sedesMemoria) => {
-  if (sede) {
 		axios.post("http://localhost:3001/borrarAulasSede", {
 			sedeBorrar: sede,
 		});
@@ -26,13 +25,6 @@ const borrarSede = (sede, sedesMemoria) => {
       text: "La sede " + sede + " se eliminó correctamente"
     });
     return sedesMemoria.filter((sedeMemoria) => sedeMemoria.Nombre !== sede);
-  } else {
-    swal({
-      icon: "info",
-      text: "Ninguna sede ha sido seleccionada para borrar"
-    });
-  }
-  return sedesMemoria;
 }
 
 const modificarSede = (sede, sedesMemoria) => {
@@ -51,46 +43,20 @@ const modificarSede = (sede, sedesMemoria) => {
         return sedeMemoria;
       });  
     }
-  } else {
-    swal({
-      icon: "info",
-      text: "Ninguna sede ha sido seleccionada para modificar"
-    });
   }
   return sedesMemoria;
 };
 
 const abrirSede = (sede) => {
-  if (sede != null) {
-    window.location.href = "/sedes/" + sede.replace("/","$");
-  } else {
-    swal({
-      icon: "info",
-      text: "Ninguna sede ha sido seleccionada"
-    });
-  }
+  window.location.href = "/sedes/" + sede.replace("/","$");
 }
 
 const abrirInstitutosSede = (sede) => {
-  if (sede != null) {
-    window.location.href = "/sedes/" + sede.replace("/","$") + "/institutos";
-  } else {
-    swal({
-      icon: "info",
-      text: "Ninguna sede ha sido seleccionada"
-    });
-  }
+  window.location.href = "/sedes/" + sede.replace("/","$") + "/institutos";
 }
 
 const abrirAulasSede = (sede) => {
-  if (sede != null) {
-    window.location.href = "/sedes/" + sede.replace("/","$") + "/aulas";
-  } else {
-    swal({
-      icon: "info",
-      text: "Ninguna sede ha sido seleccionada"
-    });
-  } 
+  window.location.href = "/sedes/" + sede.replace("/","$") + "/aulas";
 }
 
 const sedesServices = { insertarSedes, borrarSede, modificarSede, abrirSede, abrirInstitutosSede, abrirAulasSede };
