@@ -176,6 +176,23 @@ app.post("/nuevosInstitutos", (req, res) => {
 	})
 });
 
+app.post("/asignarSedeInstituto", (req, res) => {
+	let instituto = req.body.instituto;
+	let sede = req.body.sede;
+
+	db.query("UPDATE INSTITUTO SET Sede = ? WHERE Nombre = ?;", [sede,instituto], (err, res, f) => {
+		if(err) console.log(err)
+	});
+});
+
+app.post("/desasignarSedeInstituto", (req, res) => {
+	let instituto = req.body.instituto;
+
+	db.query("UPDATE INSTITUTO SET Sede = NULL WHERE Nombre = ?;", [instituto], (err, res, f) => {
+		if(err) console.log(err)
+	});
+});
+
 /** =========================================================================
  *  Sedes
  *  =========================================================================

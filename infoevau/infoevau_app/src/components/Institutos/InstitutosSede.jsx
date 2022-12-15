@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import "../../assets/css/Institutos.css";
 import TablaInstitutos from "./TablaInstitutos.jsx"
 import BotonesInstitutos from "./BotonesInstitutos"
@@ -10,6 +11,20 @@ export default function InstitutosSede() {
     let idSede = params.idSede.replace("$","/");
     const [institutoSeleccionadoDisp, setInstitutoSeleccionadoDisp] = useState(null);
 		const [institutoSeleccionadoAsig, setInstitutoSeleccionadoAsig] = useState(null);
+		const [dataAsig, setDataAsig] = useState([]);
+		const [dataDisp, setDataDisp] = useState([]);
+		
+    useEffect(() => {
+      axios.post("http://localhost:3001/institutosAsignados",{
+        sede: idSede
+      }).then((institutosAsig) => {
+        setDataAsig(institutosAsig.data);
+      });
+
+			axios.get("http://localhost:3001/institutosDisponibles").then((institutosDisp) => {
+        setDataDisp(institutosDisp.data);
+      });
+    }, [idSede]);
 
     return (
     <>
@@ -18,14 +33,26 @@ export default function InstitutosSede() {
         </div>
         <TablaInstitutos 
             idSede = {idSede}
+						data={dataDisp}
+						dataAsig={dataAsig}
 						institutoSeleccionado={institutoSeleccionadoDisp}
 						setInstitutoSeleccionado={setInstitutoSeleccionadoDisp}
+						asignadoSelec={institutoSeleccionadoAsig}
         />
         <BotonesInstitutos 
             idSede = {idSede}
+						dataAsig={dataAsig}
+						setDataAsig={setDataAsig}
+						dataDisp={dataDisp}
+						setDataDisp={setDataDisp}
+						institutoSeleccionadoDisp={institutoSeleccionadoDisp}
+						setInstitutoSeleccionadoDisp={setInstitutoSeleccionadoDisp}
+						institutoSeleccionadoAsig={institutoSeleccionadoAsig}
+						setInstitutoSeleccionadoAsig={setInstitutoSeleccionadoAsig}
         />
         <TablaInstitutosAsignados 
             idSede={idSede}
+						dataAsig={dataAsig}
 						institutoSeleccionado={institutoSeleccionadoAsig}
 						setInstitutoSeleccionado={setInstitutoSeleccionadoAsig}
         />
