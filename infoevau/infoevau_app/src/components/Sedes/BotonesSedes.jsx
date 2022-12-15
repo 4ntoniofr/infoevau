@@ -3,8 +3,19 @@ import sedesServices from "../../services/sedesServices";
 import responsablesServices from "../../services/responsablesServices";
 import papelera from "../../assets/images/papelera.png";
 import swal from 'sweetalert';
+import { useState } from "react";
 
 function BotonesSedes({ data, setData, sedeSeleccionada, setSedeSeleccionada }) {
+  const [nomSede,setNomSede] = useState("")
+  const formModificarSede = document.getElementById("formularioModificarSede");
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    setData(sedesServices.modificarSede(sedeSeleccionada, nomSede, data));
+    setSedeSeleccionada(null);
+    formModificarSede.close();
+  }
+
   return (
     <>
       <div className="containerBotonesSedes">
@@ -53,6 +64,7 @@ function BotonesSedes({ data, setData, sedeSeleccionada, setSedeSeleccionada }) 
           onClick={() => {
             setData(sedesServices.borrarSede(sedeSeleccionada, data));
             setSedeSeleccionada(null);
+            setNomSede(null);
           }}
         >
           <img src={papelera} className="icono" alt="" />
@@ -72,8 +84,8 @@ function BotonesSedes({ data, setData, sedeSeleccionada, setSedeSeleccionada }) 
         <button 
 					className="buttonSedes"
 					onClick={() => {
-						setData(sedesServices.modificarSede(sedeSeleccionada, data));
-            setSedeSeleccionada(null);
+            setNomSede(sedeSeleccionada);
+            formModificarSede.showModal();
 					}}	
 				>
 					Modificar sede
@@ -119,6 +131,20 @@ function BotonesSedes({ data, setData, sedeSeleccionada, setSedeSeleccionada }) 
           }}>
           Gestionar sede
         </button>}
+
+        <dialog id="formularioModificarSede" className="customDialog">
+          <form className="formSedes" onSubmit={handleSubmit}>
+            <h3>Introduzca el nuevo nombre de la sede</h3>
+            <label><input style={{width: '400px'}} placeholder="nomSede" type="text" value={nomSede} onChange={(event) => setNomSede(event.target.value)} /></label>
+            <br />
+            <br />
+            <button className="buttonFormSedes" type="submit">Aceptar</button>
+            <br />
+            <br />
+            <br />
+            <button className="buttonFormSedes" onClick={(event)=>{setNomSede("")}}>Cerrar</button>
+          </form>
+        </dialog>
       </div>
     </>
   );

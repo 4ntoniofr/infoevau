@@ -27,23 +27,20 @@ const borrarSede = (sede, sedesMemoria) => {
     return sedesMemoria.filter((sedeMemoria) => sedeMemoria.Nombre !== sede);
 }
 
-const modificarSede = (sede, sedesMemoria) => {
-  if (sede) {
-    let sedeModif = prompt("Introduzca un nuevo nombre de sede", sede);
-    if (sedeModif != null && sedeModif !== "" && sedeModif.charAt(0) !== " ") {
+const modificarSede = (prevSede, nuevaSede, sedesMemoria) => {
+    if (nuevaSede != null && nuevaSede !== "" && nuevaSede.charAt(0) !== " ") {
       axios.post("http://localhost:3001/modificarSede", {
-        prevSede: sede,
-        postSede: sedeModif,
+        prevSede: prevSede,
+        postSede: nuevaSede,
       });
-      sedesMemoria.find((s) => s.Nombre === sede).Nombre = sedeModif;
+      sedesMemoria.find((s) => s.Nombre === prevSede).Nombre = nuevaSede;
       return sedesMemoria.map((sedeMemoria) => {
-        if (sedeMemoria.Nombre === sede) {
-          return { ...sedeMemoria, Nombre: sedeModif };
+        if (sedeMemoria.Nombre === prevSede) {
+          return { ...sedeMemoria, Nombre: nuevaSede };
         }
         return sedeMemoria;
       });  
     }
-  }
   return sedesMemoria;
 };
 

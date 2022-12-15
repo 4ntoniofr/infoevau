@@ -67,7 +67,7 @@ export default function TablaInstitutos({idSede, institutoSeleccionado, setInsti
 			</table>
 		</div>
 		<div className="containerAforoInstitutos">
-				<h4>&nbsp;&nbsp;&nbsp;&nbsp;Aforo total de la sede: {capacidadSede}</h4>
+				<h4>&nbsp;&nbsp;&nbsp;&nbsp;Aforo total de la sede: {capacidadSede === null? 0 : capacidadSede}</h4>
 				<h4>&nbsp;&nbsp;&nbsp;&nbsp;Total de alumnos en sede: {institutoSeleccionado === null? 0 : institutoSeleccionado.NumAlumnos}</h4>
 		</div>
 		</>
