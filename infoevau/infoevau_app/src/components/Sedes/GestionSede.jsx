@@ -1,9 +1,10 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import pizarra from "../../assets/images/pizarra.png";
 import swal from "sweetalert";
 import sedesServices from "../../services/sedesServices";
+import axios from "axios";
 
 export default function GestionSede() {
   let params = useParams();
@@ -19,9 +20,27 @@ export default function GestionSede() {
         nombres.push(nombre);
       });
       setData(nombres);
+
+      axios.post("http://localhost:3001/nuevoPersonal", {
+        personal: nombres,
+        sede: idSede
+      });
     };
     reader.readAsText(file);
+
   }
+
+  useEffect(() => {
+    axios.post("http://localhost:3001/personalAulas",{sede:idSede}).then((personal) => {
+      let real = [];
+      personal.data.map((p) => {
+        real.push(p.Responsable);
+      })
+      setData(real);
+    });
+  }, []);
+
+
 
   return (
     <>

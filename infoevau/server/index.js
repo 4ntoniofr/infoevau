@@ -293,3 +293,66 @@ app.post("/nuevosExamenes", async (req, res) => {
 		if(err) console.log(err);
 	});
 });
+
+/** =========================================================================
+ *  Personal
+ *  =========================================================================
+ */
+
+
+app.post("/nuevoPersonal", (req, res) => {
+	let personal = req.body.personal;
+	let sede = req.body.sede;
+	personal.forEach(r => {
+		if (r != '') {
+			db.query("INSERT INTO RESPONSABLE_AULA(Responsable, Sede) VALUES (?, '"+sede+"');", [r], (err, res, f) => {
+				if (err) console.log(err);
+			})
+		}
+	})
+});
+
+app.post("/personalAulas", (req, res) => {
+	let sede = req.body.sede;
+	dbQuery("SELECT Responsable FROM RESPONSABLE_AULA where Sede = '"+sede+"';", req, res);
+});
+
+
+app.post("/asignarResponsableAula", (req, res) => {
+	let aula = req.body.aula;
+	let responsable = req.body.responsable;
+	db.query("UPDATE RESPONSABLE_AULA SET Aula = '" + aula + "', Rol = 'Responsable' where Responsable = '" + responsable + "';", (err, res, f) => {
+		if (err) console.log(err)
+	})
+	db.query("UPDATE AULA SET Responsable = '" + responsable + "' where Id = '" + aula + "';", (err, res, f) => {
+		if (err) console.log(err)
+	})
+	res.send();
+})
+
+app.post("/asignarVigilanteAula", (req, res) => {
+	let aula = req.body.aula;
+	let vigilante = req.body.vigilante;
+	db.query("UPDATE RESPONSABLE_AULA SET Aula = '" + aula + "', Rol = 'Vigilante' where Responsable = '" + vigilante + "';", (err, res, f) => {
+		if (err) console.log(err)
+	})
+	db.query("UPDATE AULA SET Responsable = '" + vigilante + "' where Id = '" + aula + "';", (err, res, f) => {
+		if (err) console.log(err)
+	})
+	res.send();
+})
+
+app.post("/desasignarPersonal", (req, res) => {
+	let personal = req.body.personal;
+	let aula = req.body.aula;
+
+	db.query("UPDATE RESPONSABLE_AULA SET Aula = NULL, Rol = NULL WHERE Responsable = '" + personal + "';", (err, res, f) => {
+		if (err) console.log(err)
+	})
+
+	db.query("UPDATE AULA SET Responsable = NULL WHERE Id = '" + aula + "';", (err, res, f) => {
+		if (err) console.log(err)
+	})
+
+	res.send();
+})
