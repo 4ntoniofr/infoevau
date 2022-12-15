@@ -1,19 +1,27 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-export default function TablaInstitutos({idSede, institutoSeleccionado, setInstitutoSeleccionado}) {
-    const [data, setData] = useState([]);
+export default function TablaInstitutos({idSede, data, dataAsig, institutoSeleccionado, setInstitutoSeleccionado, asignadoSelec}) {
 		const [capacidadSede, setCapacidadSede] = useState(0);
   
     useEffect(() => {
-      axios.get("http://localhost:3001/institutosDisponibles").then((institutosDisp) => {
-        setData(institutosDisp.data);
-      });
-
-			axios.post("http://localhost:3001/aforoSede", {
+      axios.post("http://localhost:3001/aforoSede", {
 			sede: idSede
 			}).then(c => setCapacidadSede(c.data[0].Capacidad));
     }, []);
+
+		const alumnosSede = () => {
+			let nAlumnos = 0;
+			dataAsig.forEach(i => nAlumnos += i.NumAlumnos);
+			return nAlumnos;
+		}
+
+		const totalAlumnos = () => {
+			let n = alumnosSede();
+			if(institutoSeleccionado) n += institutoSeleccionado.NumAlumnos;
+			if(asignadoSelec) n -= asignadoSelec.NumAlumnos;
+			return n;
+		}
 
 	return (
 		<>
@@ -68,7 +76,10 @@ export default function TablaInstitutos({idSede, institutoSeleccionado, setInsti
 		</div>
 		<div className="containerAforoInstitutos">
 				<h4>&nbsp;&nbsp;&nbsp;&nbsp;Aforo total de la sede: {capacidadSede === null? 0 : capacidadSede}</h4>
-				<h4>&nbsp;&nbsp;&nbsp;&nbsp;Total de alumnos en sede: {institutoSeleccionado === null? 0 : institutoSeleccionado.NumAlumnos}</h4>
+				<h4>&nbsp;&nbsp;&nbsp;&nbsp;Total de alumnos en sede: {alumnosSede() + 
+				(institutoSeleccionado ? (" + " + institutoSeleccionado.NumAlumnos):"") + 
+				(asignadoSelec ? (" - " + asignadoSelec.NumAlumnos):"") +
+				((institutoSeleccionado || asignadoSelec) ?  (" = " + totalAlumnos()):"")}</h4>
 		</div>
 		</>
 	)
