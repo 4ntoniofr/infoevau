@@ -4,6 +4,7 @@ import papelera from "../../assets/images/papelera.png";
 import aulasServices from "../../services/aulasServices";
 import swal from 'sweetalert';
 import { useState } from "react";
+import sedesServices from "../../services/sedesServices";
 
 export default function BotonesAulas({ data, setData, aulaSeleccionada, idSede }) {
 
@@ -11,6 +12,7 @@ export default function BotonesAulas({ data, setData, aulaSeleccionada, idSede }
 		const [capacidad, setCapacidad] = useState(0)
 		const [disponibilidad, setDisponibilidad] = useState([])
 		const [modificar, setModificar] = useState(false)
+        const [codigo, setCodigo] = useState(0)
     let sede = idSede;
 
     const formCrearAula = document.getElementById("formularioCrearAula");
@@ -31,41 +33,58 @@ export default function BotonesAulas({ data, setData, aulaSeleccionada, idSede }
 									formCrearAula.showModal();
 								}}>Crear Aula</button>
 
-
-                <button className="buttonAulas" onClick={() => {
-                        if(aulaSeleccionada !== null){
-													setId(aulaSeleccionada.Id);
-													setCapacidad(aulaSeleccionada.Capacidad);
-													setDisponibilidad([]);
-													setModificar(true);
-													formCrearAula.showModal();
-												}else{
-													swal({
-														icon: "error",
-														text: "Ningún aula ha sido seleccionada"
-													});
-												}
+                {aulaSeleccionada === null? 
+                    <button className="pseudoDisabledButton"
+                    onClick={() => {
+                    swal({
+                        icon: "info",
+                        title: "Ningún aula ha sido seleccionada",
+                    })
+                    }}>Modificar aula
+                    </button>
+                    :
+                    <button className="buttonAulas" onClick={() => {
+						setId(aulaSeleccionada.Id);
+						setCapacidad(aulaSeleccionada.Capacidad);
+						setDisponibilidad([]);
+						setModificar(true);
+						formCrearAula.showModal();
                     }}>
                     Modificar aula
                 </button>
+                }
 
-                <button className="buttonAulas"
+                {aulaSeleccionada === null?
+                    <button className="pseudoDisabledButton"
+                    onClick={() => {
+                    swal({
+                        icon: "info",
+                        title: "Ningún aula ha sido seleccionada",
+                    })
+                    }}>Borrar aula
+                    </button>
+                    :
+                    <button className="buttonAulasBorrar"
                     onClick={() => {
                         aulasServices.borrarAula(aulaSeleccionada, data, setData);
                     }}>
                     <img src={papelera} className="icono" alt="" />
                     Borrar aula
                 </button>
-                
+                }
+
+                <button className="buttonAulas" onClick={() => {sedesServices.abrirSede(sede);}}>
+                    Volver
+                </button>
+
                 <dialog id = "formularioCrearAula" className="customDialog">
                     <form className="form2" onSubmit={() => {
                             if(modificar)
-															aulasServices.modificarAula(id, capacidad, disponibilidad.toString(), aulaSeleccionada, data, setData);
-														else
-															aulasServices.insertarAula(data, setData, id, capacidad, disponibilidad.toString(), sede);
-														
-														formCrearAula.close();
-													}
+								aulasServices.modificarAula(id, capacidad, disponibilidad.toString(), aulaSeleccionada, data, setData);
+							else
+                                aulasServices.insertarAula(data, setData, id, capacidad, disponibilidad.toString(), sede);
+                                //formCrearAula.close();
+							}
                         }>
                         <h2>{modificar ? "Modificar" : "Crear"} Aula</h2>
                         <label><input placeholder="ID" type="text" value={id} onChange={(event) => setId(event.target.value)} /></label>

@@ -14,7 +14,7 @@
     width: 30%;
     height: 18%;
     position: absolute;
-    top:30%;
+    top: 25%;
     left:35%;
 }
 
@@ -39,9 +39,9 @@
 .containerBotonesInstitutos {
     width: 20%;
     position: fixed;
-    top:55%;
+    top:48%;
     left:40%;
-    height: 24%;
+    height: 280px;
 }
 
     /* Scrollbar*/
@@ -107,6 +107,7 @@
     font-weight: 600;
     letter-spacing: normal;
     line-height: 1.5;
+    margin-bottom: 20px;
     outline: none;
     overflow: hidden;
     padding: 13px 20px;
@@ -132,4 +133,36 @@
   .buttonInstitutos:active {
     transform: translateY(2px);
     transition-duration: .35s;
+  }
+
+  .pseudoDisabledButtonInstitutos {
+    appearance: none;
+    backface-visibility: hidden;
+    background-color: #6e6e6e;
+    border-radius: 8px;
+    border-style: none;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #fff;
+    display: inline-block;
+    font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: normal;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    outline: none;
+    overflow: hidden;
+    padding: 13px 20px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transform: translate3d(0, 0, 0);
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: top;
+    white-space: nowrap;
+    width: 100%;
   }
