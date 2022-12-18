@@ -12,7 +12,7 @@ const borrarAula = (aula, aulasMemoria, setAulasMemoria) => {
       text: "El aula " + aula.Id + " de la sede " + aula.Sede + " se eliminó correctamente"
     });
 
-    setAulasMemoria(aulasMemoria.filter((a) => a.Id !== aula.Id));
+    setAulasMemoria(aulasMemoria.filter((a) => a.Id !== aula.Id || a.Disponibilidad !== aula.Disponibilidad));
   } else {
     swal({
       icon: "error",
@@ -23,6 +23,7 @@ const borrarAula = (aula, aulasMemoria, setAulasMemoria) => {
 }
 
 const insertarAula = (aulasMemoria, setAulasMemoria, id, capacidad, disponibilidad, sede) => {
+
   if(id !== "" && id !== undefined){
 		axios.post("http://localhost:3001/nuevaAula", {
     	Id: id,
@@ -30,28 +31,19 @@ const insertarAula = (aulasMemoria, setAulasMemoria, id, capacidad, disponibilid
     	Disponibilidad: disponibilidad,
     	Sede: sede,
   	}).then(() => {
-			aulasMemoria.push({Id: id, Capacidad: capacidad, Disponibilidad: disponibilidad, Sede: sede});
+		disponibilidad.split(",").map((d) => {
+			aulasMemoria.push({Id: id, Capacidad: capacidad, Disponibilidad: d, Sede: sede});
+		})
 			setAulasMemoria(aulasMemoria);
 		});
 	}
 };
 
 const modificarAula = (id, capacidad, disponibilidad, aulaSeleccionada, aulasMemoria, setAulasMemoria) => {
-	if(id !== "" && id !== undefined){
-		axios.post("http://localhost:3001/modificarAula", {
-    	prevID: aulaSeleccionada.Id,
-			sedeAula: aulaSeleccionada.Sede,
-			postID: id,
-			postCapacidad: capacidad,
-			postDisponibilidad: disponibilidad
-  	});
 
-		let aula = aulasMemoria.find((a) => a.Id === aulaSeleccionada.Id);
-		aula.Id = id;
-		aula.Capacidad = capacidad;
-		aula.Disponibilidad = disponibilidad;
-		setAulasMemoria(aulasMemoria);
-	}
+	axios.post("http://localhost:3001/borrarAulasId", {aulaBorrar: aulaSeleccionada});
+	insertarAula(aulasMemoria, setAulasMemoria, id, capacidad, disponibilidad, aulaSeleccionada.Sede);
+
 };
 
 const aulasServices = { borrarAula, insertarAula, modificarAula }

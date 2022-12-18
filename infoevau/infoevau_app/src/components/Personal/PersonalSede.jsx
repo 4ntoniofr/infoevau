@@ -29,10 +29,19 @@ export default function PersonalSede() {
         });
 
         axios.post("http://localhost:3001/personal", {sede:idSede}).then((p) => {
-            setDataPersonal(p.data);
+            setDataPersonal(p.data.sort(compare));
         });
 
-    }, [idSede]);
+    }, []);
+
+    function compare (a, b){
+            if(a.Responsable > b.Responsable){
+                return 1;
+            }else{
+                return -1;
+    }
+
+    }
 
     return (
         <>
@@ -42,7 +51,7 @@ export default function PersonalSede() {
 
             <TablaAulasSeparadas data={dataAulas} aulaSeleccionada = {aulaSeleccionada} setAulaSeleccionada = {setAulaSeleccionada}/>
 
-            <BotonesPersonal aulaSeleccionada={aulaSeleccionada} personalSeleccionado={personalSeleccionado} dataPersonal = {dataPersonal} setDataPersonal = {setDataPersonal}/>
+            <BotonesPersonal aulaSeleccionada={aulaSeleccionada} personalSeleccionado={personalSeleccionado} dataPersonal = {dataPersonal} setDataPersonal = {setDataPersonal} dataAulas = {dataAulas} setDataAulas ={setDataAulas} setAulaSeleccionada={setAulaSeleccionada} setPersonalSeleccionado={setPersonalSeleccionado}/>
 
             <TablaPersonal data = {dataPersonal} personalSeleccionado = {personalSeleccionado} setPersonalSeleccionado={setPersonalSeleccionado}/>
         </>

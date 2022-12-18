@@ -1,7 +1,7 @@
 import "../../assets/css/Aulas.css"
 import axios from "axios";
 
-export default function BotonesPersonal({aulaSeleccionada, personalSeleccionado, dataPersonal, setDataPersonal}) {
+export default function BotonesPersonal({aulaSeleccionada, personalSeleccionado, dataPersonal, setDataPersonal, dataAulas, setDataAulas, setAulaSeleccionada, setPersonalSeleccionado}) {
 
     const asignarResponsable = (aula, responsable) => {
         if(responsable == null){
@@ -23,7 +23,11 @@ export default function BotonesPersonal({aulaSeleccionada, personalSeleccionado,
 
             dataPersonal.find(r => r.Responsable === responsable.Responsable).Aula = aula.Id;
             dataPersonal.find(r => r.Responsable === responsable.Responsable).Rol = "Responsable";
+            dataAulas.find(a => a.Id === aula.Id).Responsable = responsable.Responsable;
             setDataPersonal(dataPersonal);
+            setDataAulas(dataAulas);
+            setAulaSeleccionada(null);
+            setPersonalSeleccionado(null);
         }
     }
 
@@ -34,8 +38,6 @@ export default function BotonesPersonal({aulaSeleccionada, personalSeleccionado,
             alert("Debe seleccionar un aula")
         }else if(vigilante.Rol != null){
             alert("El personal seleccionado ya tiene un rol en ese horario.");
-        }else if(aula.Responsable != null){
-            alert("El aula seleccionada ya tiene un responsable asignado.");
         }else if(aula.Disponibilidad !== vigilante.Momento){
             alert("Los horarios del aula y el personal no coinciden.");
         }
@@ -48,21 +50,30 @@ export default function BotonesPersonal({aulaSeleccionada, personalSeleccionado,
             dataPersonal.find(r => r.Responsable === vigilante.Responsable).Aula = aula.Id;
             dataPersonal.find(r => r.Responsable === vigilante.Responsable).Rol = "Vigilante";
             setDataPersonal(dataPersonal);
+            setAulaSeleccionada(null);
+            setPersonalSeleccionado(null);
         }
     }
 
     const desasignarPersonal = (personal) => {
         if(personal==null){
             alert("Debes seleccionar un personal");
+        }else if(personal.Aula == null){
+            console.log(personal.Aula)
+            alert("El personal seleciconado no es Responsable o Vigilante de ningún aula.")
         }else{
             axios.post("http://localhost:3001/desasignarPersonal", {
                 personal: personal.Responsable,
                 aula: personal.Aula
             });
 
+            dataAulas.find(a => a.Id === personal.Aula).Responsable = null;
             dataPersonal.find(r => r.Responsable === personal.Responsable).Aula = null;
             dataPersonal.find(r => r.Responsable === personal.Responsable).Rol = null;
             setDataPersonal(dataPersonal);
+            setDataAulas(dataAulas);
+            setAulaSeleccionada(null);
+            setPersonalSeleccionado(null);
         }
     }
 

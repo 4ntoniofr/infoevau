@@ -9,6 +9,7 @@ import axios from "axios";
 export default function GestionSede() {
   let params = useParams();
   let idSede = params.idSede.replace("$", "/");
+  let disponibilidades = ["Primera franja de Primer día", "Primera franja de Segundo día", "Primera franja de Tercer día", "Segunda franja de Primer día", "Segunda franja de Segundo día", "Segunda franja de Tercer día", "Tercera franja de Primer día", "Tercera franja de Segundo día", "Tercera franja de Tercer día", "Primera franja de Primer día"]
 
   const [data, setData] = useState([]);
 
@@ -23,7 +24,8 @@ export default function GestionSede() {
 
       axios.post("http://localhost:3001/nuevoPersonal", {
         personal: nombres,
-        sede: idSede
+        sede: idSede,
+        disponibilidad: disponibilidades
       });
     };
     reader.readAsText(file);

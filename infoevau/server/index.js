@@ -252,15 +252,25 @@ app.get("/deleteSedes", (req, res) => {
 
 app.post("/borrarAula", (req, res) => {
 	let aula = req.body.aulaBorrar.Id;
-	let sede = req.body.aulaBorrar.Sede;
-	console.log(req.body)
+	let disponibilidad = req.body.aulaBorrar.Disponibilidad;
 
-	db.query("DELETE FROM AULA WHERE ID = ? AND Sede = ?;", [aula, sede], (err, res, f) => {
+	db.query("DELETE FROM AULA WHERE ID = ? AND Disponibilidad = ?;", [aula, disponibilidad], (err, res, f) => {
 		if (err) console.log(err)
 		else console.log('Eliminación satisfactoria de ', aula)
 	})
 	res.send();
 })
+
+app.post("/borrarAulasId", (req, res) => {
+	let aula = req.body.aulaBorrar.Id;
+
+	db.query("DELETE FROM AULA WHERE ID = ?;", [aula], (err, res, f) => {
+		if (err) console.log(err)
+		else console.log('Eliminación satisfactoria de ', aula)
+	})
+	res.send();
+})
+
 
 app.post("/borrarAulasSede", (req, res) => {
 	let sede = req.body.sedeBorrar;
@@ -291,11 +301,14 @@ app.post("/nuevaAula", (req, res) => {
 	let Disponibilidad = req.body.Disponibilidad;
 	let Sede = req.body.Sede;
 
-	if (Id != null && Capacidad != null && Disponibilidad != null)
-		db.query("INSERT INTO AULA(Id,Capacidad,Disponibilidad,Sede) VALUES (?,?,?,?);", [Id, Capacidad, Disponibilidad, Sede], (err, res, f) => {
-			if (err) console.log(err);
-			else console.log('Insercion exitosa del aula')
+	if (Id != null && Capacidad != null && Disponibilidad != null){
+		Disponibilidad.split(",").map((d) => {
+			db.query("INSERT INTO AULA(Id,Capacidad,Disponibilidad,Sede) VALUES (?,?,?,?);", [Id, Capacidad, d, Sede], (err, res, f) => {
+				if (err) console.log(err);
+				else console.log('Insercion exitosa del aula')
+			})
 		})
+	}
 });
 
 /** =========================================================================
@@ -320,9 +333,11 @@ app.post("/nuevosExamenes", async (req, res) => {
 app.post("/nuevoPersonal", (req, res) => {
 	let personal = req.body.personal;
 	let sede = req.body.sede;
+	let disponibilidad = req.body.disponibilidad;
 	personal.forEach(r => {
 		if (r != '') {
-			db.query("INSERT INTO RESPONSABLE_AULA(Responsable, Sede) VALUES (?, '"+sede+"');", [r], (err, res, f) => {
+			let num = Math.floor((Math.random() * 9));
+			db.query("INSERT INTO RESPONSABLE_AULA(Responsable, Sede, Momento) VALUES (?, '"+sede+"', '"+disponibilidad[num]+"');", [r], (err, res, f) => {
 				if (err) console.log(err);
 			})
 		}

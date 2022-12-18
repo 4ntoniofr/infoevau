@@ -16,7 +16,6 @@ export default function TablaPersonal({data, personalSeleccionado, setPersonalSe
                             <th>Personal</th>
                             <th>Horario</th>
                             <th>Aula</th>
-                            <th>Examen</th>
                             <th>Rol</th>
                         </tr>
                     </thead>
@@ -30,7 +29,6 @@ export default function TablaPersonal({data, personalSeleccionado, setPersonalSe
                                     <td>{personal.Responsable}</td>
                                     <td>{personal.Momento}</td>
                                     <td>{personal.Aula}</td>
-                                    <td>{personal.Examen}</td>
                                     <td>{personal.Rol}</td>
                                 </tr>
                             ))}
