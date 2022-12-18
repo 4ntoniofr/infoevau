@@ -1,6 +1,8 @@
 import React from "react";
+import swal from "sweetalert";
 import institutosServices from "../../services/institutosServices";
 import sedesServices from "../../services/sedesServices";
+import "../../assets/css/Institutos.css";
 
 export default function BotonesInstitutos({
 	idSede,
@@ -11,8 +13,15 @@ export default function BotonesInstitutos({
 	institutoSeleccionadoDisp,
 	setInstitutoSeleccionadoDisp,
 	institutoSeleccionadoAsig,
-	setInstitutoSeleccionadoAsig
+	setInstitutoSeleccionadoAsig,
+	capacidadSede
 }) {
+
+	const alumnosSede = () => {
+		let nAlumnos = 0;
+		dataAsig.forEach(i => nAlumnos += i.NumAlumnos);
+		return nAlumnos;
+	}
 
 	const compare = (a,b) => {
 		if(a<b) return -1;
@@ -23,22 +32,48 @@ export default function BotonesInstitutos({
 	return (
 		<>
 		<div className="containerBotonesInstitutos">
-			<button
+			{institutoSeleccionadoDisp === null ?
+				<button className="pseudoDisabledButtonInstitutos"
+				onClick={() => {
+					swal({
+						icon: "info",
+						title: "Ningun instituto seleccionado"
+					})
+				}}>Asignar instituto</button>
+				:
+				<button
 				className="buttonInstitutos"
 				onClick={() => {
 					if(!institutoSeleccionadoDisp) alert("No instituto disponible seleccionado")
 					else{
-						institutosServices.asignarSede(institutoSeleccionadoDisp, idSede);
-						setDataDisp(dataDisp.filter(i => i !== institutoSeleccionadoDisp));
-						dataAsig.push(institutoSeleccionadoDisp);
-						setDataAsig(dataAsig.sort((a,b) => compare(a.Nombre,b.Nombre)));
-						setInstitutoSeleccionadoDisp(null);
+						if (institutoSeleccionadoDisp.NumAlumnos + alumnosSede() <= capacidadSede) {
+							institutosServices.asignarSede(institutoSeleccionadoDisp, idSede);
+							setDataDisp(dataDisp.filter(i => i !== institutoSeleccionadoDisp));
+							dataAsig.push(institutoSeleccionadoDisp);
+							setDataAsig(dataAsig.sort((a,b) => compare(a.Nombre,b.Nombre)));
+							setInstitutoSeleccionadoDisp(null);
+						} else {
+							swal({
+								icon: "info",
+								title: "No se puede realizar la asignación",
+								text: "No hay aforo suficiente en esta sede. Puede definir nuevas aulas o reasignar los institutos."
+							})
+						}
 					}
 				}}
-			>Asignar instituto</button>
-			<br/>
-			<br/>
-			<button
+				>Asignar instituto</button>
+			}
+
+			{institutoSeleccionadoAsig === null? 
+				<button className="pseudoDisabledButtonInstitutos"
+				onClick={() => {
+					swal({
+						icon: "info",
+						title: "Ningun instituto seleccionado"
+					})
+				}}>Desasignar instituto</button>
+				:
+				<button
 				className="buttonInstitutos"
 				onClick={() => {
 					if(!institutoSeleccionadoAsig) alert("No instituto asignado seleccionado")
@@ -50,10 +85,11 @@ export default function BotonesInstitutos({
 						setInstitutoSeleccionadoAsig(null);
 					}
 				}}
-			>Desasignar instituto</button>
-			<br/>
-			<br/>
+				>Desasignar instituto</button>
+			}
+
 			<button className="buttonInstitutos" onClick={() => {sedesServices.abrirAulasSede(idSede)}}>Gestionar Aulas</button>
+			<button className="buttonInstitutos" onClick={() => {sedesServices.abrirSede(idSede)}}>Volver</button>
 		</div>
 		</>
 	)

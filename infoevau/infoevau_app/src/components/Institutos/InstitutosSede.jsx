@@ -13,7 +13,8 @@ export default function InstitutosSede() {
 		const [institutoSeleccionadoAsig, setInstitutoSeleccionadoAsig] = useState(null);
 		const [dataAsig, setDataAsig] = useState([]);
 		const [dataDisp, setDataDisp] = useState([]);
-		
+		const [capacidadSede, setCapacidadSede] = useState(0);
+
     useEffect(() => {
       axios.post("http://localhost:3001/institutosAsignados",{
         sede: idSede
@@ -38,6 +39,8 @@ export default function InstitutosSede() {
 						institutoSeleccionado={institutoSeleccionadoDisp}
 						setInstitutoSeleccionado={setInstitutoSeleccionadoDisp}
 						asignadoSelec={institutoSeleccionadoAsig}
+            capacidadSede={capacidadSede}
+            setCapacidadSede={setCapacidadSede}
         />
         <BotonesInstitutos 
             idSede = {idSede}
@@ -49,6 +52,7 @@ export default function InstitutosSede() {
 						setInstitutoSeleccionadoDisp={setInstitutoSeleccionadoDisp}
 						institutoSeleccionadoAsig={institutoSeleccionadoAsig}
 						setInstitutoSeleccionadoAsig={setInstitutoSeleccionadoAsig}
+            capacidadSede={capacidadSede}
         />
         <TablaInstitutosAsignados 
             idSede={idSede}

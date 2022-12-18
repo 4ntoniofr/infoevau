@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import pizarra from "../../assets/images/pizarra.png";
 import swal from "sweetalert";
 import sedesServices from "../../services/sedesServices";
 import axios from "axios";
