@@ -14,7 +14,6 @@ export default function TablaAulasSeparadas({data, aulaSeleccionada, setAulaSele
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Capacidad</th>
                             <th>Disponibilidad</th>
                         </tr>
                     </thead>
@@ -26,7 +25,6 @@ export default function TablaAulasSeparadas({data, aulaSeleccionada, setAulaSele
 																	onClick={() => seleccionarAula(aula)}
 																>
                                     <td>{aula.Id}</td>
-                                    <td>{aula.Capacidad}</td>
                                     <td>{aula.Disponibilidad}</td>
                                 </tr>
                             ))}

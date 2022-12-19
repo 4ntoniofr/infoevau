@@ -354,11 +354,12 @@ app.post("/personalAulas", (req, res) => {
 app.post("/asignarResponsableAula", (req, res) => {
 	let aula = req.body.aula;
 	let sede = req.body.sede;
+	let disponibilidad = req.body.disponibilidad;
 	let responsable = req.body.responsable;
-	db.query("UPDATE RESPONSABLE_AULA SET Aula = '" + aula + "', Rol = 'Responsable' where Responsable = '" + responsable + "' and Sede = '"+sede+"';", (err, res, f) => {
+	db.query("UPDATE RESPONSABLE_AULA SET Aula = '" + aula + "', Rol = 'Responsable' where Responsable = '" + responsable + "' and Momento = '"+disponibilidad+"' and Sede = '"+sede+"';", (err, res, f) => {
 		if (err) console.log(err)
 	})
-	db.query("UPDATE AULA SET Responsable = '" + responsable + "' where Id = '" + aula + "' and Sede = '"+sede+"';", (err, res, f) => {
+	db.query("UPDATE AULA SET Responsable = '" + responsable + "' where Id = '" + aula + "' and Disponibilidad = '"+disponibilidad+"' and Sede = '"+sede+"';", (err, res, f) => {
 		if (err) console.log(err)
 	})
 	res.send();
@@ -367,12 +368,13 @@ app.post("/asignarResponsableAula", (req, res) => {
 app.post("/asignarVigilanteAula", (req, res) => {
 	let aula = req.body.aula;
 	let vigilante = req.body.vigilante;
+	let disponibilidad = req.body.disponibilidad;
 	let sede = req.body.sede;
 
-	db.query("UPDATE RESPONSABLE_AULA SET Aula = '" + aula + "', Rol = 'Vigilante' where Responsable = '" + vigilante + "' and Sede = '"+sede+"';", (err, res, f) => {
+	db.query("UPDATE RESPONSABLE_AULA SET Aula = '" + aula + "', Rol = 'Vigilante' where Responsable = '" + vigilante + "' and Momento = '"+disponibilidad+"' and Sede = '"+sede+"';", (err, res, f) => {
 		if (err) console.log(err)
 	})
-	db.query("UPDATE AULA SET Responsable = '" + vigilante + "' where Id = '" + aula + "' and Sede = '"+sede+"';", (err, res, f) => {
+	db.query("UPDATE AULA SET Responsable = '" + vigilante + "' where Id = '" + aula + "' and Disponibilidad = '"+disponibilidad+"' and Sede = '"+sede+"';", (err, res, f) => {
 		if (err) console.log(err)
 	})
 	res.send();
@@ -381,13 +383,14 @@ app.post("/asignarVigilanteAula", (req, res) => {
 app.post("/desasignarPersonal", (req, res) => {
 	let personal = req.body.personal;
 	let aula = req.body.aula;
+	let disponibilidad = req.body.disponibilidad;
 	let sede = req.body.sede;
 
-	db.query("UPDATE RESPONSABLE_AULA SET Aula = NULL, Rol = NULL WHERE Responsable = '" + personal + "' and Sede = '"+sede+"';", (err, res, f) => {
+	db.query("UPDATE RESPONSABLE_AULA SET Aula = NULL, Rol = NULL WHERE Responsable = '" + personal + "' and Momento = '"+disponibilidad+"' and Sede = '"+sede+"';", (err, res, f) => {
 		if (err) console.log(err)
 	})
 
-	db.query("UPDATE AULA SET Responsable = NULL WHERE Id = '" + aula + "' and Sede = '"+sede+"';", (err, res, f) => {
+	db.query("UPDATE AULA SET Responsable = NULL WHERE Id = '" + aula + "' and Disponibilidad = '"+disponibilidad+"' and Sede = '"+sede+"';", (err, res, f) => {
 		if (err) console.log(err)
 	})
 
