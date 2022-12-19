@@ -1,8 +1,10 @@
 import React from "react";
 import TablaAlumnos from "./TablaAlumnos";
 import BotonesAlumnos from "./BotonesAlumnos";
+import axios from "axios";
+import swal from "sweetalert";
 import "../../assets/css/Alumnos.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Alumnos() {
 	const [data, setData] = useState({});

@@ -93,35 +93,7 @@ function BotonesAlumnos({data, setData, setDataBD}) {
 			<button className='buttonAlumnos' onClick={() => {alumnoServices.generarFichero()}}>Mostrar log</button>
 			}
 			<br />
-			<div className='custom-input-file'>
-			<input
-         className='input-file'
-         type="file"
-         accept=".csv"
-         onChange={(e) => {
-			if (e.target.files[0].name.endsWith(".csv")) {
-				Papa.parse(e.target.files[0], {
-					complete: (res, file) => {
-						alumnoServices.insertarExamenes(res.data).then(c => {
-							swal({
-								icon: "success",
-								title: "Inserción de exámenes correcta",
-								text: "Se insertaron " + c + " de " + res.data.filter(e => e[0] !== "").length + " exámenes correctamente."
-							});
-						});
-				   },
-			   });
-			} else {
-				swal({
-					icon: "error",
-					title: "Formato inválido",
-					text: "El formato del archivo '" + e.target.files[0].name + "' no es válido y no puede importarse."
-				})
-			}
-          }}
-      />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;Importar exámenes
-			</div>
+			<button className='buttonAlumnos' onClick={() => {window.location.href = "/examenes"}}>Exámenes</button>
     </div>
 	)
 }

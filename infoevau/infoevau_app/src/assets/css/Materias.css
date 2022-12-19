@@ -1,0 +1,77 @@
+/* -----------------------------------------------------------
+# CONTAINERS
+----------------------------------------------------------- */
+
+.containerTituloMaterias {
+    text-align: center;
+    position: absolute;
+    top: 12%;
+    left: 10%;
+    height: 70px;
+    width: 300px;
+}
+
+.containerTablaMaterias {
+    position: absolute;
+    top: 20%;
+    right: 3%;
+    height: 430px;
+    width: 50%;
+    overflow: auto;
+}
+
+    /* Scrollbar*/
+
+.containerTablaMaterias::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+    
+.containerTablaMaterias::-webkit-scrollbar:vertical {
+    width:10px;
+}
+    
+.containerTablaMaterias::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
+
+.containerBotonesMaterias {
+    position: absolute;
+    left: 9%;
+    top: 35%;
+    height: 300px;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+  }
+
+/* -----------------------------------------------------------
+# TABLAS
+----------------------------------------------------------- */
+
+.tablaMaterias {
+    width: 100%;
+}
+
+.tablaMaterias td, .tablaMaterias th {
+    padding: 8px;
+}
+
+.tablaMaterias tr:nth-child(odd){background-color: white;}
+.tablaMaterias tr:nth-child(even){background-color: #f2f2f2;}
+
+.tablaMaterias tr:hover {
+    background-color:lightblue;
+}
+
+.tablaMaterias th {
+    position: sticky;
+    top: 0;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: aquamarine;
+    color: black;
+}

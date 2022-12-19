@@ -1,6 +1,7 @@
 import "./assets/css/App.css";
 import Home from "./components/Home";
 import Alumnos from "./components/Alumnos/Alumnos";
+import Materias from "./components/Materias/Materias";
 import Sedes from "./components/Sedes/Sedes";
 import GestionSede from "./components/Sedes/GestionSede";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -20,6 +21,11 @@ const router = createBrowserRouter([
   {
     path: "/alumnos",
     element: <Alumnos />,
+    errorElement: <PaginaError />,
+  },
+  {
+    path: "/examenes",
+    element: <Materias />,
     errorElement: <PaginaError />,
   },
   {

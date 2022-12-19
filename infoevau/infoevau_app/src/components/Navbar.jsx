@@ -1,8 +1,9 @@
 import React from "react";
 import logo from "../assets/images/logoNuevo.png";
-import imgSedes from "../assets/images/sedepng.png"
-import imgAlumnos from "../assets/images/estudiantepng.png"
-import imgUsuarios from "../assets/images/usuarios.png"
+import imgSedes from "../assets/images/sedepng.png";
+import imgAlumnos from "../assets/images/estudiantepng.png";
+import imgUsuarios from "../assets/images/usuarios.png";
+import imgExamenes from "../assets/images/examen.png";
 
 export default function Navbar() {
   return (
@@ -16,6 +17,12 @@ export default function Navbar() {
             <li>
               <img src={imgAlumnos} alt="" className="iconoNavbar2"/>
               <p>Alumnos</p>
+            </li>
+          </a>
+          <a href="/examenes">
+            <li>
+              <img src={imgExamenes} alt="" className="iconoNavbar"/>
+              <p>Exámenes</p>  
             </li>
           </a>
           <a href="/sedes">
