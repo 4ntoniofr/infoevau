@@ -78,13 +78,26 @@ export default function BotonesAulas({ data, setData, aulaSeleccionada, idSede }
                 </button>
 
                 <dialog id = "formularioCrearAula" className="customDialog">
-                    <form className="form2" onSubmit={() => {
-                            if(modificar)
-								aulasServices.modificarAula(id, capacidad, disponibilidad.toString(), aulaSeleccionada, data, setData);
-							else
-                                aulasServices.insertarAula(data, setData, id, capacidad, disponibilidad.toString(), sede);
-                                //formCrearAula.close();
-							}
+                    <form className="form2" onSubmit={(event) => {
+											event.preventDefault();
+                    	if(capacidad <= 0){
+												swal({
+													icon: "info",
+													title: "Capacidad introducida no valida"
+												});
+											}else if(data.find(a => a.Id === id) !== undefined){
+												swal({
+													icon: "info",
+													title: "Id de aula ya en uso"
+												});
+											}else{
+												if(modificar)
+													aulasServices.modificarAula(id, capacidad, disponibilidad.toString(), aulaSeleccionada, data, setData);
+												else
+                      		aulasServices.insertarAula(data, setData, id, capacidad, disponibilidad.toString(), sede);
+											}
+											formCrearAula.close();
+										}
                         }>
                         <h2>{modificar ? "Modificar" : "Crear"} Aula</h2>
                         <label><input placeholder="ID" type="text" value={id} onChange={(event) => setId(event.target.value)} /></label>
