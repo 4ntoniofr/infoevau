@@ -12,10 +12,22 @@ export default function AulasSede() {
 
     const [aulaSeleccionada, setAulaSeleccionada] = useState(null);
     const [data, setData] = useState([]);
+		const [dataTabla, setDataTabla] = useState([]);
 
     useEffect(() => {
         axios.post("http://localhost:3001/aulas", { sede: idSede }).then((a) => {
-            setData(a.data);
+          setData(a.data);
+
+					setDataTabla([]);
+					a.data.forEach(d => {
+						let a = dataTabla.find(t => t.Id === d.Id);
+						if(a === undefined){
+							dataTabla.push(d);
+						}else{
+							a.Disponibilidad = a.Disponibilidad + "," + d.Disponibilidad;
+						}
+						setDataTabla(dataTabla);
+					});
         });
     }, [idSede]);
 
@@ -25,7 +37,7 @@ export default function AulasSede() {
                 <h2>Aulas de la sede {idSede}</h2>
             </div>
             <TablaAulas
-                data={data}
+                data={dataTabla}
                 aulaSeleccionada={aulaSeleccionada}
                 setAulaSeleccionada={setAulaSeleccionada}
             />

@@ -53,7 +53,7 @@ export default function PersonalSede() {
 
             <BotonesPersonal sede={idSede} aulaSeleccionada={aulaSeleccionada} personalSeleccionado={personalSeleccionado} dataPersonal = {dataPersonal} setDataPersonal = {setDataPersonal} dataAulas = {dataAulas} setDataAulas ={setDataAulas} setAulaSeleccionada={setAulaSeleccionada} setPersonalSeleccionado={setPersonalSeleccionado}/>
 
-            <TablaPersonal data = {dataPersonal} personalSeleccionado = {personalSeleccionado} setPersonalSeleccionado={setPersonalSeleccionado}/>
+            <TablaPersonal data = {dataPersonal} aula={aulaSeleccionada} personalSeleccionado = {personalSeleccionado} setPersonalSeleccionado={setPersonalSeleccionado}/>
         </>
     )
 }

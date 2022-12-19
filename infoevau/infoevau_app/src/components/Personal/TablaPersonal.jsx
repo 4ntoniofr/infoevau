@@ -1,6 +1,14 @@
 import React from "react";
 
-export default function TablaPersonal({data, personalSeleccionado, setPersonalSeleccionado}) {
+export default function TablaPersonal({data, aula, personalSeleccionado, setPersonalSeleccionado}) {
+
+    let personalDisponible = [...data];
+
+    if(aula!=null){
+        let disponibilidad = aula.Disponibilidad;
+        personalDisponible = personalDisponible.filter(x => x.Momento === disponibilidad);
+        console.log(personalDisponible)
+    }
 
 	const seleccionarPersonal = (personal) => {
 		if(personalSeleccionado === personal) setPersonalSeleccionado(null)
@@ -20,7 +28,7 @@ export default function TablaPersonal({data, personalSeleccionado, setPersonalSe
                         </tr>
                     </thead>
                         <tbody>
-                            {data.map((personal, key) => (
+                            {personalDisponible.map((personal, key) => (
                                 <tr
 																	key={key} 
 																	style={personalSeleccionado === personal ? { backgroundColor: "#80ff80" } : {}}
