@@ -336,9 +336,10 @@ app.post("/nuevoPersonal", (req, res) => {
 	let disponibilidad = req.body.disponibilidad;
 	personal.forEach(r => {
 		if (r != '') {
-			let num = Math.floor((Math.random() * 9));
-			db.query("INSERT INTO RESPONSABLE_AULA(Responsable, Sede, Momento) VALUES (?, '"+sede+"', '"+disponibilidad[num]+"');", [r], (err, res, f) => {
-				if (err) console.log(err);
+			disponibilidad.forEach(d => {
+				db.query("INSERT INTO RESPONSABLE_AULA(Responsable, Sede, Momento) VALUES (?, '"+sede+"', '"+d+"');", [r], (err, res, f) => {
+					if (err) console.log(err);
+				})
 			})
 		}
 	})
@@ -352,11 +353,12 @@ app.post("/personalAulas", (req, res) => {
 
 app.post("/asignarResponsableAula", (req, res) => {
 	let aula = req.body.aula;
+	let sede = req.body.sede;
 	let responsable = req.body.responsable;
-	db.query("UPDATE RESPONSABLE_AULA SET Aula = '" + aula + "', Rol = 'Responsable' where Responsable = '" + responsable + "';", (err, res, f) => {
+	db.query("UPDATE RESPONSABLE_AULA SET Aula = '" + aula + "', Rol = 'Responsable' where Responsable = '" + responsable + "' and Sede = '"+sede+"';", (err, res, f) => {
 		if (err) console.log(err)
 	})
-	db.query("UPDATE AULA SET Responsable = '" + responsable + "' where Id = '" + aula + "';", (err, res, f) => {
+	db.query("UPDATE AULA SET Responsable = '" + responsable + "' where Id = '" + aula + "' and Sede = '"+sede+"';", (err, res, f) => {
 		if (err) console.log(err)
 	})
 	res.send();
@@ -365,10 +367,12 @@ app.post("/asignarResponsableAula", (req, res) => {
 app.post("/asignarVigilanteAula", (req, res) => {
 	let aula = req.body.aula;
 	let vigilante = req.body.vigilante;
-	db.query("UPDATE RESPONSABLE_AULA SET Aula = '" + aula + "', Rol = 'Vigilante' where Responsable = '" + vigilante + "';", (err, res, f) => {
+	let sede = req.body.sede;
+
+	db.query("UPDATE RESPONSABLE_AULA SET Aula = '" + aula + "', Rol = 'Vigilante' where Responsable = '" + vigilante + "' and Sede = '"+sede+"';", (err, res, f) => {
 		if (err) console.log(err)
 	})
-	db.query("UPDATE AULA SET Responsable = '" + vigilante + "' where Id = '" + aula + "';", (err, res, f) => {
+	db.query("UPDATE AULA SET Responsable = '" + vigilante + "' where Id = '" + aula + "' and Sede = '"+sede+"';", (err, res, f) => {
 		if (err) console.log(err)
 	})
 	res.send();
@@ -377,12 +381,13 @@ app.post("/asignarVigilanteAula", (req, res) => {
 app.post("/desasignarPersonal", (req, res) => {
 	let personal = req.body.personal;
 	let aula = req.body.aula;
+	let sede = req.body.sede;
 
-	db.query("UPDATE RESPONSABLE_AULA SET Aula = NULL, Rol = NULL WHERE Responsable = '" + personal + "';", (err, res, f) => {
+	db.query("UPDATE RESPONSABLE_AULA SET Aula = NULL, Rol = NULL WHERE Responsable = '" + personal + "' and Sede = '"+sede+"';", (err, res, f) => {
 		if (err) console.log(err)
 	})
 
-	db.query("UPDATE AULA SET Responsable = NULL WHERE Id = '" + aula + "';", (err, res, f) => {
+	db.query("UPDATE AULA SET Responsable = NULL WHERE Id = '" + aula + "' and Sede = '"+sede+"';", (err, res, f) => {
 		if (err) console.log(err)
 	})
 

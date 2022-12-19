@@ -1,7 +1,7 @@
 import "../../assets/css/Aulas.css"
 import axios from "axios";
 
-export default function BotonesPersonal({aulaSeleccionada, personalSeleccionado, dataPersonal, setDataPersonal, dataAulas, setDataAulas, setAulaSeleccionada, setPersonalSeleccionado}) {
+export default function BotonesPersonal({sede, aulaSeleccionada, personalSeleccionado, dataPersonal, setDataPersonal, dataAulas, setDataAulas, setAulaSeleccionada, setPersonalSeleccionado}) {
 
     const asignarResponsable = (aula, responsable) => {
         if(responsable == null){
@@ -18,7 +18,8 @@ export default function BotonesPersonal({aulaSeleccionada, personalSeleccionado,
         else{
             axios.post("http://localhost:3001/asignarResponsableAula", {
                 responsable: responsable.Responsable,
-                aula: aula.Id
+                aula: aula.Id,
+                sede: sede
             });
 
             dataPersonal.find(r => r.Responsable === responsable.Responsable).Aula = aula.Id;
@@ -44,7 +45,8 @@ export default function BotonesPersonal({aulaSeleccionada, personalSeleccionado,
         else{
             axios.post("http://localhost:3001/asignarVigilanteAula", {
                 vigilante: vigilante.Responsable,
-                aula: aula.Id
+                aula: aula.Id,
+                sede: sede
             });
 
             dataPersonal.find(r => r.Responsable === vigilante.Responsable).Aula = aula.Id;
@@ -64,7 +66,8 @@ export default function BotonesPersonal({aulaSeleccionada, personalSeleccionado,
         }else{
             axios.post("http://localhost:3001/desasignarPersonal", {
                 personal: personal.Responsable,
-                aula: personal.Aula
+                aula: personal.Aula,
+                sede: sede
             });
 
             dataAulas.find(a => a.Id === personal.Aula).Responsable = null;

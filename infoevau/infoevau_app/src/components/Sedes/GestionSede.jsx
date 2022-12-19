@@ -8,7 +8,7 @@ import axios from "axios";
 export default function GestionSede() {
   let params = useParams();
   let idSede = params.idSede.replace("$", "/");
-  let disponibilidades = ["Primera franja de Primer día", "Primera franja de Segundo día", "Primera franja de Tercer día", "Segunda franja de Primer día", "Segunda franja de Segundo día", "Segunda franja de Tercer día", "Tercera franja de Primer día", "Tercera franja de Segundo día", "Tercera franja de Tercer día", "Primera franja de Primer día"]
+  let disponibilidades = ["Primera franja de Primer día", "Primera franja de Segundo día", "Primera franja de Tercer día", "Segunda franja de Primer día", "Segunda franja de Segundo día", "Segunda franja de Tercer día", "Tercera franja de Primer día", "Tercera franja de Segundo día", "Tercera franja de Tercer día"]
 
   const [data, setData] = useState([]);
 
@@ -20,7 +20,7 @@ export default function GestionSede() {
         nombres.push(nombre);
       });
       setData(nombres);
-
+      
       axios.post("http://localhost:3001/nuevoPersonal", {
         personal: nombres,
         sede: idSede,
@@ -56,7 +56,8 @@ export default function GestionSede() {
             </tr>
           </thead>
           <tbody>
-            {data.map((persona, key) => (
+            {
+            [...new Set(data)].map((persona, key) => (
               <tr key={key}>
                 <td>{persona}</td>
               </tr>
