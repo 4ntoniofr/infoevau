@@ -42,9 +42,10 @@ export default function AulasSede() {
                 setAulaSeleccionada={setAulaSeleccionada}
             />
             <BotonesAulas
-                data={data}
-                setData={setData}
+                data={dataTabla}
+                setData={setDataTabla}
                 aulaSeleccionada={aulaSeleccionada}
+								setAulaSeleccionada={setAulaSeleccionada}
                 idSede={idSede}
             />
 

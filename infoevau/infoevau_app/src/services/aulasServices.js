@@ -12,7 +12,7 @@ const borrarAula = (aula, aulasMemoria, setAulasMemoria) => {
       text: "El aula " + aula.Id + " de la sede " + aula.Sede + " se eliminó correctamente"
     });
 
-    setAulasMemoria(aulasMemoria.filter((a) => a.Id !== aula.Id || a.Disponibilidad !== aula.Disponibilidad));
+    setAulasMemoria(aulasMemoria.filter((a) => a.Id !== aula.Id));
   } else {
     swal({
       icon: "error",
@@ -23,7 +23,6 @@ const borrarAula = (aula, aulasMemoria, setAulasMemoria) => {
 }
 
 const insertarAula = (aulasMemoria, setAulasMemoria, id, capacidad, disponibilidad, sede) => {
-
   if(id !== "" && id !== undefined){
 		axios.post("http://localhost:3001/nuevaAula", {
     	Id: id,
@@ -31,19 +30,24 @@ const insertarAula = (aulasMemoria, setAulasMemoria, id, capacidad, disponibilid
     	Disponibilidad: disponibilidad,
     	Sede: sede,
   	}).then(() => {
-		disponibilidad.split(",").map((d) => {
-			aulasMemoria.push({Id: id, Capacidad: capacidad, Disponibilidad: d, Sede: sede});
-		})
-			setAulasMemoria(aulasMemoria);
+			setAulasMemoria([...aulasMemoria, {Id: id, Capacidad: capacidad, Disponibilidad: disponibilidad, Sede: sede}].sort(orderId));
 		});
 	}
 };
 
-const modificarAula = (id, capacidad, disponibilidad, aulaSeleccionada, aulasMemoria, setAulasMemoria) => {
+const modificarAula = async (id, capacidad, disponibilidad, aulaSeleccionada, aulasMemoria, setAulasMemoria) => {
 
-	axios.post("http://localhost:3001/borrarAulasId", {aulaBorrar: aulaSeleccionada});
-	insertarAula(aulasMemoria, setAulasMemoria, id, capacidad, disponibilidad, aulaSeleccionada.Sede);
+	await axios.post("http://localhost:3001/borrarAulasId", {aulaBorrar: aulaSeleccionada}).then(() => {
+		let aulas = aulasMemoria.filter(a => a.Id !== aulaSeleccionada.Id);
+		insertarAula(aulas, setAulasMemoria, id, capacidad, disponibilidad, aulaSeleccionada.Sede);
+	});
 
+};
+
+const orderId = (a,b) => {
+	if(a.Id < b.Id) return -1;
+	else if(a.Id > b.Id) return 1;
+	else return 0;
 };
 
 const aulasServices = { borrarAula, insertarAula, modificarAula }

@@ -252,9 +252,9 @@ app.get("/deleteSedes", (req, res) => {
 
 app.post("/borrarAula", (req, res) => {
 	let aula = req.body.aulaBorrar.Id;
-	let disponibilidad = req.body.aulaBorrar.Disponibilidad;
+	let sede = req.body.aulaBorrar.Sede;
 
-	db.query("DELETE FROM AULA WHERE ID = ? AND Disponibilidad = ?;", [aula, disponibilidad], (err, res, f) => {
+	db.query("DELETE FROM AULA WHERE ID = ? AND Sede = ?;", [aula, sede], (err, res, f) => {
 		if (err) console.log(err)
 		else console.log('Eliminación satisfactoria de ', aula)
 	})
@@ -309,6 +309,8 @@ app.post("/nuevaAula", (req, res) => {
 			})
 		})
 	}
+
+	res.send();
 });
 
 /** =========================================================================
