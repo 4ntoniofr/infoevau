@@ -48,8 +48,8 @@ export default function GestionSede() {
       <div className="containerHeaderGestionSedes">
         <h2>Sede '{idSede}'</h2>
       </div>
-      <div className="containerTablaAulas">
-        <table className="tablaAulas">
+      <div className="containerTablaPersonalSede">
+        <table className="tablaPersonal">
           <thead>
             <tr>
               <th>Persona</th>
