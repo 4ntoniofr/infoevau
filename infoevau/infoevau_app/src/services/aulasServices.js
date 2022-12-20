@@ -37,10 +37,12 @@ const insertarAula = (aulasMemoria, setAulasMemoria, id, capacidad, disponibilid
 
 const modificarAula = async (id, capacidad, disponibilidad, aulaSeleccionada, aulasMemoria, setAulasMemoria) => {
 
-	await axios.post("http://localhost:3001/borrarAulasId", {aulaBorrar: aulaSeleccionada}).then(() => {
-		let aulas = aulasMemoria.filter(a => a.Id !== aulaSeleccionada.Id);
-		insertarAula(aulas, setAulasMemoria, id, capacidad, disponibilidad, aulaSeleccionada.Sede);
-	});
+	if(id !== undefined && id !== ""){
+		await axios.post("http://localhost:3001/borrarAulasId", {aulaBorrar: aulaSeleccionada}).then(() => {
+			let aulas = aulasMemoria.filter(a => a.Id !== aulaSeleccionada.Id);
+			insertarAula(aulas, setAulasMemoria, id, capacidad, disponibilidad, aulaSeleccionada.Sede);
+		});
+	}
 
 };
 
