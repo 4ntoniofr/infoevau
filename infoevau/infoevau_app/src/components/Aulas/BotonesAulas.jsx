@@ -97,7 +97,7 @@ export default function BotonesAulas({ data, setData, aulaSeleccionada, setAulaS
                             disponibilidad.push(x.value);
                         });
 
-                        if (capacidad <= 0) {
+                        if (id !== "" && capacidad <= 0) {
                             swal({
                                 icon: "error",
 								title: "No se puede crear el aula",

@@ -34,7 +34,7 @@ export default function Materias() {
                             materiaServices.insertarExamenes(res.data, setMaterias).then(c => {
                                 swal({
                                     icon: "success",
-                                    title: "Inserción de exámenes correcta",
+                                    title: "Inserción de exámenes realizada",
                                     text: "Se insertaron " + c + " de " + res.data.filter(e => e[0] !== "").length + " exámenes correctamente."
                                 });
                             });
