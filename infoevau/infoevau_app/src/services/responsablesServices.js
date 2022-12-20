@@ -12,10 +12,25 @@ const insertarResponsables = (responsables) => {
 
 const asignarResponsable = (responsable, sedeselected, setDataRespDisp, setDataSedes, dataSedes, dataRespDisp) => {
 
+	let antiguoResponsable = sedeselected.Responsable;
+
 	axios.post("http://localhost:3001/asignarResponsable", {
 		responsable: responsable,
 		sede: sedeselected
 	});
+
+	if (antiguoResponsable) {
+		dataRespDisp.push({Nombre: antiguoResponsable});
+		dataRespDisp.sort(function (a, b) {
+			if (a.Nombre > b.Nombre) {
+				return 1;
+			}else if (a.Nombre < b.Nombre) {
+				return -1;
+			}else return 0;
+		});
+
+		setDataRespDisp(dataRespDisp);
+	}
 
 	setDataRespDisp(dataRespDisp.filter((r) => r !== responsable));
 

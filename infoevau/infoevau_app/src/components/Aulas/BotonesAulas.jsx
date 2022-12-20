@@ -1,6 +1,5 @@
 import React from "react";
 import "../../assets/css/Aulas.css"
-import papelera from "../../assets/images/papelera.png";
 import aulasServices from "../../services/aulasServices";
 import swal from 'sweetalert';
 import { useState } from "react";
@@ -82,7 +81,6 @@ export default function BotonesAulas({ data, setData, aulaSeleccionada, setAulaS
                         onClick={() => {
                             aulasServices.borrarAula(aulaSeleccionada, data, setData);
                         }}>
-                        <img src={papelera} className="icono" alt="" />
                         Borrar aula
                     </button>
                 }

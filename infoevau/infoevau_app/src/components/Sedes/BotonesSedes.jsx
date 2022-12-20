@@ -1,7 +1,6 @@
 import React from "react";
 import sedesServices from "../../services/sedesServices";
 import responsablesServices from "../../services/responsablesServices";
-import papelera from "../../assets/images/papelera.png";
 import swal from 'sweetalert';
 import { useState } from "react";
 
@@ -67,7 +66,6 @@ function BotonesSedes({ data, setData, sedeSeleccionada, setSedeSeleccionada }) 
             setNomSede(null);
           }}
         >
-          <img src={papelera} className="icono" alt="" />
           Eliminar sede
         </button>}
         { sedeSeleccionada === null ?
