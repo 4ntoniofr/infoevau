@@ -83,10 +83,14 @@
 # TABLAS
 ----------------------------------------------------------- */
 
-.tablaAlumnos td,
-.tablaAlumnos th {
+.medium{
   padding: 8px;
-  width: 100%;
+  width: 10%;
+}
+
+.small{
+  padding: 8px;
+  width: 5%;
 }
 
 .tablaAlumnos tr:nth-child(odd) {
