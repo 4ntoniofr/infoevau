@@ -9,7 +9,7 @@ export default function TablaAulasSeparadas({data, aulaSeleccionada, setAulaSele
 
     return (
         <>
-            <div className="containerTablaAulas">
+            <div className="containerAulasSede">
                 <table className="tablaAulas">
                     <thead>
                         <tr>
