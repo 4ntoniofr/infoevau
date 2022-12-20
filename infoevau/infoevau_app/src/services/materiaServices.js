@@ -1,6 +1,7 @@
+import axios from "axios";
 import Axios from "axios";
 
-const insertarExamenes = async (examenes) => {
+const insertarExamenes = async (examenes, setMaterias) => {
 	let materiasDB = [];
 	let examenesInsertar = [];
 	await Axios.get("http://localhost:3001/materias").then((materias) => materiasDB = materias.data);
@@ -12,6 +13,8 @@ const insertarExamenes = async (examenes) => {
 	Axios.post("http://localhost:3001/nuevosExamenes", {
 		examenes: examenesInsertar
 	});
+
+	axios.get("http://localhost:3001/materias").then((m) => setMaterias(m.data));
 
 	return examenesInsertar.length;
 }

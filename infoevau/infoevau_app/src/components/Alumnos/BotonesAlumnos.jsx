@@ -21,6 +21,11 @@ function BotonesAlumnos({data, setData, setDataBD}) {
 						setData(res);
 				   },
 			   });
+			   swal({
+				icon: "info",
+				title: "Fichero " + e.target.files[0].name + " cargado",
+				text: "Pulse en 'Guardar información' para completar la inserción de los alumnos del fichero."
+			   });
 			} else {
 				swal({
 					icon: "error",

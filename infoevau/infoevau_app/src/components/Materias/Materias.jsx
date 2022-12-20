@@ -31,7 +31,7 @@ export default function Materias() {
                 if (e.target.files[0].name.endsWith(".csv")) {
                     Papa.parse(e.target.files[0], {
                         complete: (res, file) => {
-                            materiaServices.insertarExamenes(res.data).then(c => {
+                            materiaServices.insertarExamenes(res.data, setMaterias).then(c => {
                                 swal({
                                     icon: "success",
                                     title: "Inserción de exámenes correcta",

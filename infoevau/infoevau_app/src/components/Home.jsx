@@ -4,6 +4,7 @@ import logo from "../assets/images/logoNuevo.png";
 import sede from "../assets/images/sedepng.png";
 import estudiante from "../assets/images/estudiantepng.png";
 import usuarios from "../assets/images/usuarios.png";
+import examenes from "../assets/images/examen.png";
 
 export default function Home() {
   return (
@@ -26,6 +27,13 @@ export default function Home() {
                 alt="alumnosimage"
                 src={estudiante}
               />
+            </div>
+          </a>
+
+          <a href="./examenes">
+            <div className="section">
+              <p>Exámenes</p>
+              <img className="imagenSection" alt="examenesimage" src={examenes} />
             </div>
           </a>
 
