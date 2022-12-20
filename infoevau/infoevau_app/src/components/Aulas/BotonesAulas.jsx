@@ -10,19 +10,17 @@ import Select from 'react-select';
 
 export default function BotonesAulas({ data, setData, aulaSeleccionada, setAulaSeleccionada, idSede }) {
 
-    const select = useRef(null);
-
     const [id, setId] = useState("")
     const [capacidad, setCapacidad] = useState(0)
-    //const [disponibilidad, setDisponibilidad] = useState([])
     const [modificar, setModificar] = useState(false)
-    const [codigo, setCodigo] = useState(0)
+		const [disponibilidad, setDisponibilidad] = useState([])
     let sede = idSede;
 
     const formCrearAula = document.getElementById("formularioCrearAula");
 
     const selectionFranja = useRef(null);
 
+		console.log(disponibilidad);
     const options = [
         { value: 'Primera franja de Primer día', label: 'Primera franja de Primer día' },
         { value: 'Segunda franja de Primer día', label: 'Segunda franja de Primer día' },
@@ -55,11 +53,16 @@ export default function BotonesAulas({ data, setData, aulaSeleccionada, setAulaS
                     </button>
                     :
                     <button className="buttonAulas" onClick={() => {
-                        setModificar(true);
+                      	options.forEach(o => {
+													if(aulaSeleccionada.Disponibilidad.split(",").includes(o.value)){
+														setDisponibilidad((prev) => [...prev, o]);
+													}
+												});  
+												setModificar(true);
+												console.log(disponibilidad);
                         formCrearAula.showModal();
                         setId(aulaSeleccionada.Id);
                         setCapacidad(aulaSeleccionada.Capacidad);
-                        selectionFranja.clearValue();
                     }}>
                         Modificar aula
                     </button>
@@ -142,6 +145,8 @@ export default function BotonesAulas({ data, setData, aulaSeleccionada, setAulaS
                             closeMenuOnSelect={false}
                             isMulti
                             options={options}
+														onChange={(o) => setDisponibilidad(o)}
+														value={disponibilidad}
                         />
                         <br />
                         <button className="buttonForm2" type="submit">Aceptar</button>
