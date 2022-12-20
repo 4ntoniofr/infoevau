@@ -10,8 +10,6 @@ import Select from 'react-select';
 
 export default function BotonesAulas({ data, setData, aulaSeleccionada, setAulaSeleccionada, idSede }) {
 
-    const select = useRef(null);
-
     const [id, setId] = useState("")
     const [capacidad, setCapacidad] = useState(0)
     //const [disponibilidad, setDisponibilidad] = useState([])
@@ -99,10 +97,11 @@ export default function BotonesAulas({ data, setData, aulaSeleccionada, setAulaS
                             disponibilidad.push(x.value);
                         });
 
-                        if (capacidad <= 0) {
+                        if (id !== "" && capacidad <= 0) {
                             swal({
-                                icon: "info",
-                                title: "Capacidad introducida no valida"
+                                icon: "error",
+								title: "No se puede crear el aula",
+                                text: "La capacidad introducida no es valida."
                             });
                         } else {
                             if (modificar) {
@@ -115,8 +114,9 @@ export default function BotonesAulas({ data, setData, aulaSeleccionada, setAulaS
                             else {
                                 if (data.find(a => a.Id === id) !== undefined) {
                                     swal({
-                                        icon: "info",
-                                        title: "Id de aula ya en uso"
+                                        icon: "error",
+                                        title: "No se puede crear el aula",
+										text: "Ya hay un aula definida en esta sede con el mismo ID."
                                     });
                                 } else {
                                     aulasServices.insertarAula(data, setData, id, capacidad, disponibilidad.toString(), sede);

@@ -14,30 +14,32 @@ function BotonesAlumnos({
   const Papa = require("papaparse");
   const [insercion, setInsercion] = React.useState(false);
 
-  return (
-    <div className="containerButtons">
-      <div className="custom-input-file">
-        <input
-          className="input-file"
-          type="file"
-          accept=".csv"
-          onChange={(e) => {
-            if (e.target.files[0].name.endsWith(".csv")) {
-              Papa.parse(e.target.files[0], {
-                complete: (res, file) => {
-                  setData(res);
-                },
-              });
-            } else {
-              swal({
-                icon: "error",
-                title: "Formato inválido",
-                text:
-                  "El formato del archivo '" +
-                  e.target.files[0].name +
-                  "' no es válido y no puede importarse.",
-              });
-            }
+	return (
+		<div className="containerButtons">
+		<div className='custom-input-file'>
+      <input
+         className='input-file'
+         type="file"
+         accept=".csv"
+         onChange={(e) => {
+			if (e.target.files[0].name.endsWith(".csv")) {
+				Papa.parse(e.target.files[0], {
+					complete: (res, file) => {
+						setData(res);
+				   },
+			   });
+			   swal({
+				icon: "info",
+				title: "Fichero " + e.target.files[0].name + " cargado",
+				text: "Pulse en 'Guardar información' para completar la inserción de los alumnos del fichero."
+			   });
+			} else {
+				swal({
+					icon: "error",
+					title: "Formato inválido",
+					text: "El formato del archivo '" + e.target.files[0].name + "' no es válido y no puede importarse."
+				})
+			}
           }}
         />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
