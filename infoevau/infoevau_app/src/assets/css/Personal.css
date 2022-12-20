@@ -17,8 +17,6 @@
     overflow:auto;
 }
 
-
-
     /* Scrollbar*/
 
 .containerTablaPersonal::-webkit-scrollbar {
@@ -47,6 +45,30 @@
     right: 10%;
 }
     
+.containerTablaPersonalSede {
+    height: 430px;
+    width: 35%;
+    position: fixed;
+    left: 3%;
+    top: 24%;
+    overflow:auto;
+}
+
+    /* Scrollbar*/
+
+.containerTablaPersonalSede::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+    
+.containerTablaPersonalSede::-webkit-scrollbar:vertical {
+    width:10px;
+}
+    
+.containerTablaPersonalSede::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
 
 /* -----------------------------------------------------------
 # TABLAS

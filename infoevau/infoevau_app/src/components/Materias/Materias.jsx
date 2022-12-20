@@ -18,7 +18,7 @@ export default function Materias() {
     return (
         <>
         <div className="containerTituloMaterias">
-            <h2>Exámenes insertados</h2>
+            <h1>Exámenes insertados</h1>
         </div>
         
         <div className="containerBotonesMaterias">
