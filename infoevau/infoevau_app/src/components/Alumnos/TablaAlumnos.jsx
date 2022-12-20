@@ -2,9 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function TablaAlumnos({ data, setData }) {
-  const [loading, setLoading] = useState(true);
-  const [matriculas, setMatriculas] = useState([]);
+function TablaAlumnos({ data, setData, matriculas, setMatriculas, loading, setLoading }) {
 
   useEffect(() => {
     axios.get("http://localhost:3001/alumnos").then((alumnos) => {
