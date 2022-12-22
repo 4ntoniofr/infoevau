@@ -56,7 +56,7 @@
     flex-wrap: wrap;
     align-content:space-between;
     justify-content: center;
-    height: 300px;
+    height: 380px;
     width: 25%;
     position: fixed;
     top: 25%;
@@ -72,6 +72,14 @@
     border-radius: 20px;
     top: 40%;
     left: 3%;
+}
+
+.containerVerAsignaciones {
+    position: absolute;
+    width: 20%;
+    height: 60px;
+    left: 40%;
+    top: 48%;
 }
 
 /* -----------------------------------------------------------
@@ -288,6 +296,37 @@
     border: 0px;
 }
 
+.customDialogAsignaciones::backdrop {background-color: rgba(0, 0, 0, .55);} 
+.customDialogAsignaciones {
+    background-color: transparent;
+    border: 0px;
+}
+
+
 .formSedes {width:500px;height:270px;background:#e6e6e6;border-radius:8px;box-shadow:0 0 40px -10px #000;margin:calc(50vh - 220px) auto;padding:20px 30px;max-width:calc(100vw - 40px);box-sizing:border-box;font-family:'Montserrat',sans-serif;position:relative}
+.formAsignaciones {width:900px;height:500px;background:#e6e6e6;border-radius:8px;box-shadow:0 0 40px -10px #000;margin:calc(50vh - 220px) auto;padding:20px 30px;max-width:calc(100vw - 40px);box-sizing:border-box;font-family:'Montserrat',sans-serif;position:fixed;bottom: -5%; left:15%}
 .buttonFormSedes {float:right;padding:8px 12px;margin:8px 0 0;font-family:'Montserrat',sans-serif;border:2px solid #78788c;background:0;color:#5a5a6e;cursor:pointer;transition:all .3s;border-radius: 10px;}
 .buttonFormSedes:hover{background:aquamarine;color:black;border:2px solid white}
+
+/* -----------------------------------------------------------
+# LOADING
+----------------------------------------------------------- */
+
+@keyframes example {
+    0% {
+      color: black;
+    }
+    100% {
+      color: rgba(0, 0, 0, 0.3);
+    }
+  }
+  
+  .loadingText {
+    font-size: large;
+    text-align: center;
+    font-weight: bolder;
+    animation-name: example;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }

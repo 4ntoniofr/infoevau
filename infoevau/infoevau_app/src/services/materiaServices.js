@@ -14,7 +14,7 @@ const insertarExamenes = async (examenes, setMaterias) => {
 		examenes: examenesInsertar
 	});
 
-	axios.get("http://localhost:3001/materias").then((m) => setMaterias(m.data));
+	await axios.get("http://localhost:3001/materias").then((m) => setMaterias(m.data));
 
 	return examenesInsertar.length;
 }

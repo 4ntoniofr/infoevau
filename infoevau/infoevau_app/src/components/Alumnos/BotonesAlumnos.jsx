@@ -10,6 +10,7 @@ function BotonesAlumnos({
   setMatriculas,
   loading,
   setLoading,
+  materias
 }) {
   const Papa = require("papaparse");
   const [insercion, setInsercion] = React.useState(false);
@@ -65,10 +66,9 @@ function BotonesAlumnos({
           onClick={() => {
             if (data.data.length > 0) {
               setLoading(true);
-              axios.get("http://localhost:3001/materias").then((materias) => {
-                if (materias.data.length === 0) {
+                if (materias.length === 0) {
                   swal({
-                    icon: "info",
+                    icon: "error",
                     title: "No hay materias insertadas",
                     text: "Inserte materias antes de insertar los alumnos de tal manera que las matrículas se guarden de forma exitosa.",
                   });
@@ -100,8 +100,6 @@ function BotonesAlumnos({
                           });
                       });
                   });
-              });
-
               setInsercion(true);
             } else {
               swal({
@@ -147,7 +145,7 @@ function BotonesAlumnos({
           window.location.href = "/examenes";
         }}
       >
-        Exámenes
+        Ver exámenes
       </button>
     </div>
   );

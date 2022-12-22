@@ -12,7 +12,7 @@ export default function BotonesAulas({ data, setData, aulaSeleccionada, setAulaS
     const [id, setId] = useState("")
     const [capacidad, setCapacidad] = useState(0)
     const [modificar, setModificar] = useState(false)
-		const [disponibilidad, setDisponibilidad] = useState([])
+	const [disponibilidad, setDisponibilidad] = useState([])
     let sede = idSede;
 
     const formCrearAula = document.getElementById("formularioCrearAula");

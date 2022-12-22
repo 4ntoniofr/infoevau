@@ -11,6 +11,20 @@ export default function Alumnos() {
   const [dataBD, setDataBD] = useState([]);
   const [matriculas, setMatriculas] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [materias, setMaterias] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3001/materias").then((materias) => {
+      setMaterias(materias.data);
+      if (materias.data.length === 0) {
+        swal({
+          icon: "warning",
+          title: "No hay materias insertadas",
+          text: "Inserte materias antes de insertar los alumnos de tal manera que las matrículas se guarden de forma exitosa.",
+        });
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -25,6 +39,7 @@ export default function Alumnos() {
           setMatriculas={setMatriculas}
           loading={loading}
           setLoading={setLoading}
+          materias={materias}
         />
         <TablaAlumnos
           data={dataBD}

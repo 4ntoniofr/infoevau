@@ -7,7 +7,13 @@ export default function TablaInstitutos({idSede, data, dataAsig, institutoSelecc
     useEffect(() => {
       axios.post("http://localhost:3001/aforoSede", {
 			sede: idSede
-			}).then(c => setCapacidadSede(c.data[0].Capacidad));
+			}).then(c => {
+				let aforo = 0;
+				for (var i = 0; i < c.data.length; i++) {
+					aforo += c.data[i].Capacidad;
+				}
+				setCapacidadSede(aforo)} 
+			);
     }, []);
 
 		const alumnosSede = () => {

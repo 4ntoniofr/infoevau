@@ -66,7 +66,7 @@ app.get("/sedes", (req, res) => {
 
 app.post("/aforoSede", (req, res) => {
 	let sede = req.body.sede;
-	dbQuery("SELECT SUM(Capacidad) 'Capacidad' FROM AULA WHERE Sede = '" + sede + "';",req,res);
+	dbQuery("SELECT Capacidad FROM AULA WHERE Sede = '" + sede + "' GROUP BY Id;",req,res);
 })
 
 app.get("/responsablesDisponibles", (req, res) => {
@@ -93,6 +93,14 @@ app.post("/institutosAsignados", (req, res) => {
 	+ "WHERE I.Sede = '" + sede + "' GROUP BY I.Nombre;", req, res);	
 })
 
+app.get("/personal", (req, res) => {
+	dbQuery("SELECT * FROM RESPONSABLE_AULA", req, res);
+});
+
+app.post("/asignacionesPersonal", (req, res) => {
+	let responsable = req.body.responsable;
+	dbQuery("SELECT * FROM RESPONSABLE_AULA WHERE Responsable = '" + responsable + "' ORDER BY Momento;", req, res);	
+})
 
 /** =========================================================================
  *  Alumnos

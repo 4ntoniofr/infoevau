@@ -1,6 +1,7 @@
 import "../../assets/css/Aulas.css"
 import axios from "axios";
 import swal from "sweetalert";
+import sedesServices from "../../services/sedesServices";
 
 export default function BotonesPersonal({sede, aulaSeleccionada, personalSeleccionado, dataPersonal, setDataPersonal, dataAulas, setDataAulas, setAulaSeleccionada, setPersonalSeleccionado}) {
 
@@ -133,6 +134,8 @@ export default function BotonesPersonal({sede, aulaSeleccionada, personalSelecci
             <button className="buttonPersonal"
             onClick={() => desasignarPersonal(personalSeleccionado)}
             >Desasignar</button>
+
+            <button className="buttonPersonal" onClick={() => {sedesServices.abrirSede(sede)}}>Volver</button>
 
             </div>
         </>
